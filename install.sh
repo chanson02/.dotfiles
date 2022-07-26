@@ -7,4 +7,4 @@
 # if [ $var ] else fi
 
 # Create Symbolic Link for gitconfig
-echo $(ln -s gitconfig $HOME/.gitconfig)
+echo $(ln -s ~/.dotfiles/gitconfig ~/.gitconfig)
