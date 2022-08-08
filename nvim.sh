@@ -18,3 +18,9 @@ curl -L $nvim_download -o $nvim_installer
 dpkg -i ./$nvim_installer
 apt-get install -f -y
 rm $nvim_installer
+
+# Create nvim directory
+if [[ ! -d "~/.config/nvim" ]] then mkdir -p "~/.config/nvim" fi
+ln -s ~/.dotfiles/init.lua ~/.config/nvim/init.lua
+ln -s ~/.dotfiles/lua ~/.config/nvim/lua
+
