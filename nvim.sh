@@ -18,17 +18,17 @@ curl -L $nvim_download -o $nvim_installer
 dpkg -i ./$nvim_installer
 apt-get install -f -y
 rm $nvim_installer
-apt autoremove
+apt autoremove -y
 
 # Create nvim config
 home=$(getent passwd ${SUDO_USER:-$USER} | cut -d: -f6) # home dir
-nvim_home="$home/.config/nvim/plugin"
-mkdir -p $nvim_home
+nvim_home="$home/.config/nvim/"
+mkdir -p $nvim_home/plugin
 if [ -f "$nvim_home/init.lua" ] ; then rm $nvim_home/init.lua; fi
-if [ -d "$nvim_home/lua"]; then rm -Rf $nvim_home/lua; fi
+if [ -d "$nvim_home/lua" ]; then rm -Rf $nvim_home/lua; fi
 
-ln -s $home/.dotfiles/init.lua $home/.config/nvim/init.lua
-ln -s $home/.dotfiles/lua $home/.config/nvim/lua
+ln -s $home/.dotfiles/init.lua $nvim_home/init.lua
+ln -s $home/.dotfiles/lua $nvim_home/lua
 
 sudo -u $SUDO_USER nvim -c "q" # Install packer
 sudo -u $SUDO_USER nvim -c "w" $home/.dotfiles/lua/chanson/plugins.lua # Install plugins
