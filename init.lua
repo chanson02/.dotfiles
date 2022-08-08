@@ -1,8 +1,6 @@
-
 require "chanson.options"
-vim.cmd "colorscheme xcodedark"
-
 require "chanson.plugins"
+vim.cmd "colorscheme xcodedark"
 require 'chanson.diagnostic'
 require "chanson.keymaps"
 require "chanson.treesitter"
