@@ -7,4 +7,8 @@
 # if [ $var ] else fi
 
 # Create Symbolic Link for gitconfig
-echo $(ln -s ~/.dotfiles/gitconfig ~/.gitconfig)
+# echo $(ln -s ~/.dotfiles/gitconfig ~/.gitconfig)
+
+#echo $(apt install curl)
+
+
