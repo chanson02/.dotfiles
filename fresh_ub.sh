@@ -6,6 +6,14 @@
 # $1.. $n - passed in args
 # if [ $var ] else fi
 
+apt-get update -y
+apt-get upgrade -y
+apt-get dist-upgrade -y
+apt-get autoremove -y
+apt-get install update-manager-core -y
+do-release-upgrade -d -y
+
+
 # Create Symbolic Link for gitconfig
 echo $(ln -s ~/.dotfiles/gitconfig ~/.gitconfig)
 
@@ -13,4 +21,4 @@ echo $(ln -s ~/.dotfiles/gitconfig ~/.gitconfig)
 echo "Installing Various Dependencies"
 apt-get install curl virtualbox -y
 
-
+reboot -y
