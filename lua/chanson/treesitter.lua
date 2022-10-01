@@ -5,7 +5,6 @@ if not status_ok then
 end
 
 configs.setup {
-  --ensure_installed = { 'ruby', 'javascript' },
   highlight = { enable = true },
   auto_install = true, -- Automatically install parsers for files I use
 
