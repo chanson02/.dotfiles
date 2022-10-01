@@ -13,9 +13,6 @@ rm -r $home/.sfmono
 fc-cache -fv
 
 # Dependencies
-apt install curl
-curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-apt install gcc g++ make nodejs npm -y
 apt-get --purge remove neovim -y # delete old nvim if installed
 
 # This link redirects to the newest version of nvim
