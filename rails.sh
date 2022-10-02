@@ -1,12 +1,17 @@
+home=$(getent passwd ${SUDO_USER:-$USER} | cut -d: -f6) # home dir
+
 # Download rbenv
-git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+git clone https://github.com/rbenv/rbenv.git $home/.rbenv
+chmod -R 777 $home/.rbenv
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> $home/.bashrc
+echo 'eval "$(rbenv init -)"' >> $home/.bashrc
 
 # Download ruby installer
-git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
+git clone https://github.com/rbenv/ruby-build.git $home/.rbenv/plugins/ruby-build
+echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> $home/.bashrc
 
+
+### THE REST OF THIS DOES NOT WORK
 # Don't wait for shell restart
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
