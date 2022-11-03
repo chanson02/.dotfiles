@@ -56,3 +56,7 @@ lsp.html.setup({})
 lsp.jsonls.setup({})
 
 lsp.solargraph.setup({})
+lsp.jdtls.setup({}) -- Java
+lsp.pyright.setup({})
+lsp.clangd.setup({})
+lsp.bashls.setup({})

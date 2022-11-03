@@ -38,3 +38,5 @@ keymap('n', '<leader>F', '<cmd>Telescope live_grep<cr>', opts)
 vim.keymap.set('n', '<leader>td', ':call v:lua.toggle_diagnostics()<CR>', {noremap=true, silent=true})
 --vim.keymap.set('n', '<leader>d', vim.diagnostic.goto_next, {buffer=0}) -- Jump to error
 vim.keymap.set('n', '<leader>er', '<cmd>Telescope diagnostics<cr>', {buffer=0}) -- Show errors
+
+-- LSP Keybinds defined in the lsp.lua file

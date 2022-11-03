@@ -2,15 +2,17 @@
 
 home=$(getent passwd ${SUDO_USER:-$USER} | cut -d: -f6) # home dir
 
-# Install Nerd Font (Droid)
-echo "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/DroidSansMono.zip"
+# Install Nerd Fonts (Droid for incompatibility and SF Mono where able)
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/DroidSansMono.zip
 mkdir -p $home/.fonts
 unzip DroidSansMono.zip -d $home/.fonts
+
+git clone https://github.com/shaunsingh/SFMono-Nerd-Font-Ligaturized.git $home/.sfmono
+mv $home/.sfmono/*.otf $home/.fonts/
+rm -r $home/.sfmono
 fc-cache -fv
 
 # Dependencies
-apt install curl gcc g++ -y
 apt-get --purge remove neovim -y # delete old nvim if installed
 
 # This link redirects to the newest version of nvim
