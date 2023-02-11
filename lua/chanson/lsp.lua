@@ -54,6 +54,7 @@ lsp.tsserver.setup({})
 lsp.cssls.setup({})
 lsp.html.setup({})
 lsp.jsonls.setup({})
+lsp.svelte.setup({})
 
 lsp.solargraph.setup({})
 lsp.jdtls.setup({}) -- Java
