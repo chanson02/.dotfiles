@@ -50,6 +50,8 @@ return packer.startup(function(use)
   use 'nvim-lua/popup.nvim' -- Popup windows
   use 'nvim-lua/plenary.nvim' -- used by many plugins -- Call back for loading other plugins safely
 
+  use 'christoomey/vim-tmux-navigator'
+
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
