@@ -40,6 +40,7 @@ lsp.util.default_config = vim.tbl_deep_extend(
   lsp_defaults
 )
 
+--[[
 lsp.sumneko_lua.setup({
   settings = {
     Lua = {
@@ -49,6 +50,7 @@ lsp.sumneko_lua.setup({
     }
   }
 })
+]]--
 
 lsp.tsserver.setup({})
 lsp.cssls.setup({})
