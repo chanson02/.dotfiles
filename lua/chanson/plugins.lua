@@ -68,6 +68,7 @@ return packer.startup(function(use)
 
   use 'unblevable/quick-scope'
   use {
+    -- sudo apt install ripgrep fd-find
     'nvim-telescope/telescope-media-files.nvim',
     'nvim-telescope/telescope.nvim',
     requires = { { 'nvim-lua/plenary.nvim' } }
