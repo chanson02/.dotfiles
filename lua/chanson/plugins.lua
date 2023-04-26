@@ -54,11 +54,11 @@ return packer.startup(function(use)
 
   use {
     'nvim-treesitter/nvim-treesitter',
+    'p00f/nvim-ts-rainbow',
     run = ':TSUpdate',
   }
-  use 'p00f/nvim-ts-rainbow'
   use 'windwp/nvim-autopairs'
-  
+
   -- File Explorer
   use {
     'kyazdani42/nvim-tree.lua',
@@ -75,6 +75,8 @@ return packer.startup(function(use)
     run = 'make', -- I had to run this manually cd /home/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim && make
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
+
+  use { 'tpope/vim-fugitive' } --git integration
 
   --[[
   My old LSP
