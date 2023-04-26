@@ -1,3 +1,23 @@
+local lsp = require('lsp-zero')
+lsp.preset('recommended')
+
+lsp.on_attach(function(client, bufnr)
+  local opts = {buffer = bufnr, remap = false}
+
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts) -- go definition
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts) -- go reference
+  vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts) -- go type
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts) -- rename
+  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts) --code action
+end)
+
+lsp.setup()
+
+
+--[[
+OLD LSP CONFIG
+
 local mason_ok, mason = pcall(require, 'mason')
 local mlsp_ok, mlsp = pcall(require, 'mason-lspconfig')
 local lsp_ok, lsp = pcall(require, 'lspconfig')
@@ -40,7 +60,6 @@ lsp.util.default_config = vim.tbl_deep_extend(
   lsp_defaults
 )
 
---[[
 lsp.sumneko_lua.setup({
   settings = {
     Lua = {
@@ -50,7 +69,6 @@ lsp.sumneko_lua.setup({
     }
   }
 })
-]]--
 
 lsp.tsserver.setup({})
 lsp.cssls.setup({})
@@ -62,3 +80,4 @@ lsp.jdtls.setup({}) -- Java
 lsp.pyright.setup({})
 lsp.clangd.setup({})
 lsp.bashls.setup({})
+--]]
