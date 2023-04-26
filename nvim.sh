@@ -14,6 +14,7 @@ fc-cache -fv
 
 # Dependencies
 apt-get --purge remove neovim -y # delete old nvim if installed
+rm -rf /usr/bin/nvim-linux64
 
 # This link redirects to the newest version of nvim
 nvim_redirect='https://github.com/neovim/neovim/releases/latest'
@@ -21,13 +22,16 @@ nvim_redirect='https://github.com/neovim/neovim/releases/latest'
 nvim_command="curl -Ls -w %{url_effective} $nvim_redirect"
 nvim_home=$($nvim_command | tail -n1) # the last line is the url
 nvim_version=$(echo $nvim_home | rev | cut -d'/' -f 1 | rev) # split on / and get last
-nvim_download="https://github.com/neovim/neovim/releases/download/$nvim_version/nvim-linux64.deb"
-nvim_installer="nvim_linux64_$nvim_version.deb"
+# sometiems this is .deb, others its .tar.gz?
+nvim_download="https://github.com/neovim/neovim/releases/download/$nvim_version/nvim-linux64.tar.gz"
+nvim_installer="nvim_linux64_$nvim_version.tar.gz"
 
 # Download / Install Neovim
 curl -L $nvim_download -o $nvim_installer
-dpkg -i ./$nvim_installer
-apt-get install -f -y
+tar -xzvf $nvim_installer -C /usr/bin nvim-linux64
+# these are for .deb files
+#dpkg -i ./$nvim_installer
+#apt-get install -f -y
 rm $nvim_installer
 apt autoremove -y
 
