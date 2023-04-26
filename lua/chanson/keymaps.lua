@@ -7,10 +7,11 @@ keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Hold paste register
-keymap("v", "p", '"_dP', opts)
--- Use leader to not overwrite paste register
-keymap('x', '<leader>p', "\"_dP")
+-- Registers
+keymap("v", "p", '"_dP', opts) -- hold paste
+keymap('x', '<leader>p', "\"_dP", opts) -- do not overwrite paste
+keymap('nv', '<leader>y', "\"+y", opts) -- use system clipboard
+keymap('nv', '<leader>Y', "\"+Y", opts)
 
 -- Open Inventory
 keymap("n", "<leader>ee", ":NvimTreeToggle<cr>", opts)

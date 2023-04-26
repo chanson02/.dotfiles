@@ -3,7 +3,7 @@
 --
 vim.opt.termguicolors = true
 vim.opt.mouse = "a"
-vim.cmd "set clipboard+=unnamedplus" -- always use system clipboard?
+-- vim.cmd "set clipboard+=unnamedplus" -- always use system clipboard? -- changed in keymaps to use leader
 vim.opt.fileencoding = "utf-8"
 vim.opt.swapfile = false
 vim.opt.undofile = true
