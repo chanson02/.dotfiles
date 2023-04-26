@@ -10,8 +10,10 @@ vim.g.maplocalleader = " "
 -- Registers
 keymap("v", "p", '"_dP', opts) -- hold paste
 keymap('x', '<leader>p', "\"_dP", opts) -- do not overwrite paste
-keymap('nv', '<leader>y', "\"+y", opts) -- use system clipboard
-keymap('nv', '<leader>Y', "\"+Y", opts)
+keymap('n', '<leader>y', "\"+y", opts) -- use system clipboard
+keymap('v', '<leader>y', "\"+y", opts) -- use system clipboard
+keymap('n', '<leader>Y', "\"+Y", opts)
+keymap('v', '<leader>Y', "\"+Y", opts)
 
 -- Open Inventory
 keymap("n", "<leader>ee", ":NvimTreeToggle<cr>", opts)
