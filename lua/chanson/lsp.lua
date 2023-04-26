@@ -11,9 +11,17 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts) -- rename
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts) --code action
   -- vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts)
+  -- vim.keymap.set('n', '<leader>tc', ':call v:lua.toggle_completion()<CR>', opts)
 end)
 
 lsp.setup()
+local cmp = require('cmp')
+cmp.setup({
+  completion = { autocomplete = false },
+  mapping = {
+    ['<C-Space>'] = cmp.mapping.complete(),
+  }
+})
 
 
 --[[
