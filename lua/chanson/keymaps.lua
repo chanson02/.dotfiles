@@ -9,6 +9,8 @@ vim.g.maplocalleader = " "
 
 -- Hold paste register
 keymap("v", "p", '"_dP', opts)
+-- Use leader to not overwrite paste register
+keymap('x', '<leader>p', "\"_dP")
 
 -- Open Inventory
 keymap("n", "<leader>ee", ":NvimTreeToggle<cr>", opts)
@@ -28,9 +30,11 @@ keymap('v', '>', '>gv', opts)
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
--- Jump up/down page
-keymap('n', '<C-d>', '<C-d>zz')
-keymap('n', '<C-u>', '<C-u>zz')
+-- Stay in middle when jumping
+keymap('n', '<C-d>', '<C-d>zz', opts)
+keymap('n', '<C-u>', '<C-u>zz', opts)
+keymap('n', 'n', 'nzzzv', opts)
+keymap('n', 'N', 'Nzzzv', opts)
 
 -- Get out of terminal
 keymap("t", "<Esc>", "<C-\\><C-n>", opts)
