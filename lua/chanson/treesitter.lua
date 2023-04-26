@@ -7,6 +7,7 @@ end
 configs.setup {
   highlight = { enable = true },
   auto_install = true, -- Automatically install parsers for files I use
+  additional_vim_regex_highlighting = false,
 
   -- p00f/nvim-ts-rainbow -- color code brackets
   rainbow = {
