@@ -5,6 +5,7 @@ if not status_ok then
 end
 
 telescope.load_extension('media_files') -- I havent tested this yet
+telescope.load_extension('fzf')
 
 telescope.setup({
 

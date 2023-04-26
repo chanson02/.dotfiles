@@ -71,6 +71,8 @@ return packer.startup(function(use)
     -- sudo apt install ripgrep fd-find
     'nvim-telescope/telescope-media-files.nvim',
     'nvim-telescope/telescope.nvim',
+    'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'make', -- I had to run this manually cd /home/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim && make
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
 
