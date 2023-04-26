@@ -28,6 +28,10 @@ keymap('v', '>', '>gv', opts)
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
+-- Jump up/down page
+keymap('n', '<C-d>', '<C-d>zz')
+keymap('n', '<C-u>', '<C-u>zz')
+
 -- Get out of terminal
 keymap("t", "<Esc>", "<C-\\><C-n>", opts)
 
