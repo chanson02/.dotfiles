@@ -1,3 +1,4 @@
+
 local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 
@@ -6,8 +7,13 @@ keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Hold paste register
-keymap("v", "p", '"_dP', opts)
+-- Registers
+keymap("v", "p", '"_dP', opts) -- hold paste
+keymap('x', '<leader>p', "\"_dP", opts) -- do not overwrite paste
+keymap('n', '<leader>y', "\"+y", opts) -- use system clipboard
+keymap('v', '<leader>y', "\"+y", opts) -- use system clipboard
+keymap('n', '<leader>Y', "\"+Y", opts)
+keymap('v', '<leader>Y', "\"+Y", opts)
 
 -- Open Inventory
 keymap("n", "<leader>ee", ":NvimTreeToggle<cr>", opts)
@@ -26,6 +32,12 @@ keymap('v', '>', '>gv', opts)
 -- Move characters
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
+
+-- Stay in middle when jumping
+keymap('n', '<C-d>', '<C-d>zz', opts)
+keymap('n', '<C-u>', '<C-u>zz', opts)
+keymap('n', 'n', 'nzzzv', opts)
+keymap('n', 'N', 'Nzzzv', opts)
 
 -- Get out of terminal
 keymap("t", "<Esc>", "<C-\\><C-n>", opts)
