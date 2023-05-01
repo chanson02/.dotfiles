@@ -76,7 +76,10 @@ return packer.startup(function(use)
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
 
-  use { 'tpope/vim-fugitive' } --git integration
+  use {
+    'tpope/vim-fugitive',
+    'lewis6991/gitsigns.nvim'
+  } --git integration
 
   --[[
   My old LSP
