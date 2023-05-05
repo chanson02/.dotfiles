@@ -119,3 +119,6 @@ export PATH="/usr/bin/nvim-linux64/bin:$PATH"
 # Auto jumper
 # git clone git@github.com:skywind3000/z.lua.git && sudo mv z.lua/z.lua /usr/bin/z.lua && sudo rm -r z.lua
 eval "$(lua /usr/bin/z.lua --init bash enhanced once fzf)"
+
+# set vim mode
+set -o vi

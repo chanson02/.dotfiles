@@ -1,5 +1,5 @@
 [core]
-	editor = /usr/bin/nvim
+	editor = /usr/bin/nvim-linux64/bin/nvim
 [init]
 	defaultBranch = main
 [user]
