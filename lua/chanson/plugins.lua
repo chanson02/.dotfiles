@@ -49,15 +49,14 @@ return packer.startup(function(use)
 
   use 'nvim-lua/popup.nvim' -- Popup windows
   use 'nvim-lua/plenary.nvim' -- used by many plugins -- Call back for loading other plugins safely
-
-  use 'christoomey/vim-tmux-navigator'
+  use 'christoomey/vim-tmux-navigator' -- use vim navigation with tmux panes
+  use 'windwp/nvim-autopairs' -- auto close {}
 
   use {
     'nvim-treesitter/nvim-treesitter',
     'p00f/nvim-ts-rainbow',
     run = ':TSUpdate',
   }
-  use 'windwp/nvim-autopairs'
 
   -- File Explorer
   use {
@@ -81,15 +80,6 @@ return packer.startup(function(use)
     'lewis6991/gitsigns.nvim'
   } --git integration
 
-  --[[
-  My old LSP
-  use {
-    --'williamboman/nvim-lsp-installer',
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
-    'neovim/nvim-lspconfig'
-  }
-  --]]
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
