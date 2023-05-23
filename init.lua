@@ -9,3 +9,4 @@ require "chanson.nvim-tree"
 require 'chanson.quickscope'
 require 'chanson.telescope'
 require 'chanson.lsp'
+require 'chanson.lualine'

@@ -51,6 +51,7 @@ return packer.startup(function(use)
   use 'nvim-lua/plenary.nvim' -- used by many plugins -- Call back for loading other plugins safely
   use 'christoomey/vim-tmux-navigator' -- use vim navigation with tmux panes
   use 'windwp/nvim-autopairs' -- auto close {}
+  use 'nvim-lualine/lualine.nvim'
 
   use {
     'nvim-treesitter/nvim-treesitter',
