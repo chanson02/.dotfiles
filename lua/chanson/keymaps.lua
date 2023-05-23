@@ -16,7 +16,7 @@ keymap('n', '<leader>Y', "\"+Y", opts)
 keymap('v', '<leader>Y', "\"+Y", opts)
 
 -- Open Inventory
-keymap("n", "<leader>ee", ":NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 --keymap("n", "<leader>e", ":Lex 30<cr>", opts)
 
 -- Resize splits
@@ -49,6 +49,6 @@ keymap('n', '<leader>F', '<cmd>Telescope live_grep<cr>', opts)
 -- Diagnostics
 vim.keymap.set('n', '<leader>td', ':call v:lua.toggle_diagnostics()<CR>', {noremap=true, silent=true})
 --vim.keymap.set('n', '<leader>d', vim.diagnostic.goto_next, {buffer=0}) -- Jump to error
-vim.keymap.set('n', '<leader>er', '<cmd>Telescope diagnostics<cr>', {buffer=0}) -- Show errors
+--vim.keymap.set('n', '<leader>er', '<cmd>Telescope diagnostics<cr>', {buffer=0}) -- Show errors
 
 -- LSP Keybinds defined in the lsp.lua file
