@@ -122,3 +122,5 @@ eval "$(lua /usr/bin/z.lua --init bash enhanced once fzf)"
 
 # set vim mode
 set -o vi
+
+alias nocors='google-chrome --disable-web-security --disable-gpu --user-data-dir=~/chromeTemp'
