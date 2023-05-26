@@ -5,7 +5,7 @@ apt-get update
 apt-get upgrade
 apt-get install -y git tmux
 
-git clone https://github.com/tmux-plugins/tmp $home/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm $home/.tmux/plugins/tpm
 
 mkdir -p $home/.config/tmux
 ln -s $home/.dotfiles/tmux.conf $home/.tmux.conf
