@@ -4,6 +4,11 @@ case $- in
       *) return;;
 esac
 
+# Load device specific vars
+if [ -f "$HOME/.dotfiles/bash_vars.sh" ]; then
+  source "$HOME/.dotfiles/bash_vars.sh"
+fi
+
 # History
 HISTCONTROL=ignoreboth #no duplicates
 shopt -s histappend # append, not overwrite history
@@ -98,29 +103,3 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Pyenv Stuff
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
- eval "$(pyenv init -)"
-fi
-
-# Rbenv Stuff
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init - bash)"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Add nvim to PATH
-export PATH="/usr/bin/nvim-linux64/bin:$PATH"
-
-# Auto jumper
-# git clone git@github.com:skywind3000/z.lua.git && sudo mv z.lua/z.lua /usr/bin/z.lua && sudo rm -r z.lua
-eval "$(lua /usr/bin/z.lua --init bash enhanced once fzf)"
-
-# set vim mode
-set -o vi
-
-alias nocors='google-chrome --disable-web-security --disable-gpu --user-data-dir=~/chromeTemp'
