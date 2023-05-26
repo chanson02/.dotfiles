@@ -1,6 +1,13 @@
 require "chanson.options"
 require "chanson.plugins"
-vim.cmd "colorscheme xcodedark"
+
+local ok, err = pcall(function()
+  vim.cmd "colorscheme xcodedark"
+end)
+if not ok then
+  print('Error loading colorscheme:', err)
+end
+
 require 'chanson.diagnostic'
 require "chanson.keymaps"
 require "chanson.treesitter"
