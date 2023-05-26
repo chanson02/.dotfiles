@@ -13,6 +13,7 @@ rm -r $home/.sfmono
 fc-cache -fv
 
 # Dependencies
+apt-get install -y build-essential
 apt-get --purge remove neovim -y # delete old nvim if installed
 rm -rf /usr/bin/nvim-linux64
 
@@ -46,3 +47,6 @@ ln -s $home/.dotfiles/lua $nvim_home/lua
 
 sudo -u $SUDO_USER /usr/bin/nvim-linux64/bin/nvim -c "q" # Install packer
 sudo -u $SUDO_USER /usr/bin/nvim-linux64/bin/nvim -c "w" $home/.dotfiles/lua/chanson/plugins.lua # Install plugins
+
+
+make -C $home/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim
