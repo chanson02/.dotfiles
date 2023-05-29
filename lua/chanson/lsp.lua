@@ -12,6 +12,10 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts) --code action
   -- vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts)
   -- vim.keymap.set('n', '<leader>tc', ':call v:lua.toggle_completion()<CR>', opts)
+
+  vim.keymap.set('n', 'gf', function()
+    vim.lsp.buf.format()
+  end, opts)
 end)
 
 lsp.setup()
