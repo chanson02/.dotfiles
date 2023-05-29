@@ -44,6 +44,7 @@ if [ -d "$nvim_home/lua" ]; then rm -Rf $nvim_home/lua; fi
 
 ln -s $home/.dotfiles/init.lua $nvim_home/init.lua
 ln -s $home/.dotfiles/lua $nvim_home/lua
+echo 'export PATH="/usr/bin/nvim-linux64/bin:$PATH"' >> $home/.dotfiles/bash_vars.sh
 
 sudo -u $SUDO_USER /usr/bin/nvim-linux64/bin/nvim -c "q" # Install packer
 sudo -u $SUDO_USER /usr/bin/nvim-linux64/bin/nvim -c "w" $home/.dotfiles/lua/chanson/plugins.lua # Install plugins
