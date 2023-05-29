@@ -7,15 +7,11 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts) -- go definition
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts) -- go reference
   vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts) -- go type
+  vim.keymap.set('n', 'gf', vim.lsp.buf.format, opts) -- format (file?)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts) -- rename
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts) --code action
-  -- vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, opts)
   -- vim.keymap.set('n', '<leader>tc', ':call v:lua.toggle_completion()<CR>', opts)
-
-  vim.keymap.set('n', 'gf', function()
-    vim.lsp.buf.format()
-  end, opts)
 end)
 
 lsp.setup()
