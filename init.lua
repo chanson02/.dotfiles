@@ -18,3 +18,5 @@ require 'chanson.telescope'
 require 'chanson.lsp'
 require 'chanson.null-ls'
 require 'chanson.lualine'
+require 'chanson.dap'
+
