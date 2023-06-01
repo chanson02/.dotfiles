@@ -19,3 +19,10 @@ configs.setup {
 
 --vim.opt.foldmethod = 'expr' --fold functions
 --vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+
+local ok, context = pcall(require, 'treesitter-context')
+if not ok then
+  print "Failed to load TS Context"
+  return
+end
+context.setup()
