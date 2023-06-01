@@ -53,35 +53,37 @@ return packer.startup(function(use)
   use 'windwp/nvim-autopairs' -- auto close {}
   use 'nvim-lualine/lualine.nvim'
 
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    'p00f/nvim-ts-rainbow',
-    'nvim-treesitter/nvim-treesitter-context',
-    run = ':TSUpdate',
-  }
 
-  -- File Explorer
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = { 'kyazdani42/nvim-web-devicons' },
-    tag = 'nightly'
-  }
-
+  -- Navigation
   use 'unblevable/quick-scope'
   use {
     -- sudo apt install ripgrep fd-find
     'nvim-telescope/telescope-media-files.nvim',
     'nvim-telescope/telescope.nvim',
     'nvim-telescope/telescope-fzf-native.nvim',
-    run = 'make', -- I had to run this manually cd /home/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim && make
+    run = 'make', -- run this manually cd /home/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim && make
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    tag = 'nightly'
+  }
 
+
+  -- Git
   use {
     'tpope/vim-fugitive',
     'lewis6991/gitsigns.nvim'
-  } --git integration
+  }
 
+  -- Language understanding
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    'p00f/nvim-ts-rainbow',
+    'nvim-treesitter/nvim-treesitter-context',
+    run = ':TSUpdate',
+  }
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
@@ -94,7 +96,7 @@ return packer.startup(function(use)
           pcall(vim.cmd, 'MasonUpdate')
         end,
       },
-      {'williamboman/mason-lspconfig.nvim'}, -- Optional
+      {'williamboman/mason-lspconfig.nvim'},
 
       -- Formatter
       {'jose-elias-alvarez/null-ls.nvim'},
