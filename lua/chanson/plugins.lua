@@ -106,11 +106,14 @@ return packer.startup(function(use)
     }
   }
 
+  -- Dubugging
   use {
     'rcarriga/nvim-dap-ui',
     requires = {
       'mfussenegger/nvim-dap',
-      'jay-babu/mason-nvim-dap.nvim'
+      'jay-babu/mason-nvim-dap.nvim',
+      'williamboman/mason.nvim',
+      'theHamsta/nvim-dap-virtual-text'
     }
   }
 
