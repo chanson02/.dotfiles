@@ -6,8 +6,9 @@ local ok, err = pcall(function()
 end)
 if not ok then
   print('Error loading colorscheme:', err)
+else
+  require 'nvim-highlight-colors'.setup()
 end
-require 'nvim-highlight-colors'.setup()
 
 require 'chanson.diagnostic'
 require "chanson.keymaps"
