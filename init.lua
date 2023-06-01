@@ -7,6 +7,7 @@ end)
 if not ok then
   print('Error loading colorscheme:', err)
 end
+require 'nvim-highlight-colors'.setup()
 
 require 'chanson.diagnostic'
 require "chanson.keymaps"

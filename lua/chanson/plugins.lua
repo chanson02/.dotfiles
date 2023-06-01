@@ -45,6 +45,7 @@ return packer.startup(function(use)
 
   -- Color schemes
   use 'arzg/vim-colors-xcode' -- XCode
+  use 'brenoprata10/nvim-highlight-colors'
 
 
   use 'nvim-lua/popup.nvim' -- Popup windows
