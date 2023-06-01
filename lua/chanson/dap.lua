@@ -29,6 +29,49 @@ dap.configurations.python = {
   }
 }
 
+dap.adapters.chrome = {
+  type = 'executable',
+  command = 'node',
+  args = {os.getenv('HOME') .. '/.local/share/nvim/mason/packages/chrome-debug-adapter/out/src/chromeDebug.js'}
+}
+dap.configurations.javascript = {
+  {
+    type = 'chrome',
+    request = 'launch',
+    name = 'Current File',
+    file = vim.fn.expand('%:p'),
+    sourceMaps = true,
+    protocol = 'inspector',
+    webRoot = '${workspaceFolder}'
+  },
+  {
+    type = 'chrome',
+    request = 'launch',
+    name = '8090',
+    url = 'http://localhost:8090',
+    protocol = 'inspector',
+    webRoot = '${workspaceFolder}',
+    sourceMaps = true
+  },
+  {
+    type = 'chrome',
+    request = 'launch',
+    name = '3000',
+    url = 'http://localhost:3000',
+    protocol = 'inspector',
+    webRoot = '${workspaceFolder}'
+  },
+  {
+    type = 'chrome',
+    request = 'launch',
+    name = 'Other port',
+    url = function() return 'http://localhost:' .. vim.fn.input('Port: ') end,
+    protocol = 'inspector',
+    webRoot = '${workspaceFolder}'
+  },
+}
+-- google-chrome-stable --remote-debugging-port=9222
+
 --local widgets = require('dap.ui.widgets')
 --local sidebar = widgets.sidebar(widgets.scopes)
 
