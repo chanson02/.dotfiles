@@ -9,7 +9,11 @@ if not ok then
 end
 require('mason-nvim-dap').setup()
 require('nvim-dap-virtual-text').setup()
-vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
+vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = 'Define' })
+vim.fn.sign_define('DapBreakpointCondition', { text = '❗️', texthl = '', linehl = '', numhl = 'Define' })
+vim.fn.sign_define('DapLogPoint', { text = '📝', texthl = '', linehl = '', numhl = '' })
+vim.fn.sign_define('DapStopped', { text = '⏸️', texthl = '', linehl = '', numhl = 'Boolean' })
+vim.fn.sign_define('DapBreakpointRejected', { text = '❌', texthl = '', linehl = '', numhl = 'Error' })
 
 
 --local widgets = require('dap.ui.widgets')
