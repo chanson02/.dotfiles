@@ -45,6 +45,7 @@ keymap("t", "<Esc>", "<C-\\><C-n>", opts)
 -- Telescope Finder
 keymap('n', '<leader>f', '<cmd>Telescope find_files<cr>', opts)
 keymap('n', '<leader>F', '<cmd>Telescope live_grep<cr>', opts)
+keymap('n', '<leader>b', '<cmd>Telescope buffers<cr>', opts)
 
 -- Diagnostics
 vim.keymap.set('n', '<leader>td', ':call v:lua.toggle_diagnostics()<CR>', {noremap=true, silent=true})
