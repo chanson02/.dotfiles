@@ -9,6 +9,8 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts) -- go reference
   vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, opts) -- go type
   vim.keymap.set('n', 'gf', vim.lsp.buf.format, opts) -- format (file?)
+  vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts)
+  vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts) -- rename
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts) --code action
