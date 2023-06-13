@@ -29,3 +29,5 @@ vim.opt.splitbelow = true
 vim.o.signcolumn = 'yes'
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
+
+vim.opt.formatoptions:remove('c') -- don't auto insert comment on new line
