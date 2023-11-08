@@ -3,6 +3,13 @@
 scripts_dir="$( cd "$( dirname "$BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 dfiles_dir="$(dirname $scripts_dir)/nvim"
 
+declare -a dependencies=(
+  'ripgrep'
+)
+for dep in "${dependencies[@]}"; do
+  bash "$scripts_dir/install_package.sh" "$dep"
+done
+
 # Install fonts
 #"$scripts_dir/install_fonts.sh"
 
