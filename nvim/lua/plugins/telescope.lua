@@ -20,9 +20,9 @@ local config = function()
 
   local keymap = vim.api.nvim_set_keymap
   local opts = { noremap = true, silent = true }
-  keymap('n', '<leader>f', '<cmd>Telescope find_files<cr>', opts)
-  keymap('n', '<leader>F', '<cmd>Telescope live_grep<cr>', opts)
-  keymap('n', '<leader>r', '<cmd>Telescope buffers<cr>', opts)
+  keymap('n', '<leader>f', '<cmd>Telescope find_files<cr>', opts) -- search project for file
+  keymap('n', '<leader>F', '<cmd>Telescope live_grep<cr>', opts) -- search project for pattern
+  keymap('n', '<leader>r', '<cmd>Telescope buffers<cr>', opts) -- get recent files (currently open buffers)
 end
 
 local dependencies = {
