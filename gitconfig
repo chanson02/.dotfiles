@@ -1,9 +1,0 @@
-[core]
-	editor = /usr/bin/nvim-linux64/bin/nvim
-[init]
-	defaultBranch = main
-[user]
-	email = hancooj@dunwoody.edu
-	name = Cooper Hanson
-[pull]
-	rebase = false
