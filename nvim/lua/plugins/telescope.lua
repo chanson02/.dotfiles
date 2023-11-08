@@ -4,15 +4,17 @@ This is a searching extension, it requires ripgrep to be installed on the system
 
 local config = function()
   local telescope = require('telescope')
-  local actions = require('telescope')
+  local actions = require('telescope.actions')
 
   telescope.load_extension('fzf')
 
   telescope.setup({
     defaults = {
-      mappings = {
+      mappings = { -- :h telescope.actions
         i = {
-          ['<C-q>'] = actions.send_selected_to_qflist
+          ['<C-q>'] = actions.send_selected_to_qflist + actions.open_qflist,
+          ['<C-t>'] = actions.select_tab, -- open in new tab
+          ['<C-v>'] = actions.file_vsplit -- open in vsplit
         }
       }
     }
