@@ -1,3 +1,8 @@
+--[[
+  Nvim Tree is a plugin for file navigation
+  hit leader e to open the nav menu
+]]--
+
 local config = function()
   local nvimtree = require('nvim-tree')
   nvimtree.setup({
@@ -11,6 +16,8 @@ local config = function()
 
   vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>')
 end
+
+
 return {
   'nvim-tree/nvim-tree.lua',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
