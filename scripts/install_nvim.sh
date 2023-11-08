@@ -11,6 +11,7 @@ dfiles_dir="$(dirname $scripts_dir)/nvim"
 
 nvim_home="$HOME/.config/nvim"
 mkdir -p $nvim_home
-
-if [ -f "$nvim_home/init.lua" ]; then rm $nvim_home/init.lua; fi
-ln -s "$dfiles_dir/init.lua" "$nvim_home/init.lua"
+rm -rf $nvim_home/* # remove old config
+for file in "$dfiles_dir"/*; do
+  ln -s $file "$nvim_home/$(basename "$file")"
+done
