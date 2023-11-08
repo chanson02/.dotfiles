@@ -20,3 +20,4 @@ install_fonts() {
 mkdir -p "$HOME/.fonts"
 
 install_fonts
+fc-cache -fv
