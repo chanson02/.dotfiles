@@ -17,3 +17,6 @@ Give this to as many friends as you can so that they can use, modify, and redist
 `install_nvim.sh` will install my full blown NeoVim environment, including a NerdFont, plugins, and theme
 
 `install_nvim_lite.sh` will install a barebones version consisting of mostly remaps. This can be useful for getting a server setup quick
+
+#### Colorscheme
+You can set a colorscheme by going to `nvim/lua/colorschemes.lua`
