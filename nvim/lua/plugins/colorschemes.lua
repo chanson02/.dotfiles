@@ -1,4 +1,5 @@
 -- Setting lazy to false will automatically load the color scheme
+-- lazy = true will only load the colorscheme if you manually request it
 
 local xcode = {
   'arzg/vim-colors-xcode',

@@ -18,7 +18,7 @@ local plugins = {
 }
 
 -- Add the color schemes
-for _, v in ipairs(require('colorschemes')) do
-  table.insert(plugins, v)
-end
-require('lazy').setup(plugins)
+--for _, v in ipairs(require('colorschemes')) do
+--  table.insert(plugins, v)
+--end
+require('lazy').setup('plugins')
