@@ -13,13 +13,12 @@ local config = function()
     renderer = { group_empty = true }, -- Folders with only one item: show item instead of folder
     actions = { open_file = { quit_on_open = true } } -- close explorer when file is opened
   })
-
-  vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>')
 end
 
 
 return {
   'nvim-tree/nvim-tree.lua',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
-  config = config
+  config = config,
+  keys = { { '<leader>e', '<cmd>NvimTreeToggle<CR>' } }
 }
