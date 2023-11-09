@@ -30,20 +30,34 @@ local maps = {
 }
 
 
+local swap = {
+  enable = true,
+  swap_next = {
+    ['<leader>na'] = '@parameter.inner', -- next argument | move this argument to the next spot, ex: sum(x, y) -> sum(y, x)
+    ['<leader>nd'] = '@function.outer', -- next definition | swap this entire function with the next one
+  },
+  swap_previous = {
+    ['<leader>ba'] = '@parameter.inner', -- back argument (p for previous is taken for paste without overriding register)
+    ['<leader>bd'] = '@function.outer'
+  }
+}
+
+
 local config = function()
-  print('this was run')
   local setup = {
     textobjects = {
       select = {
         enable = true,
         lookahead = true,
         keymaps = maps,
-      }
-    }
+      },
+      swap = swap
+    },
   }
 
   require('nvim-treesitter.configs').setup(setup)
 end
+
 
 return {
   'nvim-treesitter/nvim-treesitter-textobjects',
