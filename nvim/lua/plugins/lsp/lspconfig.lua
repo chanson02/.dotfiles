@@ -7,31 +7,50 @@ local deps = {
   }
 }
 
+
+-- A global function for disabling diagnostics
+local diag_disable = { virtual_text = false, underline = false }
+local diag_enable  = { virtual_text = true,  underline = true, sign = true }
+vim.diagnostic.config(diag_disable) -- default on startup
+vim.g.diagnostics_active = false
+function _G.toggle_diagnostics()
+  if vim.g.diagnostics_active
+    then vim.diagnostic.config(diag_disable)
+    else vim.diagnostic.config(diag_enable)
+  end
+  vim.g.diagnostics_active = not vim.g.diagnostics_active
+end
+
+
 -- function runs when LSP client attaches to buffer
 local on_attach = function(_, bufnr)
   local keymap = vim.api.nvim_buf_set_keymap
   local opts = { noremap = true, silent = true, desc = "" }
 
   opts.desc = 'Search LSP references'
-  keymap(bufnr, 'n', 'gr', '<cmd>Telescope lsp_references<CR>', opts) -- references are where class methods are used
+  keymap(bufnr, 'n', 'gr', ':Telescope lsp_references<CR>', opts) -- references are where class methods are used
 
   opts.desc = 'Search LSP implementations'
-  keymap(bufnr, 'n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts) -- implementations are where classes are used
+  keymap(bufnr, 'n', 'gi', ':Telescope lsp_implementations<CR>', opts) -- implementations are where classes are used
 
   opts.desc = 'Go to definition'
-  keymap(bufnr, 'n', 'gd', vim.lsp.buf.definition.opts)
+  keymap(bufnr, 'n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
 
   opts.desc = 'Go to type definition'
-  keymap(bufnr, 'n', 'gt', vim.lsp.buf.type_definition, opts)
+  keymap(bufnr, 'n', 'gt', ':lua vim.lsp.buf.type_definition()<CR>', opts)
 
   opts.desc = 'See code actions'
-  keymap(bufnr, {'n', 'v'}, '<leader>ca', vim.lsp.buf.code_action, opts)
+  keymap(bufnr, 'n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
+  keymap(bufnr, 'v', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
 
   opts.desc = 'Smart rename'
-  keymap(bufnr, 'n', '<leader>rn', vim.lsp.buf.rename, opts)
+  keymap(bufnr, 'n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>', opts)
 
   opts.desc = 'Documentation'
-  keymap(bufnr, 'n', 'K', vim.lsp.buf.hover, opts)
+  keymap(bufnr, 'n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
+
+  opts.desc = 'Toggle diognostics'
+  keymap(bufnr, 'n', '<leader>td', ':call v:lua.toggle_diagnostics()<CR>', opts)
 end
 
 
