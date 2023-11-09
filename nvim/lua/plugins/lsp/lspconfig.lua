@@ -44,16 +44,35 @@ local config = function()
 
   mason.setup({ automatic_installation = true })
 
-  -- :h mason-lspconfig-dynamic-server-setup
-  mason.setup_handlers({
-    function(server)
-      lsp[server].setup({
+  local default_handler = function(server)
+    lsp[server].setup({
+      capabilities = caps,
+      on_attach = on_attach
+    })
+  end
+
+  local handlers = {
+    default_handler,
+    ['lua_ls'] = function()
+      lsp.lua_ls.setup {
         capabilities = caps,
-        on_attach = on_attach
-      })
+        on_attach = on_attach,
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { 'vim' }
+            }
+          }
+        }
+      }
     end
-  })
+  }
+
+  -- :h mason-lspconfig-dynamic-server-setup
+  mason.setup_handlers(handlers)
 end
+
+
 
 return {
   'neovim/nvim-lspconfig',
