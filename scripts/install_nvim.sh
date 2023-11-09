@@ -8,6 +8,7 @@ declare -a dependencies=(
   'fd-find', # sharkdp/fd - faster file finder
   'xclip', # astrand/xclip - CLI for X11 clipboard
   'wl-clipboard', # bugaevc/wl-clipboard - CLI for Wayland clipboard
+  'nodejs', # required for some language servers
 )
 bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
 
