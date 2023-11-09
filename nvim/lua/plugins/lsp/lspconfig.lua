@@ -1,5 +1,6 @@
 local deps = {
   'hrsh7th/cmp-nvim-lsp',
+  --'aznhe21/actions-preview.nvim',
   { 'antosha417/nvim-lsp-file-operations', config = true },
   {
     'williamboman/mason-lspconfig.nvim',
@@ -21,7 +22,6 @@ function _G.toggle_diagnostics()
   vim.g.diagnostics_active = not vim.g.diagnostics_active
 end
 
-
 -- function runs when LSP client attaches to buffer
 local on_attach = function(_, bufnr)
   local keymap = vim.api.nvim_buf_set_keymap
@@ -41,6 +41,7 @@ local on_attach = function(_, bufnr)
 
   opts.desc = 'See code actions'
   keymap(bufnr, 'n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
+  --keymap(bufnr, 'n', '<leader>ca', ':lua require("actions-preview").code_actions', opts)
   keymap(bufnr, 'v', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
 
   opts.desc = 'Smart rename'
@@ -53,6 +54,8 @@ local on_attach = function(_, bufnr)
   keymap(bufnr, 'n', '<leader>td', ':call v:lua.toggle_diagnostics()<CR>', opts)
 end
 
+
+local test = 'wow this is unused'
 
 local config = function()
   local lsp = require('lspconfig')

@@ -5,4 +5,5 @@ return {
 
   { 'tpope/vim-fugitive', event = 'VeryLazy' }, -- Plugin to interact with git without leaving the buffer!
   -- { 'akinsho/git-conflict.nvim', event = 'VeryLazy' }, -- I really want to try this in the future
+
 }
