@@ -29,3 +29,7 @@ You can set a colorscheme by going to `nvim/lua/plugins/colorschemes.lua`
 #### Language Servers
 Once in a nvim buffer, use `:Mason` to install any language servers you want
   - If you need to edit the configuration for a language server, check `nvim/lua/plugins/lsp/lspconfig.lua`
+
+#### Learning the Keymaps
+There is no easy way to learn all the keymaps in this configuration.
+The best way is to go through each of the `.lua` files (starting with `keymaps.lua`) and memorize chunks of keymaps at a time
