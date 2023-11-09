@@ -21,3 +21,7 @@ Give this to as many friends as you can so that they can use, modify, and redist
 
 #### Colorscheme
 You can set a colorscheme by going to `nvim/lua/plugins/colorschemes.lua`
+
+#### Language Servers
+Once in a nvim buffer, use `:Mason` to install any language servers you want
+  - If you need to edit the configuration for a language server, check `nvim/lua/plugins/lsp/lspconfig.lua`
