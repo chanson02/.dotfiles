@@ -8,7 +8,7 @@ local deps = {
 
 local config = function()
   local cmp = require('cmp')
-  local luasnip = require('luasnip')
+  -- local luasnip = require('luasnip')
   require('luasnip.loaders.from_vscode').lazy_load() -- load vs-code snippets from friendly-snips
 
   cmp.setup({
@@ -26,6 +26,7 @@ local config = function()
       ['<Down>'] = cmp.mapping.scroll_docs(-4), -- scroll down the docs
     },
     sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
       { name = 'buffer' },
       { name = 'luasnip' },
       { name = 'path' },
