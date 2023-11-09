@@ -5,7 +5,9 @@ dfiles_dir="$(dirname $scripts_dir)/nvim"
 
 declare -a dependencies=(
   'ripgrep', # BurntSushi/ripgrep - recursively search directories
-  'fd-find' # sharkdp/fd - faster file finder
+  'fd-find', # sharkdp/fd - faster file finder
+  'xclip', # astrand/xclip - CLI for X11 clipboard
+  'wl-clipboard', # bugaevc/wl-clipboard - CLI for Wayland clipboard
 )
 bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
 
