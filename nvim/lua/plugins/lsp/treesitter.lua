@@ -18,7 +18,7 @@ end
 return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
-  depdendencies = { 'nvim-treesitter/nvim-treesitter-textobjects' }, -- configured in it's own file
+  dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' }, -- configured in it's own file
   config = config,
   event = { 'BufReadPre', 'BufNewfile' }
 }
