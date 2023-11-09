@@ -39,5 +39,6 @@ return {
   branch = '0.1.x',
   dependencies = dependencies,
   config = config,
-  keys = { '<leader>f', '<leader>F', '<leader>r' }
+  keys = { '<leader>f', '<leader>F', '<leader>r' },
+  event = { 'BufReadPre', 'BufNewFile' },
 }
