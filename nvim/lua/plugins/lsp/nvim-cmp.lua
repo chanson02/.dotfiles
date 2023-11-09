@@ -21,7 +21,7 @@ local config = function()
       ['<CR>'] = cmp.mapping.confirm({select = false}), -- select this completion
       ['<Esc>'] = cmp.mapping.abort(), -- do not select a completion
       ['<Tab>'] = cmp.mapping.select_next_item(), -- go to the next completion
-      ['<S-Tab'] = cmp.mapping.select_prev_item(), -- go to the previous completion
+      ['<S-Tab>'] = cmp.mapping.select_prev_item(), -- go to the previous completion
       ['<Up>'] = cmp.mapping.scroll_docs(4), -- scroll up the docs
       ['<Down>'] = cmp.mapping.scroll_docs(-4), -- scroll down the docs
     },
