@@ -55,7 +55,7 @@ local on_attach = function(_, bufnr)
   keymap(bufnr, 'n', '<leader>td', ':call v:lua.toggle_diagnostics()<CR>', opts)
 
   opts.desc = 'Preview diagnostics'
-  keymap(bufnr, 'n', 'gl', ':lua vim.diagnostic.open_float', opts)
+  keymap(bufnr, 'n', 'gl', ':lua vim.diagnostic.open_float()<CR>', opts)
 end
 
 
