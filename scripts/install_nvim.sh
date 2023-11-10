@@ -21,6 +21,4 @@ bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
 nvim_home="$HOME/.config/nvim"
 mkdir -p $nvim_home
 rm -rf $nvim_home/* # remove old config
-for file in "$dfiles_dir"/*; do
-  ln -s $file "$nvim_home/$(basename "$file")"
-done
+ln -s "$dfiles_dir/nvim" "$nvim_home"
