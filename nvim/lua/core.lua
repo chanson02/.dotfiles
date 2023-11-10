@@ -7,6 +7,7 @@ vim.opt.shiftwidth = 2 -- number of spaces for autoindent
 vim.opt.tabstop = 2 -- number of spaces for tab key pressed
 vim.opt.smartindent = true -- try to know when to indent
 vim.opt.autoindent = true -- automatically indent on return
+vim.opt.formatoptions:remove('c') -- don't auto insert comment on return
 
 vim.opt.termguicolors = true -- enable terminal colors
 vim.opt.mouse = 'a' -- able to use mouse in all modes
