@@ -1,3 +1,5 @@
+// defaults for reference: https://github.com/zellij-org/zellij/blob/main/zellij-utils/assets/config/default.kdl
+
 plugins {
     tab-bar { path "tab-bar"; }
     status-bar { path "status-bar"; }
@@ -64,3 +66,18 @@ ui {
     hide_session_name false
   }
 }
+
+
+
+///////////////
+// KEY BINDS //
+
+
+
+
+
+
+
+
+
+
