@@ -50,12 +50,14 @@ local on_attach = function(_, bufnr)
   opts.desc = 'Documentation'
   keymap(bufnr, 'n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
 
-  opts.desc = 'Toggle diognostics'
+  --- Diagnostics
+  opts.desc = 'Toggle all diagnostics'
   keymap(bufnr, 'n', '<leader>td', ':call v:lua.toggle_diagnostics()<CR>', opts)
+
+  opts.desc = 'Preview diagnostics'
+  keymap(bufnr, 'n', 'gl', ':lua vim.diagnostic.open_float', opts)
 end
 
-
-local test = 'wow this is unused'
 
 local config = function()
   local lsp = require('lspconfig')
