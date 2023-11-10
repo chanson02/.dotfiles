@@ -7,9 +7,6 @@ plugins {
 }
 
 on_force_close "detach" // "quit"
-simplified_ui false
-pane_frames false
-auto_layout true
 session_serialization true // for resurrection
 serialize_pane_viewport false // does this mean that all panes will be auto_layout'd on resurrection?
 
@@ -32,14 +29,6 @@ themes {
   }
 }
 
-// Startup
-theme "dracula"
-default_layout "default"
-default_mode "normal"
-styled_underlines true // render styled and colored underlines
-mouse_mode false // EWWW GET THAT OUTTA HERE
-
-scroll_buffer_size 10000
 
 // copy_command "xclip -selection clipboard" // x11
 copy_command "wl-copy"                    // wayland
@@ -51,14 +40,27 @@ copy_on_select true
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
 scrollback_editor "/usr/local/bin/nvim"
+scroll_buffer_size 10000
 
 mirror_session false // mirror ? 1 cursor : each user has their own cursor
 
-// The folder in which Zellij will look for layouts
-//
+
+////////////////
+// UI SECTION //
 // layout_dir "/path/to/my/layout_dir"
-
-// The folder in which Zellij will look for themes
-//
 // theme_dir "/path/to/my/theme_dir"
+theme "dracula"
+default_layout "default"
+default_mode "normal"
+styled_underlines true // render styled and colored underlines
+mouse_mode false // EWWW GET THAT OUTTA HERE
+auto_layout true // not sure what this is
+simplified_ui false
+pane_frames false
 
+ui {
+  pane_frames {
+    rounded_corners true
+    hide_session_name false
+  }
+}
