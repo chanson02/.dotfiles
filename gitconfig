@@ -1,0 +1,9 @@
+[core]
+  editor = /usr/local/bin/nvim
+[init]
+	defaultBranch = main
+[user]
+	email = cooperhanson2020@gmail.com
+	name = Cooper Hanson
+[pull]
+	rebase = false
