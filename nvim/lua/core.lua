@@ -7,7 +7,6 @@ vim.opt.shiftwidth = 2 -- number of spaces for autoindent
 vim.opt.tabstop = 2 -- number of spaces for tab key pressed
 vim.opt.smartindent = true -- try to know when to indent
 vim.opt.autoindent = true -- automatically indent on return
-vim.opt.formatoptions:remove('c') -- don't auto insert comment on return
 
 vim.opt.termguicolors = true -- enable terminal colors
 vim.opt.mouse = 'a' -- able to use mouse in all modes
@@ -28,3 +27,7 @@ vim.opt.splitbelow = true -- put new hsplits on the bottom
 vim.o.signcolumn = 'yes' -- display an extra column on the left of the screen
 vim.opt.scrolloff = 8 -- can scroll below the page
 vim.opt.sidescrolloff = 8 -- can scroll horizontally off the page
+
+-- :h fortmatoptions, fo-table
+-- Do not auto insert comment on next line
+vim.api.nvim_exec([[ autocmd FileType lua setlocal formatoptions-=cro ]], false)
