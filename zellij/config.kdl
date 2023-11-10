@@ -1,4 +1,5 @@
 // defaults for reference: https://github.com/zellij-org/zellij/blob/main/zellij-utils/assets/config/default.kdl
+// TODO: https://zellij.dev/documentation/controlling-zellij-through-cli
 
 plugins {
     tab-bar { path "tab-bar"; }
@@ -22,7 +23,7 @@ copy_on_select true
 
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
-scrollback_editor "/usr/local/bin/nvim"
+scrollback_editor "/usr/local/bin/nvim" // DELETE THIS ONCE BASHRC IS SETUP
 scroll_buffer_size 10000
 
 mirror_session false // mirror ? 1 cursor : each user has their own cursor
