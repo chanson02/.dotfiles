@@ -2,6 +2,7 @@
 This isn't exactly an LSP extension, but I have it working with the LSP
 Tree Sitter takes in a language and some source code and can parse out the meaning of the queries
 It's most famous use case is highlighting and text colors
+TODO: nvim-treesitter/nvim-treesitter-context
 ]]
 
 local config = function()
