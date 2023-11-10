@@ -71,13 +71,7 @@ ui {
 
 ///////////////
 // KEY BINDS //
-
-
-
-
-
-
-
-
-
+keybinds {
+  unbind "Ctrl h" // move with alt and arrows
+}
 
