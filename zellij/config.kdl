@@ -71,6 +71,8 @@ ui {
 
 ///////////////
 // KEY BINDS //
+// https://zellij.dev/documentation/keybindings
+// There's a super cool action for running a shell script !
 keybinds {
   unbind "Ctrl h" // move with alt and arrows
 }
