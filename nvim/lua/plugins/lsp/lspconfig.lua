@@ -39,6 +39,13 @@ local on_attach = function(_, bufnr)
   opts.desc = 'Go to type definition'
   keymap(bufnr, 'n', 'gt', ':lua vim.lsp.buf.type_definition()<CR>', opts)
 
+  opts.desc = 'Preview function signature'
+  keymap(bufnr, 'n', 'gs', ':lua vim.lsp.buf.signature_help()<CR>', opts)
+  keymap(bufnr, 'i', '<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+
+  opts.desc = 'Documentation'
+  keymap(bufnr, 'n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
+
   opts.desc = 'See code actions'
   keymap(bufnr, 'n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
   --keymap(bufnr, 'n', '<leader>ca', ':lua require("actions-preview").code_actions', opts)
@@ -46,9 +53,6 @@ local on_attach = function(_, bufnr)
 
   opts.desc = 'Smart rename'
   keymap(bufnr, 'n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>', opts)
-
-  opts.desc = 'Documentation'
-  keymap(bufnr, 'n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
 
   --- Diagnostics
   opts.desc = 'Toggle all diagnostics'
