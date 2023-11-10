@@ -7,6 +7,7 @@ It's most famous use case is highlighting and text colors
 local config = function()
   local ts = require('nvim-treesitter.configs')
 
+  -- :TSenable highlight sometimes I run this manually?
   ts.setup({
     highlight = { enabled = true },
     indent = { enabled = true }, -- Make smarter indentations using parser
