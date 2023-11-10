@@ -13,25 +13,6 @@ session_serialization true // for resurrection
 serialize_pane_viewport false // does this mean that all panes will be auto_layout'd on resurrection?
 
 
-// Define color themes for Zellij
-// For more examples, see: https://github.com/zellij-org/zellij/tree/main/example/themes
-themes {
-  dracula {
-    fg 248 248 242
-    bg 40 42 54
-    red 255 85 85
-    green 80 250 123
-    yellow 241 250 140
-    blue 98 114 164
-    magenta 255 121 198
-    orange 255 184 108
-    cyan 139 233 253
-    black 0 0 0
-    white 255 255 255
-  }
-}
-
-
 // copy_command "xclip -selection clipboard" // x11
 copy_command "wl-copy"                    // wayland
 // copy_command "pbcopy"                     // osx
