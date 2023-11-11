@@ -13,5 +13,5 @@ tab_template name="rails-all" {
 }
 
 swap_tiled_layout name="Birds Eye" {
-  rails-all name="Rails App"
+  rails-all
 }
