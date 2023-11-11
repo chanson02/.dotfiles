@@ -4,7 +4,7 @@ layout {
     }
 
     pane split_direction="vertical" {
-      pane name="Development"
+      pane name="Development" focus=true
       pane split_direction="horizontal" {
         pane name="Console"
         pane name="Server" size="45%"
