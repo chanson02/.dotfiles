@@ -7,7 +7,7 @@ layout {
       pane name="Development"
       pane split_direction="horizontal" {
         pane name="Console"
-        pane name="Server"
+        pane name="Server" size="45%"
       }
     }
 
