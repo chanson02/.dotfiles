@@ -1,0 +1,17 @@
+tab_template name="rails-all" {
+  tab-bar size=1
+
+  pane split_direction="vertical" {
+    pane name="Development"
+    pane split_direction="horizontal" {
+      pane name="Console"
+      pane size="45%" name="Server"
+    }
+  }
+
+  status-bar size=2
+}
+
+swap_tiled_layout name="Birds Eye" {
+  rails-all name="Rails App"
+}
