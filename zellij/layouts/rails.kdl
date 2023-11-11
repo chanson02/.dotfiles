@@ -7,19 +7,16 @@ layout {
     borderless true
     plugin location="zellij:status-bar"
   }
-  pane_template name="Development"
-  pane_template name="Console"
-  pane_template name="Server"
 
 
-  tab_template name="rails-app" {
+  tab_template name="rails-all" {
     tab-bar size=1
 
     pane split_direction="vertical" {
-      Development
+      pane name="Development"
       pane split_direction="horizontal" {
-        Console name="Console"
-        Server size="45%" name="Server"
+        pane name="Console"
+        pane size="45%" name="Server"
       }
     }
 
@@ -29,17 +26,20 @@ layout {
   tab_template name="rails-stacked" {
     tab-bar size=1
     pane split_direction="vertical" {
-      Development
+      pane name="Development"
       pane stacked=true {
-        Console name="Console"
-        Server name="Server"
+        pane name="Console"
+        pane name="Server"
       }
     }
     status-bar size=2
   }
 
-  //rails-app name="Rails App"
+
   rails-stacked name="Rails App"
+  swap_tiled_layout name="Birds Eye" {
+    rails-all name="Rails App"
+  }
 }
 
 // PANE COMMANDS
