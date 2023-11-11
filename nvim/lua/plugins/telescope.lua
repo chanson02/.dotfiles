@@ -40,5 +40,5 @@ return {
   dependencies = dependencies,
   config = config,
   -- keys = { '<leader>f', '<leader>F', '<leader>r' },
-  event = { 'BufReadPre', 'BufNewFile' },
+  event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
 }
