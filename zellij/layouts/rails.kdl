@@ -12,19 +12,34 @@ layout {
   pane_template name="Server"
 
 
-  tab name="Rails App" {
+  tab_template name="rails-app" {
     tab-bar size=1
 
     pane split_direction="vertical" {
       Development
       pane split_direction="horizontal" {
-        Console
-        Server size="45%"
+        Console name="Console"
+        Server size="45%" name="Server"
       }
     }
 
     status-bar size=2
   }
+
+  tab_template name="rails-stacked" {
+    tab-bar size=1
+    pane split_direction="vertical" {
+      Development
+      pane stacked=true {
+        Console name="Console"
+        Server name="Server"
+      }
+    }
+    status-bar size=2
+  }
+
+  //rails-app name="Rails App"
+  rails-stacked name="Rails App"
 }
 
 // PANE COMMANDS
