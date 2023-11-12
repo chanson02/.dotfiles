@@ -53,3 +53,10 @@ The best way is to go through each of the `.lua` files (starting with `keymaps.l
 `install_zellij.sh`
 - I unbound the `move` mode so you need to switch with `alt` + arrow keys
 - Also there is a layout for my rails apps
+
+
+### pyenv
+pyenv is a python version manager, after running the install script you will need to restart your terminal.
+- `pyenv install -l`
+- `pyenv install {version}`
+- `pyenv global {version}` -- use this version by default
