@@ -1,11 +1,15 @@
 return {
   'unblevable/quick-scope',
   init = function()
+    vim.cmd [[ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T'] ]]
+    vim.cmd [[ let g:qs_max_chars=150 ]]
+  end,
+  config = function()
     vim.cmd [[
-    let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-    highlight QuickScopePrimary guifg=yellow gui=underline ctermfg=yellow cterm=underline
-    highlight QuickScopeSecondary guifg=cyan gui=underline ctermfg=cyan cterm=underline
-    let g:qs_max_chars=150
+    highlight QuickScopePrimary guifg=yellow ctermfg=yellow
+    highlight QuickScopeSecondary guifg=cyan ctermfg=cyan
     ]]
   end
 }
+
+-- gui=underline & cterm=underline
