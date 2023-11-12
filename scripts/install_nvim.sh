@@ -22,3 +22,7 @@ nvim_home="$HOME/.config/nvim"
 mkdir -p $nvim_home
 rm -rf $nvim_home/* # remove old config
 ln -s "$dfiles_dir/nvim" "$nvim_home"
+
+# Set as default editor
+export EDITOR="/usr/local/bin/nvim"
+echo "export EDITOR=$EDITOR" >> ~/.bashrc
