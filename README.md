@@ -12,6 +12,8 @@ Give this to as many friends as you can so that they can use, modify, and redist
 2. cd into `scripts` and run whichever onces you want!
   - Before running a script you may need to give it permission with `chmod +x`
 
+*NOTE* If you're someone other than me, you should change the gitconfig file
+
 
 ## Usage
 
