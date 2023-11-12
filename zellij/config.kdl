@@ -1,0 +1,61 @@
+// defaults for reference: https://github.com/zellij-org/zellij/blob/main/zellij-utils/assets/config/default.kdl
+// TODO: https://zellij.dev/documentation/controlling-zellij-through-cli
+
+plugins {
+    tab-bar { path "tab-bar"; }
+    status-bar { path "status-bar"; }
+    strider { path "strider"; }
+    compact-bar { path "compact-bar"; }
+    session-manager { path "session-manager"; }
+}
+
+on_force_close "detach" // "quit"
+session_serialization true // for resurrection
+serialize_pane_viewport false // does this mean that all panes will be auto_layout'd on resurrection?
+
+
+// copy_command "xclip -selection clipboard" // x11
+copy_command "wl-copy"                    // wayland
+// copy_command "pbcopy"                     // osx
+
+
+copy_on_select true
+
+// Path to the default editor to use to edit pane scrollbuffer
+// Default: $EDITOR or $VISUAL
+scrollback_editor "/usr/local/bin/nvim" // DELETE THIS ONCE BASHRC IS SETUP
+scroll_buffer_size 10000
+
+mirror_session false // mirror ? 1 cursor : each user has their own cursor
+
+
+////////////////
+// UI SECTION //
+// layout_dir "/path/to/my/layout_dir"
+// theme_dir "/path/to/my/theme_dir"
+theme "dracula"
+default_layout "default"
+default_mode "normal"
+styled_underlines true // render styled and colored underlines
+mouse_mode false // EWWW GET THAT OUTTA HERE
+auto_layout true // not sure what this is
+simplified_ui false
+pane_frames false
+
+ui {
+  pane_frames {
+    rounded_corners true
+    hide_session_name false
+  }
+}
+
+
+
+///////////////
+// KEY BINDS //
+// https://zellij.dev/documentation/keybindings
+// There's a super cool action for running a shell script !
+keybinds {
+  unbind "Ctrl h" // move with alt and arrows
+}
+

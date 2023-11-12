@@ -1,0 +1,51 @@
+layout {
+  // TEMPLATES 
+  tab_template name="default" {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    children
+    pane size=2 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+
+  // Layout
+  default name="Rails App" {
+    pane split_direction="vertical" {
+      pane name="Development"
+      pane stacked=true {
+        pane name="Console"
+        pane name="Server"
+      }
+    }
+  }
+}
+
+// PANE COMMANDS
+// pane {
+// name="Server" -- a name for the pane
+// focus=true -- focus this pane 
+// borderless=true -- draw a border
+
+// stacked=true -- All subpanes will be stacked ontop of each other
+// expanded=true -- expand this pane in the `stack`
+
+// split_direction="vertical" -- VSplit panes within
+// size="25%" -- how big to make this pane
+// floating_panes {} -- configure floating planes (use these same options)
+
+// command="ls" -- run a command in this pane
+// args="-las"  -- arguments for `command`
+// close_on_exit=true -- when `command` finishes, close pane
+// start_suspended=true -- don't execute `command` immediately
+// edit="/usr/bin/apache2/index.html" -- edit this file in vim
+// cwd="/usr/bin" -- where to put this shell in the filesystem
+// }
+// you can also use pane_template {} if it's something you'll need to reuse, same with tab_template
+
+// TAB COMMANDS
+// split_direction
+// focus
+// name
+// hide_floating_panes=true

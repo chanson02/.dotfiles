@@ -1,0 +1,11 @@
+swap_tiled_layout name="Birds Eye" {
+  default {
+    pane split_direction="vertical" {
+      pane name="Development"
+      pane split_direction="horizontal" {
+        pane name="Console"
+        pane size="45%" name="Server"
+      }
+    }
+  }
+}
