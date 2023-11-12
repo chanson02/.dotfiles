@@ -7,3 +7,4 @@ declare -a dependencies=(
 )
 bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
 sudo service postgresql start
+echo 'eval "$(rbenv init - bash)"' >> ~/.bash_profile
