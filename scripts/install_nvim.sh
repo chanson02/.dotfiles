@@ -13,10 +13,10 @@ declare -a dependencies=(
 bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
 
 # Install fonts
-#"$scripts_dir/install_fonts.sh"
+"$scripts_dir/install_fonts.sh"
 
 # Install nvim
-#"$scripts_dir/update_nvim.sh"
+"$scripts_dir/update_nvim.sh"
 
 nvim_home="$HOME/.config/nvim"
 mkdir -p $nvim_home
