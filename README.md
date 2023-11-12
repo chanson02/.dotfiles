@@ -13,6 +13,7 @@ Give this to as many friends as you can so that they can use, modify, and redist
   - Before running a script you may need to give it permission with `chmod +x`
 
 *NOTE* If you're someone other than me, you should change the gitconfig file
+*NOTE* There is a `scripts/install_all.sh` for quickstart
 
 
 ## Usage
