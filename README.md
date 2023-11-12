@@ -60,3 +60,9 @@ pyenv is a python version manager, after running the install script you will nee
 - `pyenv install -l`
 - `pyenv install {version}`
 - `pyenv global {version}` -- use this version by default
+
+### rbenv
+rbenv is a ruby version manager
+- `rbenv install -l`
+- `rbenv install {version}`
+- `rbenv global {version}`
