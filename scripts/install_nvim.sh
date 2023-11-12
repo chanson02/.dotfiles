@@ -4,11 +4,11 @@ scripts_dir="$( cd "$( dirname "$BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 dfiles_dir="$(dirname $scripts_dir)/nvim"
 
 declare -a dependencies=(
-  'ripgrep', # BurntSushi/ripgrep - recursively search directories
-  'fd-find', # sharkdp/fd - faster file finder
-  'xclip', # astrand/xclip - CLI for X11 clipboard
-  'wl-clipboard', # bugaevc/wl-clipboard - CLI for Wayland clipboard
-  'nodejs', # required for some language servers
+  'ripgrep' # BurntSushi/ripgrep - recursively search directories
+  'fd-find' # sharkdp/fd - faster file finder
+  'xclip' # astrand/xclip - CLI for X11 clipboard
+  'wl-clipboard' # bugaevc/wl-clipboard - CLI for Wayland clipboard
+  'nodejs' # required for some language servers
 )
 bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
 
