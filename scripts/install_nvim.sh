@@ -4,6 +4,7 @@ scripts_dir="$( cd "$( dirname "$BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 dfiles_dir="$(dirname $scripts_dir)/nvim"
 
 declare -a dependencies=(
+  'make'
   'curl'
   'ripgrep' # BurntSushi/ripgrep - recursively search directories
   'fd-find' # sharkdp/fd - faster file finder
