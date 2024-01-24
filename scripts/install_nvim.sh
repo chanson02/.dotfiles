@@ -4,6 +4,7 @@ scripts_dir="$( cd "$( dirname "$BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 dfiles_dir="$(dirname $scripts_dir)/nvim"
 
 declare -a dependencies=(
+  'curl'
   'ripgrep' # BurntSushi/ripgrep - recursively search directories
   'fd-find' # sharkdp/fd - faster file finder
   'xclip' # astrand/xclip - CLI for X11 clipboard
@@ -18,10 +19,9 @@ bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
 # Install nvim
 "$scripts_dir/update_nvim.sh"
 
-nvim_home="$HOME/.config/nvim"
-mkdir -p $nvim_home
-rm -rf $nvim_home/* # remove old config
-ln -s "$dfiles_dir/nvim" "$nvim_home"
+config="$HOME/.config"
+rm -rf $config/nvim # remove old config
+ln -s "$dfiles_dir" "$config"
 
 # Set as default editor
 export EDITOR="/usr/local/bin/nvim"
