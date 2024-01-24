@@ -2,7 +2,7 @@
 
 echo "The deps are $@"
 if [ -x "$(command -v apt)" ]; then
-  sudo apt install "$@"
+  sudo apt install -y "$@"
 elif [ -x "$(command -v dnf)" ]; then
   sudo dnf install "$@"
 else
