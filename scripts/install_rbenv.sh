@@ -13,3 +13,6 @@ git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-b
 
 echo '!!! Restart shell to finsih rbenv install'
 sudo service postgresql start
+
+# postgres can give issues on fedora
+# https://www.postgresql.org/download/linux/redhat/
