@@ -6,6 +6,7 @@ dfiles_dir="$(dirname $scripts_dir)/nvim"
 declare -a dependencies=(
   'build-essential' # c compiler for ubuntu
   'gcc' # c compiler for fedora?
+  'make' # required on fedora
   'curl'
   'ripgrep' # BurntSushi/ripgrep - recursively search directories
   'fd-find' # sharkdp/fd - faster file finder
