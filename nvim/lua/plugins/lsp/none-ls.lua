@@ -11,8 +11,12 @@ local config = function()
   --local hover = null_ls.builtins.hover
 
   local sources = {
+    -- python
     diagnostics.ruff,
-    formatters.ruff
+    formatters.ruff,
+
+    -- rust
+    formatters.rustfmt,
   }
 
   null_ls.setup({ sources=sources })
