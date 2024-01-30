@@ -1,7 +1,17 @@
 #!/bin/bash
 
 scripts_dir="$( cd "$( dirname "$BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-bash "$scripts_dir/install_package.sh" "curl"
+declare -a dependencies=(
+  'curl'
+  'zlib-devel'
+  'bzip2-devel'
+  'ncurses-devel'
+  'readline-devel'
+  'tk-devel'
+  'xz-devel'
+  'sqlite-devel'
+)
+bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
 
 rm -rf $HOME/.pyenv
 curl "https://pyenv.run" | bash
