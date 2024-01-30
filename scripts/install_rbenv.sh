@@ -16,3 +16,4 @@ sudo service postgresql start
 
 # postgres can give issues on fedora
 # https://www.postgresql.org/download/linux/redhat/
+curl https://cli-assets.heroku.com/install.sh | sh
