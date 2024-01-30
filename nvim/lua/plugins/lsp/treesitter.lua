@@ -10,7 +10,7 @@ local config = function()
 
   -- :TSenable highlight sometimes I run this manually?
   ts.setup({
-    highlight = { enabled = true },
+    highlight = { enable = true },
     indent = { enabled = true }, -- Make smarter indentations using parser
     auto_install = true, -- install parsers when file is opened
     additional_vim_regex_highlighting = false, -- I've had issues with the default highlighting
