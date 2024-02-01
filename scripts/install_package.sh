@@ -4,6 +4,7 @@ install_with() {
   local manager="$1"
   local package="$2"
   output=$(sudo $manager install -y $package 2>&1)
+  echo $output
 
   if echo "$output" | grep -q "but thre is a snap with that name"; then
     sudo snap install "$@" --classic
