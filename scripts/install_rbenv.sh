@@ -1,9 +1,17 @@
 #!/bin/bash
 
 scripts_dir="$( cd "$( dirname "$BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-bash "$scripts_dir/install_package.sh" "postgresql"
-(bash "$scripts_dir/install_package.sh" "libpq-dev") || true # debian
-(bash "$scripts_dir/install_package.sh" "postgresql-devel") || true # RHEL
+
+declare -a dependencies=(
+  'postgresql'
+  'libpq-dev' # debian
+  'postgresql-devel' # RHEL
+  'libffi-dev'
+  'libyaml-dev'
+  'zlib1g-dev'
+  'zlib-devel'
+)
+bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
 
 rm -rf ~/.rbenv
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
