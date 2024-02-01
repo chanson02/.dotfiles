@@ -12,7 +12,7 @@ install_with() {
 }
 
 if [ -x "$(command -v apt)" ]; then
-  manager="apt-get"
+  manager="apt"
 elif [ -x "$(command -v dnf)" ]; then
   manager="dnf"
 else
