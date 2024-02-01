@@ -2,6 +2,8 @@
 Hi Cooper, these are your personal dotfiles, along with some installation scripts to get you up and running on a new computer!
 This repository makes symbolic links, so you can update all your application configurations from this spot!
 
+**Important**: Make sure to upgrade your package manager before installing `sudo apt update`
+
 
 ## License
 Give this to as many friends as you can so that they can use, modify, and redistribute however they like.
@@ -13,6 +15,7 @@ Give this to as many friends as you can so that they can use, modify, and redist
   - Before running a script you may need to give it permission with `chmod +x`
 
 *NOTE* If you're someone other than me, you should change the gitconfig file
+
 *NOTE* There is a `scripts/install_all.sh` for quickstart
 
 
