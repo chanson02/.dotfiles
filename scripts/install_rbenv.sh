@@ -5,6 +5,7 @@ bash "$scripts_dir/install_package.sh" "postgresql"
 (bash "$scripts_dir/install_package.sh" "libpq-dev") || true # debian
 (bash "$scripts_dir/install_package.sh" "postgresql-devel") || true # RHEL
 
+rm -rf ~/.rbenv
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 echo 'eval "$(~/.rbenv/bin/rbenv init - bash)"' >> ~/.bashrc
 eval "$(~/.rbenv/bin/rbenv init - bash)"
