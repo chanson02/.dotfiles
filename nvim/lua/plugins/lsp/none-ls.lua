@@ -11,9 +11,6 @@ local config = function()
   --local hover = null_ls.builtins.hover
 
   local sources = {
-    -- rust
-    formatters.rustfmt,
-
     -- js
     formatters.prettierd
   }
