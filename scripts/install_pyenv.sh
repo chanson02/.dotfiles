@@ -15,6 +15,8 @@ declare -a dependencies=(
   'xz-devel'
   'libsqlite3-dev'
   'sqlite-devel'
+  'libssl-dev'
+  'openssl-devel'
 )
 bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
 
