@@ -5,18 +5,17 @@ local config = function()
   local null_ls = require('null-ls')
 
   local formatters = null_ls.builtins.formatting
-  local diagnostics = null_ls.builtins.diagnostics
+  --local diagnostics = null_ls.builtins.diagnostics
   --local completions = null_ls.builtins.completion
   --local actions = null_ls.builtins.code_actions
   --local hover = null_ls.builtins.hover
 
   local sources = {
-    -- python
-    diagnostics.ruff,
-    formatters.ruff,
-
     -- rust
     formatters.rustfmt,
+
+    -- js
+    formatters.prettierd
   }
 
   null_ls.setup({ sources=sources })

@@ -63,6 +63,7 @@ local on_attach = function(_, bufnr)
 end
 
 
+-- Find the configuration options at https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local config = function()
   local lsp = require('lspconfig')
   local cmp_lsp = require('cmp_nvim_lsp')
