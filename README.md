@@ -13,6 +13,7 @@ Give this to as many friends as you can so that they can use, modify, and redist
 1. Clone this repository to your local machine
 2. cd into `scripts` and run whichever onces you want!
   - Before running a script you may need to give it permission with `chmod +x`
+  - Do not run scripts with sudo
 
 *NOTE* If you're someone other than me, you should change the gitconfig file
 
