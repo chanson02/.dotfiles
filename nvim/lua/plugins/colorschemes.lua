@@ -3,7 +3,7 @@
 
 local xcode = {
   'arzg/vim-colors-xcode',
-  lazy = false,
+  lazy = true,
   config = function()
     vim.cmd 'colorscheme xcodedark'
   end
@@ -17,10 +17,24 @@ local nightfly = {
   end
 }
 
+local cyberdream = {
+  'scottmckendry/cyberdream.nvim',
+  lazy = false,
+  config = function()
+    require("cyberdream").setup({
+      transparent = true,
+      italic_comments = true,
+      hide_fillchars = true,
+    })
+    vim.cmd 'colorscheme cyberdream'
+  end
+}
+
 -- Lazy will load theme schemes
 local schemes = {
   xcode,
-  nightfly
+  nightfly,
+  cyberdream
 }
 
 return schemes

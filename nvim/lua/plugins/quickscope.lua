@@ -7,10 +7,11 @@ return {
   end,
   config = function()
     vim.cmd [[
-    highlight QuickScopePrimary guifg=yellow ctermfg=yellow
-    highlight QuickScopeSecondary guifg=cyan ctermfg=cyan
+    highlight QuickScopePrimary guifg=yellow ctermfg=yellow gui=underline cterm=underline
+    highlight QuickScopeSecondary guifg=yellow ctermfg=yellow
     ]]
   end
 }
 
--- gui=underline & cterm=underline
+-- Add `gui=underline & cterm=underline` to the end of the `highlight` line
+    --highlight QuickScopeSecondary guifg=cyan ctermfg=cyan (I used this for xcodedark scheme)
