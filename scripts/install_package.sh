@@ -14,8 +14,8 @@ install_with() {
   
   local exit_code=$?
 
-  if echo "$output" | grep -q "but thre is a snap with that name"; then
-    sudo snap install "$@" --classic
+  if echo "$output" | grep -q "but there is a snap with that name"; then
+    sudo snap install "$package" --classic
   elif [ $exit_code -ne 0 ]; then
     echo "WARN: $output"
   fi
