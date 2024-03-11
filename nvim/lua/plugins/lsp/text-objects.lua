@@ -7,7 +7,8 @@ local maps = {
   -- Assignment binds: Assignment example: `my_var = 5`
   ['a='] = { query = '@assignment.outer', desc = 'Select outer part of assignment operation' }, -- how to use: `da=` delete around assignment
   ['i='] = { query = '@assignment.inner', desc = 'Select inner part of assignment operation' },
-  ['l='] = { query = '@assignment.lhs', desc = 'Select left-side of assignment operator' },
+  -- this makes it so you can't use l to move in visual mode. Must be changed to something else
+  --['l='] = { query = '@assignment.lhs', desc = 'Select left-side of assignment operator' },
   ['r='] = { query = '@assignment.rhs', desc = 'Select right-side of assignment operator' },
 
   -- Params / Args
