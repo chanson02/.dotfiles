@@ -16,9 +16,6 @@ declare -a dependencies=(
 )
 bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
 
-# Install fonts
-"$scripts_dir/install_fonts.sh"
-
 # Install nvim
 "$scripts_dir/update_nvim.sh"
 
@@ -29,3 +26,7 @@ ln -s "$dfiles_dir" "$config"
 # Set as default editor
 export EDITOR="/usr/local/bin/nvim"
 echo "export EDITOR=$EDITOR" >> ~/.bashrc
+
+# Install fonts
+"$scripts_dir/install_fonts.sh"
+
