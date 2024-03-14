@@ -25,6 +25,11 @@ local cyberdream = {
       transparent = true,
       italic_comments = true,
       hide_fillchars = true,
+      theme = {
+        colors = {
+          bg = "#252525",
+        }
+      }
     })
     vim.cmd 'colorscheme cyberdream'
   end
