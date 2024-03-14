@@ -1,0 +1,15 @@
+themes {
+  cyberdream {
+    fg 248 248 242
+    bg 22 24 26
+    red 255 110 94
+    green 94 255 108
+    yellow 241 255 94
+    blue 94 161 255
+    magenta 255 94 241
+    orange 255 189 94
+    cyan 94 241 255
+    black 0 0 0
+    white 255 255 255
+  }
+}

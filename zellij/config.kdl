@@ -20,9 +20,7 @@ copy_command "wl-copy"                    // wayland
 
 
 copy_on_select true
-
 scroll_buffer_size 10000
-
 mirror_session false // mirror ? 1 cursor : each user has their own cursor
 
 
@@ -30,7 +28,7 @@ mirror_session false // mirror ? 1 cursor : each user has their own cursor
 // UI SECTION //
 // layout_dir "/path/to/my/layout_dir"
 // theme_dir "/path/to/my/theme_dir"
-theme "dracula"
+theme "cyberdream"
 default_layout "default"
 default_mode "normal"
 styled_underlines true // render styled and colored underlines
