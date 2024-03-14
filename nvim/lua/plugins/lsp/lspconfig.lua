@@ -33,32 +33,32 @@ local on_attach = function(_, bufnr)
   opts.desc = 'Search LSP implementations'
   keymap(bufnr, 'n', 'gi', ':Telescope lsp_implementations<CR>', opts) -- implementations are where classes are used
 
-  opts.desc = 'Go to definition'
+  opts.desc = 'Go to LSP definition'
   keymap(bufnr, 'n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
 
-  opts.desc = 'Go to type definition'
+  opts.desc = 'Go to LSP type definition'
   keymap(bufnr, 'n', 'gt', ':lua vim.lsp.buf.type_definition()<CR>', opts)
 
-  opts.desc = 'Preview function signature'
+  opts.desc = 'Preview LSP function signature'
   keymap(bufnr, 'n', 'gs', ':lua vim.lsp.buf.signature_help()<CR>', opts)
   keymap(bufnr, 'i', '<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 
-  opts.desc = 'Documentation'
+  opts.desc = 'LSP Documentation'
   keymap(bufnr, 'n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
 
-  opts.desc = 'See code actions'
+  opts.desc = 'See LSP code actions'
   keymap(bufnr, 'n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
   --keymap(bufnr, 'n', '<leader>ca', ':lua require("actions-preview").code_actions', opts)
   keymap(bufnr, 'v', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
 
-  opts.desc = 'Smart rename'
+  opts.desc = 'LSP Smart rename'
   keymap(bufnr, 'n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>', opts)
 
   --- Diagnostics
-  opts.desc = 'Toggle all diagnostics'
+  opts.desc = 'Toggle all LSP diagnostics'
   keymap(bufnr, 'n', '<leader>td', ':call v:lua.toggle_diagnostics()<CR>', opts)
 
-  opts.desc = 'Preview diagnostics'
+  opts.desc = 'Preview LSP diagnostics'
   keymap(bufnr, 'n', 'gl', ':lua vim.diagnostic.open_float()<CR>', opts)
 end
 
