@@ -29,7 +29,7 @@ mirror_session false // mirror ? 1 cursor : each user has their own cursor
 // layout_dir "/path/to/my/layout_dir"
 // theme_dir "/path/to/my/theme_dir"
 theme "cyberdream"
-default_layout "default"
+default_layout "cooper"
 default_mode "normal"
 styled_underlines true // render styled and colored underlines
 mouse_mode false // EWWW GET THAT OUTTA HERE
