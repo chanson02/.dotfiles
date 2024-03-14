@@ -10,6 +10,12 @@ keymap('v', '<leader>y', '"+y', opts) -- yank line into the system clipboard
 keymap('n', '<leader>Y', '"+Y', opts) -- yank into the system clipboard
 keymap('v', '<leader>Y', '"+Y', opts) -- yank iine nto the system clipboard
 
+-- Navigate splits
+keymap('n', '<C-h>', '<C-w>h', opts)
+keymap('n', '<C-j>', '<C-w>j', opts)
+keymap('n', '<C-k>', '<C-w>k', opts)
+keymap('n', '<C-l>', '<C-w>l', opts)
+
 -- Resize splits
 keymap('n', '<C-Up>', ':resize +2<CR>', opts)
 keymap('n', '<C-Down>', ':resize -2<CR>', opts)
