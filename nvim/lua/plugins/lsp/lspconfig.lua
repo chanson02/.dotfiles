@@ -11,7 +11,7 @@ local deps = {
 
 -- A global function for disabling diagnostics
 local diag_disable = { virtual_text = false, underline = false }
-local diag_enable  = { virtual_text = true,  underline = true, sign = true }
+local diag_enable  = { virtual_text = { source = true },  underline = true, sign = true }
 vim.diagnostic.config(diag_disable) -- default on startup
 vim.g.diagnostics_active = false
 function _G.toggle_diagnostics()
@@ -61,6 +61,9 @@ local on_attach = function(_, bufnr)
 
   opts.desc = 'Preview LSP diagnostics'
   keymap(bufnr, 'n', 'gl', ':lua vim.diagnostic.open_float()<CR>', opts)
+  --[[
+  If you'd like to see the LSP throwing errors add `float = { source = true }` to `diag_disable/enable above`
+  ]]
 end
 
 
