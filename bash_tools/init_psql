@@ -1,0 +1,16 @@
+#!/bin/bash
+
+config="config/database.yml"
+if [ ! -f "$config" ]; then
+  echo "No $config file present"
+  exit 1
+fi
+
+user=$(grep -E "^\s*user:" $config | awk '{print $2}')
+db=$(grep -E "^\s*database:" $config | awk '{print $2}')
+pwd=$(grep -E "^\s*password:" $config | awk '{print $2}')
+
+sudo -u postgres psql -c "CREATE DATABASE $db;"
+sudo -u postgres psql -c "CREATE USER $user WITH PASSWORD '$pwd';"
+sudo -u postgres psql -c "ALTER USER $user CREATEDB;"
+sudo -u postgres psql -c "ALTER DATABASE $db OWNER TO $user;"
