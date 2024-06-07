@@ -19,9 +19,5 @@ add_to_bashrc ". /usr/local/bin/z.sh"
 . /usr/local/bin/z.sh # start z
 
 scripts_dir="$( cd "$( dirname "$BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-tools_dir="$(dirname $scripts_dir)/bash_tools"
-target="/usr/local/bin/bash_tools"
-
-if [ ! -d "$target" ]; then
-  sudo ln -s "$tools_dir" "$target"
-fi
+target="$(dirname $scripts_dir)/bash_tools.sh"
+add_to_bashrc ". $target"
