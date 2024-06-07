@@ -1,0 +1,14 @@
+#!/bin/bash
+
+config="config/database.yml"
+if [ ! -f "$config" ]; then
+  echo "No $config file present"
+  exit 1
+fi
+
+rm -f latest.dump
+heroku pg:backups:capture
+heroku pg:backups:download --output latest.dump
+user=$(grep -E "^\s*user:" config/database.yml | awk '{print $2}')
+db=$(grep -E "^\s*database:" config/database.yml | awk '{print $2}')
+pg_restore --verbose --clean --no-acl --no-owner -h localhsot -U "$user" -d "$db" latest.dump
