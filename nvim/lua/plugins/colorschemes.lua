@@ -1,13 +1,13 @@
 -- Setting lazy to false will automatically load the color scheme
 -- lazy = true will only load the colorscheme if you manually request it
 
-local xcode = {
-  'arzg/vim-colors-xcode',
-  lazy = true,
-  config = function()
-    vim.cmd 'colorscheme xcodedark'
-  end
-}
+-- local xcode = {
+--   'arzg/vim-colors-xcode',
+--   lazy = true,
+--   config = function()
+--     vim.cmd 'colorscheme xcodedark'
+--   end
+-- }
 
 local nightfly = {
   'bluz71/vim-nightfly-guicolors',
@@ -37,7 +37,7 @@ local cyberdream = {
 
 -- Lazy will load theme schemes
 local schemes = {
-  xcode,
+  -- xcode,
   nightfly,
   cyberdream
 }
