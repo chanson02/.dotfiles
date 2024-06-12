@@ -71,7 +71,6 @@ local function picker_select(prompt_bufnr)
   local state = require('telescope.actions.state')
   local selected = state.get_selected_entry().value
 
-  -- vim.cmd(":lua require('dap')." .. selected .. "()")
   local dap = require('dap')
   dap[selected]()
   actions.close(prompt_bufnr)
@@ -80,11 +79,11 @@ end
 local function dap_picker()
   local pickers = require('telescope.pickers')
   local finders = require('telescope.finders')
-  local sorters = require('telescope.sorters')
+  local conf = require('telescope.config').values
 
   local opts = {
     finder = finders.new_table(dap_commands()),
-    sorter = sorters.get_generic_fuzzy_sorter({}),
+    sorter = conf.generic_sorter({}),
     previewer = doc_previewer(),
     attach_mappings = function(prompt_bufnr, map)
       map('i', '<CR>', picker_select)
