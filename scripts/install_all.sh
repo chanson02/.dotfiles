@@ -7,3 +7,5 @@ bash "$scripts_dir/install_pyenv.sh"
 bash "$scripts_dir/install_rbenv.sh" # also installs psql
 bash "$scripts_dir/set_gitconfig.sh"
 bash "$scripts_dir/install_bash_tools.sh"
+
+curl -s "https://get.sdkman.io" | bash # install java tools
