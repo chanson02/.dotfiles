@@ -65,15 +65,16 @@ local function doc_previewer()
   }
 end
 
-
-local function picker_select(prompt_bufnr)
-  local actions = require('telescope.actions')
-  local state = require('telescope.actions.state')
-  local selected = state.get_selected_entry().value
-
-  local dap = require('dap')
-  dap[selected]()
-  actions.close(prompt_bufnr)
+local function picker_mapping(prompt_bufnr, map)
+  local actions = require 'telescope.actions'
+  local state = require 'telescope.actions.state'
+  actions.select_default:replace(function()
+    actions.close(prompt_bufnr)
+    local selection = state.get_selected_entry().value
+    local call = "lua require('dap')." .. selection .. '()'
+    vim.cmd(vim.fn.input('', call))
+  end)
+  return true
 end
 
 local function dap_picker()
@@ -85,10 +86,7 @@ local function dap_picker()
     finder = finders.new_table(dap_commands()),
     sorter = conf.generic_sorter({}),
     previewer = doc_previewer(),
-    attach_mappings = function(prompt_bufnr, map)
-      map('i', '<CR>', picker_select)
-      return true
-    end,
+    attach_mappings = picker_mapping
   }
 
   local picker = pickers.new(opts)
