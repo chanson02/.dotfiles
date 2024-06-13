@@ -95,16 +95,18 @@ end
 
 local config = function()
   local dap = require('dap')
+  local repl = require('dap.repl')
+
   keymap('n', '<leader>dbb', dap.toggle_breakpoint, 'Toggle breakpoint')
   keymap('n', '<leader>dbc', dap.continue, 'Continue Debugging')
   keymap('n', '<leader>dbg', dap_picker, 'Search DAP functions')
-  -- keymap('n', '<leader>dbt', '<cmd>lua print(vim.inspect(dap_commands()))<CR>', 'Continue Debugging')
+  keymap('n', '<leader>dbr', repl.toggle, 'Toggle the DAP repl')
   -- step_over
   -- step_into
   -- step_out
   -- step_back
-  --repl.open
 end
+
 return {
   'mfussenegger/nvim-dap',
   config = config,
