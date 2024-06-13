@@ -111,5 +111,6 @@ return {
   'mfussenegger/nvim-dap',
   config = config,
   lazy = true,
-  -- cmd = 'Dap'
+  -- cmd = 'Dap',
+  dependencies = { 'nvim-telescope/telescope.nvim' }
 }

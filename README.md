@@ -50,6 +50,10 @@ Once in a nvim buffer, use `:Mason` to install any language servers you want
 Formatters and diagnostics can be injected into the language server protocol through `nvim/lua/plugins/lsp/none-ls.lua`
 
 
+##### Java
+Java in particular is a tricky one. You will need to install `jdtls` for the language server, and `java-debug` from Mason for the debug adapter.
+
+
 #### Learning the Keymaps
 There is no easy way to learn all the keymaps in this configuration.
 The best way is to go through each of the `.lua` files (starting with `keymaps.lua`) and memorize chunks of keymaps at a time
