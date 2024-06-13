@@ -111,7 +111,7 @@ local config = function()
   keymap('n', '<F3>', dap.step_out, 'Step out of function')
   keymap('n', '<F4>', dap.step_back, 'Step up the debug trace')
 
-  dap.defaults.fallback.terminal_win_cmd = '20vsplit new' -- don't make the terminal so big
+  dap.defaults.fallback.terminal_win_cmd = '20split new' -- don't make the terminal so big
 end
 
 return {
