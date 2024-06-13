@@ -9,4 +9,3 @@ bash "$scripts_dir/set_gitconfig.sh"
 bash "$scripts_dir/install_bash_tools.sh"
 
 curl -s "https://get.sdkman.io" | bash # install java tools
-bash_tools add_to_bashrc 'source "$HOME/.sdkman/bin/sdkman-init.sh"'
