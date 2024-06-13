@@ -105,10 +105,11 @@ local config = function()
   keymap('n', '<leader>dbk', widgets.hover, 'Evaluate variable')
   keymap('n', '<leader>dbf', function() widgets.centered_float(widgets.frames) end, 'Show stack frames')
   keymap('n', '<leader>dbs', function() widgets.centered_float(widgets.scopes) end, 'Show variable scopes')
-  -- step_over
-  -- step_into
-  -- step_out
-  -- step_back
+
+  keymap('n', '<F1>', dap.step_into, 'Step info function')
+  keymap('n', '<F2>', dap.step_over, 'Step over function')
+  keymap('n', '<F3>', dap.step_out, 'Step out of function')
+  keymap('n', '<F4>', dap.step_back, 'Step up the debug trace')
 
   dap.defaults.fallback.terminal_win_cmd = '20vsplit new' -- don't make the terminal so big
 end
