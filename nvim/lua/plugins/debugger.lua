@@ -96,15 +96,21 @@ end
 local config = function()
   local dap = require('dap')
   local repl = require('dap.repl')
+  local widgets = require('dap.ui.widgets')
 
   keymap('n', '<leader>dbb', dap.toggle_breakpoint, 'Toggle breakpoint')
   keymap('n', '<leader>dbc', dap.continue, 'Continue Debugging')
   keymap('n', '<leader>dbg', dap_picker, 'Search DAP functions')
   keymap('n', '<leader>dbr', repl.toggle, 'Toggle the DAP repl')
+  keymap('n', '<leader>dbk', widgets.hover, 'Evaluate variable')
+  keymap('n', '<leader>dbf', function() widgets.centered_float(widgets.frames) end, 'Show stack frames')
+  keymap('n', '<leader>dbs', function() widgets.centered_float(widgets.scopes) end, 'Show variable scopes')
   -- step_over
   -- step_into
   -- step_out
   -- step_back
+
+  dap.defaults.fallback.terminal_win_cmd = '20vsplit new' -- don't make the terminal so big
 end
 
 return {
