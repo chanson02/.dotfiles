@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo "add_to_bashrc: Usage: $0 'line_to_add'"
+  exit 1
+fi
+
+line="$1"
+if ! grep -Fxq "$line" ~/.bashrc; then
+  echo "$line" >> ~/.bashrc
+fi
