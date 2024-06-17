@@ -52,6 +52,7 @@ Formatters and diagnostics can be injected into the language server protocol thr
 
 ##### Java
 Java in particular is a tricky one. You will need to install `jdtls` for the language server, and `java-debug` from Mason for the debug adapter.
+To start a java project use `mkdir java-project && cd java-project && gradle init`
 
 
 #### Learning the Keymaps
