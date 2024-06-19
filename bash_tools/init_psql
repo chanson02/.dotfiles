@@ -6,10 +6,11 @@ if [ ! -f "$config" ]; then
   exit 1
 fi
 
-user=$(grep -E "^\s*user:" $config | awk '{print $2}')
-db=$(grep -E "^\s*database:" $config | awk '{print $2}')
-pwd=$(grep -E "^\s*password:" $config | awk '{print $2}')
+user=$(grep -E "^\s*user:" $config | awk '{print $2}' | head -n 1)
+db=$(grep -E "^\s*database:" $config | awk '{print $2}' | head -n 1)
+pwd=$(grep -E "^\s*password:" $config | awk '{print $2}' | head -n 1)
 
+echo "Creating database $db with credentials $user:$pwd"
 sudo -u postgres psql -c "CREATE DATABASE $db;"
 sudo -u postgres psql -c "CREATE USER $user WITH PASSWORD '$pwd';"
 sudo -u postgres psql -c "ALTER USER $user CREATEDB;"

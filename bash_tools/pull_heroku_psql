@@ -9,7 +9,7 @@ fi
 rm -f latest.dump
 heroku pg:backups:capture
 heroku pg:backups:download --output latest.dump
-user=$(grep -E "^\s*user:" $config | awk '{print $2}')
-db=$(grep -E "^\s*database:" $config | awk '{print $2}')
+user=$(grep -E "^\s*user:" $config | awk '{print $2}' | head -n 1) # use head incase there are multiple users
+db=$(grep -E "^\s*database:" $config | awk '{print $2}' | head -n 1)
 pg_restore --verbose --clean --no-acl --no-owner -h localhost -U "$user" -d "$db" latest.dump
 rails db:migrate
