@@ -1,0 +1,15 @@
+#!/bin/bash
+
+pid_file="tmp/pids/server.pid"
+if [ -f $pid_file ]; then
+  kill -9 $(cat tmp/pids/server.pid)
+else
+  read -p "Port: " port
+  pids=$(lsof -wni tcp:"$port" -t)
+  if [ -n $pids ]; then
+    for pid in $pids; do
+      kill -9 $pid
+      echo "Killed $pid"
+    done
+  fi
+fi
