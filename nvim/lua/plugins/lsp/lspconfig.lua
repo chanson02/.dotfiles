@@ -23,7 +23,7 @@ function _G.toggle_diagnostics()
 end
 
 -- function runs when LSP client attaches to buffer
-local on_attach = function(_, bufnr)
+lsp_on_attach = function(_, bufnr)
   local keymap = vim.api.nvim_buf_set_keymap
   local opts = { noremap = true, silent = true, desc = "" }
 
@@ -79,16 +79,17 @@ local config = function()
   local default_handler = function(server)
     lsp[server].setup({
       capabilities = caps,
-      on_attach = on_attach,
+      on_attach = lsp_on_attach,
     })
   end
 
   local handlers = {
     default_handler,
+    ['rust_analyzer'] = function() end, -- setup in rustaceanvim.lua
     ['lua_ls'] = function()
       lsp.lua_ls.setup {
         capabilities = caps,
-        on_attach = on_attach,
+        on_attach = lsp_on_attach,
         settings = {
           Lua = {
             diagnostics = {

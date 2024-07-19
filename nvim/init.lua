@@ -26,6 +26,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   { import = 'plugins' },
   { import = 'plugins.lsp' },
+  { import = 'plugins.debuggers' },
   checker = { enabled = true, notify = false },
   change_detection = { enabled = false, notify = false } -- do not notify me when dotfiles change
 })
