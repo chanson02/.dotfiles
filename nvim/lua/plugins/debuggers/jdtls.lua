@@ -3,11 +3,6 @@ Language server tools for java
 Make sure to install jdtls from mason first
 ]]
 
-local function file_exists(path)
-  local stat = vim.loop.fs_stat(path)
-  return stat and stat.type == 'file' or false
-end
-
 local function copy_file(src, dst)
   local source = vim.loop.fs_open(src, "r", 438, nil)
   local stat = vim.loop.fs_fstat(source)

@@ -1,6 +1,11 @@
 require 'core'
 require 'keymaps'
 
+function file_exists(path)
+  local stat = vim.loop.fs_stat(path)
+  return stat and stat.type == 'file' or false
+end
+
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 
 -- Auto install lazy.nvim plugin manager
