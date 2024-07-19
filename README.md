@@ -46,8 +46,16 @@ You can set a colorscheme by going to `nvim/lua/plugins/colorschemes.lua`
 #### Language Servers
 Once in a nvim buffer, use `:Mason` to install any language servers you want
   - If you need to edit the configuration for a language server, check `nvim/lua/plugins/lsp/lspconfig.lua`
+  - A custom handler for each server can be configured in the `config` function.
 
 Formatters and diagnostics can be injected into the language server protocol through `nvim/lua/plugins/lsp/none-ls.lua`
+I do not like to auto-format, so I use `:lua vim.lsp.buf.format`
+
+
+#### Debugging
+Debugging configuration can be found in `nvim/lua/plugins/debugger.lua`.
+1. Install debugger through `:Mason`
+x. `<leader>dbg` can be used to see debugging commands
 
 
 ##### Java
