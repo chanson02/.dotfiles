@@ -21,6 +21,7 @@ config.window_background_opacity = 1
 config.font = wezterm.font_with_fallback({'MesloLGL Nerd Font Mono'})
 config.window_background_gradient = {
   orientation = { Linear = { angle = 25.0 } },
+  -- bottom color should be set to black in `zellij/themes/cyberdream.kdl` and term_bkg in `nvim/lua/plugins/colorschemes.lua`
   colors = {
     '#0f0c29',
     '#302b63',

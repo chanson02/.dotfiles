@@ -1,6 +1,8 @@
 -- Setting lazy to false will automatically load the color scheme
 -- lazy = true will only load the colorscheme if you manually request it
 
+
+-- this is unmaintained
 -- local xcode = {
 --   'arzg/vim-colors-xcode',
 --   lazy = true,
@@ -17,19 +19,24 @@ local nightfly = {
   end
 }
 
+
+local term_bkg = '#24243e'
 local cyberdream = {
   'scottmckendry/cyberdream.nvim',
   lazy = false,
   config = function()
-    require("cyberdream").setup({
+    require('cyberdream').setup({
       transparent = true,
       italic_comments = true,
       hide_fillchars = true,
+      borderless_telescope = false, -- this breaks the transparentcy for some reason??
       theme = {
-        colors = {
-          bg = "#252525",
-        }
-      }
+        highlights = {
+          CursorLine = { bg = term_bkg },
+          TabLineFill = { bg = 'NONE' },
+          TabLineSel = { bg = term_bkg, bold = true },
+        },
+      },
     })
     vim.cmd 'colorscheme cyberdream'
   end

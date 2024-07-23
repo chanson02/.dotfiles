@@ -41,6 +41,10 @@ Launch vim and run :checkhealth to make sure everything is A-ok
 
 #### Colorscheme
 You can set a colorscheme by going to `nvim/lua/plugins/colorschemes.lua`
+The cyberdream colorscheme is setup across Neovim, Wezterm, and Zellij. These three options should be similar when transparency is enabled:
+- *colors[-1]* in `wezterm/wezterm.lua`
+- *black* in `zellij/themes/cyberdream.kdl`
+- *term_bkg* in `nvim/lua/plugins/colorschemes.lua`
 
 
 #### Language Servers
