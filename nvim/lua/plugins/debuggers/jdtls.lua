@@ -28,6 +28,11 @@ end
 -- Copies build.gradle(.kts) to where jdtls can use it
 local function init_gradle(project_directory)
   local actual = find_build_file(project_directory)
+  if actual == nil then
+    -- this must not a gradle project
+    return
+  end
+
   local expected = project_directory .. '/app/' .. vim.fs.basename(actual)
   if not file_exists(expected) and actual then
     copy_file(actual, expected)
