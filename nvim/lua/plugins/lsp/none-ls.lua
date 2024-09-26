@@ -12,7 +12,10 @@ local config = function()
 
   local sources = {
     -- js
-    formatters.prettierd
+    formatters.prettierd,
+
+    -- python
+    formatters.black,
   }
 
   null_ls.setup({ sources=sources })
