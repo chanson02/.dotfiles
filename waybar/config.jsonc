@@ -62,9 +62,7 @@
       "on-click": "feh --auto-zoom --borderless --title 'feh-float' /tmp/waybar-mediaplayer-art"
     },
     "custom/mediaplayer": {
-      "escape": true,
-      "exec-if": "pgrep spotify",
-      "hide-empty-text": true,
+      // "escape": true,
       "exec": "$HOME/.config/waybar/waybar-mediaplayer/src/mediaplayer monitor",
       "return-type": "json",
       "format": "{}",
