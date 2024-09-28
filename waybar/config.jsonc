@@ -3,6 +3,7 @@
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
+        "custom/mediaplayer/start",
         "hyprland/workspaces",
     ],
     // "modules-center": [
@@ -62,18 +63,24 @@
       "on-click": "feh --auto-zoom --borderless --title 'feh-float' /tmp/waybar-mediaplayer-art"
     },
     "custom/mediaplayer": {
-      // "escape": true,
-      "exec": "$HOME/.config/waybar/waybar-mediaplayer/src/mediaplayer monitor",
+      "exec": "cat /tmp/waybar-mediaplayer.json",
+      "interval": 1,
       "return-type": "json",
       "format": "{}",
       "min-length": 20,
       "max-length": 20
     },
+    "custom/mediaplayer/start": {
+      "format": "",
+      "hide_on_empty": true,
+      "exec": "$HOME/.config/waybar/waybar-mediaplayer/src/mediaplayer monitor",
+      "interval": "once"
+    },
     "custom/updates": {
       "exec": "bash $HOME/.config/waybar/waybar-dnf-updates/checkupdates", // <--- path to script
       "on-click-right": "bash $HOME/.config/waybar/waybar-dnf-updates/checkupdates", // refresh on right click
       "on-click": "kitty sudo dnf update && bash $HOME/.config/waybar/waybar-dnf-updates/checkupdates",
-      "interval": 10900, // refresh every 15 minutes
+      "interval": 10900,
       "return-type": "json",
       "format": "{icon} {}",
       "format-icons": {
