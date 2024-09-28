@@ -14,12 +14,12 @@
         "pulseaudio",
         "image",
         "custom/mediaplayer",
-        "clock"
-        // "tray"
+        "clock",
+        "tray"
     ],
     "hyprland/workspaces": {
         // "disable-scroll": true,
-        // "all-outputs": true,
+        "all-outputs": true,
         // "warp-on-scroll": false,
         "format": "{name}: {icon}",
         "format-icons": {
@@ -29,7 +29,7 @@
         }
     },
     "tray": {
-        // "icon-size": 21,
+        "icon-size": 21,
         "spacing": 10
     },
     "clock": {
