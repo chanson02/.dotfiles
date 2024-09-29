@@ -19,12 +19,15 @@ declare -a dependencies=(
   'openssl-devel'
 )
 bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
+if [ -d $PYENV_ROOT ]; then
+  pyenv update
+  exit 0
+fi
 
-rm -rf $HOME/.pyenv
-echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
-echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
-echo 'eval "$(pyenv init -)"' >> ~/.bashrc
-echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+bash "$scripts_dir/../bash_tools/add_to_bashrc" 'export PYENV_ROOT="$HOME/.pyenv"'
+bash "$scripts_dir/../bash_tools/add_to_bashrc" '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"'
+bash "$scripts_dir/../bash_tools/add_to_bashrc" 'eval "$(pyenv init -)"'
+bash "$scripts_dir/../bash_tools/add_to_bashrc" 'eval "$(pyenv virtualenv-init -)"'
 
 curl "https://pyenv.run" | bash
 source ~/.bashrc
