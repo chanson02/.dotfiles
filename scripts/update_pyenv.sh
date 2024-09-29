@@ -19,9 +19,9 @@ declare -a dependencies=(
   'openssl-devel'
 )
 bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
-if [ -d $PYENV_ROOT ]; then
+if [ -d "$PYENV_ROOT" ]; then
   pyenv update
-  exit 0
+  return 0
 fi
 
 bash "$scripts_dir/../bash_tools/add_to_bashrc" 'export PYENV_ROOT="$HOME/.pyenv"'
