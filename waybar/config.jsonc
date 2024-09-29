@@ -10,7 +10,7 @@
     //     "hyprland/window"
     // ],
     "modules-right": [
-        "custom/updates",
+        // "custom/updates",
         "pulseaudio",
         "image",
         "custom/mediaplayer",
