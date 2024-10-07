@@ -21,6 +21,7 @@ declare -a dependencies=(
   'grim'
   'slurp'
   'rofi-wayland'
+  'hyprpaper'
 )
 bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
 
