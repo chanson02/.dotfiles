@@ -20,7 +20,7 @@ local nightfly = {
 }
 
 
-local term_bkg = '#24243e'
+-- local term_bkg = '#24243e'
 local cyberdream = {
   'scottmckendry/cyberdream.nvim',
   lazy = false,
@@ -32,9 +32,9 @@ local cyberdream = {
       borderless_telescope = false, -- this breaks the transparentcy for some reason??
       theme = {
         highlights = {
-          CursorLine = { bg = term_bkg },
+          CursorLine = { bg = 'NONE' }, --term_bkg
           TabLineFill = { bg = 'NONE' },
-          TabLineSel = { bg = term_bkg, bold = true },
+          TabLineSel = { bg = 'NONE', bold = true }, --term_bkg
         },
       },
     })
