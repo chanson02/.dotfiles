@@ -4,6 +4,7 @@
 scripts_dir="$( cd "$( dirname "$BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 hypr_dir="$(dirname $scripts_dir)/hypr"
 waybar_dir="$(dirname $scripts_dir)/waybar"
+waybar_dir="$(dirname $scripts_dir)/ags"
 git submodule update --init --recursive  # Requires ssh key to be set
 
 source "$HOME/.bashrc"
@@ -22,14 +23,17 @@ declare -a dependencies=(
   'slurp'
   'rofi-wayland'
   'hyprpaper'
+  'aylurs-gtk-shell'
 )
 bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
 
 config="$HOME/.config"
 rm -rf $config/hypr
 rm -rf $config/waybar
+rm -rf $config/ags
 ln -s "$hypr_dir" "$config"
 ln -s "$waybar_dir" "$config"
+ln -s "$ags_dir" "$config"
 
 pyenv virtualenv waybar
 pyenv activate waybar
