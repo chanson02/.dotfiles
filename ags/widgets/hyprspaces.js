@@ -12,7 +12,7 @@ const iconCache = new Map();
 
 
 App.applyCss(`
-  .workspaces button.focused {
+  .workspaces button.active {
     border-bottom: 3px solid @theme_selected_bg_color;
   }
   `);
@@ -42,6 +42,25 @@ function WorkspaceIcon(workspaceId) {
   return Widget.Icon({ icon: icon, size: ICON_SIZE });
 }
 
+/**
+ * @param {number} workspaceId
+ * @param {import("../types/service").Binding<import("../types/service/hyprland").ActiveID, "id", number>} active
+ */
+function WorkspaceButton(workspaceId, active) {
+  const container = Widget.Box({
+    children: [
+      Widget.Label({ label: `${workspaceId}` }),
+      WorkspaceIcon(workspaceId),
+    ],
+  });
+
+  return Widget.Button({
+    on_clicked: () => hyprland.messageAsync(`dispatch workspace ${workspaceId}`),
+    child: container,
+    class_name: active.as(id => id === workspaceId ? 'active' : '')
+  });
+}
+
 function Workspaces() {
   const activeId = hyprland.active.workspace.bind('id');
   const workspaces = hyprland.bind('workspaces')
@@ -49,11 +68,7 @@ function Workspaces() {
       return ws
         .sort((a, b) => a.id - b.id)
         .map(({ id }) =>
-          Widget.Button({
-            on_clicked: () => hyprland.messageAsync(`dispatch workspace ${id}`),
-            child: WorkspaceIcon(id),
-            class_name: activeId.as(i => `${i === id ? 'focused' : ''}`)
-          })
+          WorkspaceButton(id, activeId)
         )
     });
 
