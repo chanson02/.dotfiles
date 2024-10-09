@@ -5,7 +5,6 @@ const audio = await Service.import('audio');
 
 
 function iconName() {
-  console.log('the description is ', audio.speaker.description);
   const name = audio.speaker.description?.toLowerCase().includes('headphone') ? 'headphones' : 'speakers';
   return `audio-${name}-symbolic`;
 }
