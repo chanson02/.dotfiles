@@ -53,7 +53,7 @@ function StatusBar(monitor) {
 
 
 App.config({
-  style: "./statusbar.css",
+  style: './statusbar.css',
   windows: [
     StatusBar(0),
     StatusBar(1),

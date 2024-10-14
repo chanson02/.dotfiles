@@ -10,27 +10,6 @@ const MANUAL_OVERRIDES = {
 }
 const iconCache = new Map();
 
-
-App.applyCss(`
-  .workspaces button {
-    margin: 5px;
-    padding-top: 20px;
-    border-radius: 20px;
-  }
-
-  .workspaces button .container {
-    padding: 5px;
-  }
-
-  .workspaces button:hover {
-  }
-
-  .workspaces button.active {
-    border-bottom: 3px solid @theme_selected_bg_color;
-    font-weight: bold;
-  }
-  `);
-
 /**
  * @param {string} input
  */
@@ -62,7 +41,6 @@ function WorkspaceIcon(workspaceId) {
  */
 function WorkspaceButton(workspaceId, active) {
   const container = Widget.Box({
-    class_name: 'container',
     children: [
       Widget.Label({ label: `${workspaceId}` }),
       WorkspaceIcon(workspaceId),
@@ -72,7 +50,7 @@ function WorkspaceButton(workspaceId, active) {
   return Widget.Button({
     on_clicked: () => hyprland.messageAsync(`dispatch workspace ${workspaceId}`),
     child: container,
-    class_name: active.as(id => id === workspaceId ? 'active' : '')
+    class_name: active.as(id => id === workspaceId ? 'active' : ''),
   });
 }
 
