@@ -42,7 +42,7 @@ function WorkspaceIcon(workspaceId) {
 function WorkspaceButton(workspaceId, active) {
   const container = Widget.Box({
     children: [
-      Widget.Label({ label: `${workspaceId}` }),
+      Widget.Label({ label: `${workspaceId}`, css: 'padding-right: 5px;' }),
       WorkspaceIcon(workspaceId),
     ],
   });
