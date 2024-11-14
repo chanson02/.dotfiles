@@ -23,7 +23,9 @@ declare -a dependencies=(
   'slurp'
   'rofi-wayland'
   'hyprpaper'
+
   'aylurs-gtk-shell'
+  'sassc'
 )
 bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
 
