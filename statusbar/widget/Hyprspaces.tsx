@@ -6,9 +6,10 @@ interface WorkspaceButtonProps {
   focused: Binding<Hyprland.Workspace>;
 }
 const WorkspaceButton = ({ workspace, focused }: WorkspaceButtonProps) => {
+  const cls = focused.as(fw => workspace === fw ? "focused": "");
   return (
     <button
-      className={focused.as(fw => workspace === fw ? "focused" : "")}
+      className={cls.as(cls => cls)}
       onClicked={() => workspace.focus()}
     >
       {workspace.id}
