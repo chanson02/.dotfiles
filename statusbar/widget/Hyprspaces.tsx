@@ -1,5 +1,20 @@
 import Hyprland from "gi://AstalHyprland";
-import { bind } from "astal";
+import { Binding, bind } from "astal";
+
+interface WorkspaceButtonProps {
+  workspace: Hyprland.Workspace;
+  focused: Binding<Hyprland.Workspace>;
+}
+const WorkspaceButton = ({ workspace, focused }: WorkspaceButtonProps) => {
+  return (
+    <button
+      className={focused.as(fw => workspace === fw ? "focused" : "")}
+      onClicked={() => workspace.focus()}
+    >
+      {workspace.id}
+    </button>
+  );
+}
 
 export default function Hyprspaces() {
   const hypr = Hyprland.get_default();
@@ -12,14 +27,7 @@ export default function Hyprspaces() {
     <box className="Workspaces">
       {spaces.as((wss) =>
         wss.map((ws) => (
-            <button
-              className={focused.as((fw) =>
-                ws === fw ? "focused" : "",
-              )}
-              onClicked={() => ws.focus()}
-            >
-              {ws.id}
-            </button>
+          <WorkspaceButton workspace={ws} focused={focused} />
           )),
       )}
     </box>
