@@ -3,8 +3,8 @@
 
 scripts_dir="$( cd "$( dirname "$BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 hypr_dir="$(dirname $scripts_dir)/hypr"
-waybar_dir="$(dirname $scripts_dir)/waybar"
-waybar_dir="$(dirname $scripts_dir)/ags"
+# waybar_dir="$(dirname $scripts_dir)/waybar"
+# waybar_dir="$(dirname $scripts_dir)/ags"
 git submodule update --init --recursive  # Requires ssh key to be set
 
 source "$HOME/.bashrc"
@@ -14,7 +14,7 @@ sudo dnf copr enable jaques22/xdg-desktop-portal-hyprland
 
 declare -a dependencies=(
   'hyprland'
-  'waybar'
+  # 'waybar'
   'gobject-introspeciton-devel'
   'feh'
   'xdg-desktop-portal-hyprland'
@@ -23,9 +23,6 @@ declare -a dependencies=(
   'slurp'
   'rofi-wayland'
   'hyprpaper'
-
-  'aylurs-gtk-shell'
-  'sassc'
 )
 bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
 
