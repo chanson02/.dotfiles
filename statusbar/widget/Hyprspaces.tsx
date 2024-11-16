@@ -1,15 +1,6 @@
 import Hyprland from "gi://AstalHyprland";
 import { bind } from "astal";
 
-const WorkspaceButton = ({ workspace, focusedSpace }) => {
-  const cls = workspace === focusedSpace ? "focused" : "";
-  return (
-    <button className={cls} onClicked={() => workspace.focus()}>
-      {workspace.id}
-    </button>
-  );
-};
-
 export default function Hyprspaces() {
   const hypr = Hyprland.get_default();
   const focused = bind(hypr, "focusedWorkspace");
@@ -19,10 +10,17 @@ export default function Hyprspaces() {
 
   return (
     <box className="Workspaces">
-      {spaces.as((ws) =>
-        ws.map((ws) => (
-          <WorkspaceButton workspace={ws} focusedSpace={focused} />
-        )),
+      {spaces.as((wss) =>
+        wss.map((ws) => (
+            <button
+              className={focused.as((fw) =>
+                ws === fw ? "focused" : "",
+              )}
+              onClicked={() => ws.focus()}
+            >
+              {ws.id}
+            </button>
+          )),
       )}
     </box>
   );
