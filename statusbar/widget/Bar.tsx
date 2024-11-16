@@ -19,8 +19,9 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
                 halign={Gtk.Align.CENTER} >
                 Welcome to AGS!
             </button>
-            <Hyprspaces />
-            <box />
+            <box>
+              <Hyprspaces />
+            </box>
             <button
                 onClick={() => print("hello")}
                 halign={Gtk.Align.CENTER} >
