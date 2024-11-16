@@ -1,5 +1,6 @@
 import { App, Astal, Gtk, Gdk } from "astal/gtk3"
 import { Variable } from "astal"
+import Hyprspaces from "./Hyprspaces"
 
 const time = Variable("").poll(1000, "date")
 
@@ -18,6 +19,7 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
                 halign={Gtk.Align.CENTER} >
                 Welcome to AGS!
             </button>
+            <Hyprspaces />
             <box />
             <button
                 onClick={() => print("hello")}
