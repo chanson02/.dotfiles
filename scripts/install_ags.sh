@@ -33,6 +33,10 @@ cd /tmp/astal/lang/gjs
 meson setup --prefix /usr build
 meson install -C build
 
+cd /tmp/astal/lib/hyprland
+meson setup --prefix /usr build
+meson install -C build
+
 git clone https://github.com/aylur/ags.git /tmp/ags
 cd /tmp/ags
 go install -ldflags "\
