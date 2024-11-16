@@ -16,6 +16,9 @@ declare -a dependencies=(
   'gobject-introspection'       # ubuntu
   'libgirepository1.0-dev' # ubuntu
   'golang'
+  'json-glib-devel' # hypr
+  'wireplumber-devel'
+  'libdbusmenu-gtk3-devel'
 )
 bash "$scripts_dir/install_package" "${dependencies[@]}"
 
@@ -34,6 +37,14 @@ meson setup --prefix /usr build
 meson install -C build
 
 cd /tmp/astal/lib/hyprland
+meson setup --prefix /usr build
+meson install -C build
+
+cd /tmp/astal/lib/wireplumber
+meson setup --prefix /usr build
+meson install -C build
+
+cd /tmp/astal/lib/tray
 meson setup --prefix /usr build
 meson install -C build
 
