@@ -1,8 +1,11 @@
 import { App, Astal, Gtk, Gdk } from "astal/gtk3"
 import { Variable } from "astal"
 import Hyprspaces from "./Hyprspaces"
+import Gio from "gi://Gio";
+import TrayWindow from "./SystemTray"
 
 const time = Variable("").poll(1000, "date")
+const TRAY_ICON = Gio.Icon.new_for_string("dialog-information-symbolic");
 
 export default function Bar(gdkmonitor: Gdk.Monitor) {
     return <window
@@ -21,6 +24,10 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
             </button>
             <box>
               <Hyprspaces />
+              <button
+                onClick={() => App.add_window(TrayWindow())}>
+                  <icon gIcon={TRAY_ICON} />
+                </button>
             </box>
             <button
                 onClick={() => print("hello")}

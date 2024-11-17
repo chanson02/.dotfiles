@@ -1,10 +1,9 @@
-#!/usr/bin/ags run
 import { App } from "astal/gtk3";
 import { bind } from "astal";
 import { Astal, Gdk, Gtk } from "astal/gtk3";
 import Tray from "gi://AstalTray";
 
-export default function SystemTray() {
+function SystemTray() {
   const tray = Tray.get_default();
 
   return (
@@ -31,13 +30,17 @@ export default function SystemTray() {
   )
 }
 
-function onKeyPress(_: Astal.Window, event: Gdk.Event) {
-  if (event.get_keyval()[1] === Gdk.KEY_Escape) { App.quit(); }
+function onKeyPress(window: Astal.Window, event: Gdk.Event) {
+  if (event.get_keyval()[1] === Gdk.KEY_Escape) { window.close(); }
 }
 
-App.start({
-  instanceName: "SystemTray",
-  main: () => {
+export default function TrayWindow() {
+  const window = new Astal.Window({
+    keymode: Astal.Keymode.EXCLUSIVE,
+    exclusivity: Astal.Exclusivity.IGNORE
+  });
+
+  const WindowComponent = (
     <window
       onKeyPressEvent={onKeyPress}
       keymode={Astal.Keymode.EXCLUSIVE}
@@ -46,7 +49,8 @@ App.start({
       <box halign={Gtk.Align.CENTER} valign={Gtk.Align.CENTER}>
         <SystemTray />
       </box>
-
     </window>
-  }
-})
+  );
+  window.add(WindowComponent);
+  return window;
+}
