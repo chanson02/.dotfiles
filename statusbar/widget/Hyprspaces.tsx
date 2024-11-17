@@ -18,23 +18,10 @@ interface WorkspaceButtonProps {
   workspace: Hyprland.Workspace;
   focused: Binding<Hyprland.Workspace>;
 }
-const WorkspaceButton = ({ workspace, focused }: WorkspaceButtonProps) => {
-  const icon = extractIcon(workspace.get_last_client());
 
-  const cls = focused.as((fw) => (workspace === fw ? "focused" : ""));
-  return (
-    <button
-      className={cls.as((cls) => cls)}
-      onClicked={() => workspace.focus()}
-    >
-      <box>
-        {workspace.id}
-        <icon gIcon={icon} />
-      </box>
-    </button>
-  );
-};
-
+/**
+  * Extracts data that can be used to identify a Hyprland Client
+*/
 function clientIdentifiers(c: Hyprland.Client) {
   return [
     c.get_class(),
@@ -42,25 +29,38 @@ function clientIdentifiers(c: Hyprland.Client) {
     c.get_title(),
     c.get_initial_title(),
   ];
-
 }
 
+/**
+  * Load a keyfile from a specified path
+*/
 function loadKeyFile(path: string) {
   const result = new GLib.KeyFile();
   result.load_from_file(path, GLib.KeyFileFlags.NONE);
   return result;
 }
 
-function isIdentifierMatch(file: GLib.KeyFile, identifiers: string[]) {
+/**
+  * Checks if the identifiers match either the `Name` or `StartupWMClass` in the .desktop file
+  * @param {GLib.KeyFile} file - The .desktop file
+  * @param {string[]} identifiers - names or startup classes to look for
+  * @returns {boolean} whether the identifiers match this desktop file
+*/
+function isIdentifierMatch(file: GLib.KeyFile, identifiers: string[]): boolean {
   var startup = null;
   var name = null;
   try { startup = file.get_string("Desktop Entry", "StartupWMClass"); }
   catch {}
   try { name = file.get_string("Desktop Entry", "Name"); }
   catch {}
-  return (name && identifiers.includes(name)) || (startup && identifiers.includes(startup));
+  return (name !== null && identifiers.includes(name)) || (startup !== null && identifiers.includes(startup));
 }
 
+/**
+  * Searches for a .desktop file related to the client
+  * @param {Hyprland.Client} client - The client to find the desktop file for
+  * @returns {GLib.KeyFile | undefined} The matching desktop file, if any
+*/
 function clientDesktopFile(client: Hyprland.Client): GLib.KeyFile | undefined {
   const identifiers = clientIdentifiers(client);
 
@@ -86,6 +86,9 @@ function clientDesktopFile(client: Hyprland.Client): GLib.KeyFile | undefined {
   return undefined;
 }
 
+/**
+  * Finds the icon for the client
+*/
 function extractIcon(client: Hyprland.Client): Gio.Icon {
   if (!client) { return FALLBACK_ICON; }
   const desktopFile = clientDesktopFile(client);
@@ -93,6 +96,30 @@ function extractIcon(client: Hyprland.Client): Gio.Icon {
   const appInfo = Gio.DesktopAppInfo.new_from_keyfile(desktopFile);
   return appInfo.get_icon() || FALLBACK_ICON;
 }
+
+/**
+  *** COMPONENTS ***
+*/
+
+/**
+  * Component which displays the workspace and an icon
+*/
+const WorkspaceButton = ({ workspace, focused }: WorkspaceButtonProps) => {
+  const icon = extractIcon(workspace.get_last_client());
+
+  const cls = focused.as((fw) => (workspace === fw ? "focused" : ""));
+  return (
+    <button
+      className={cls.as((cls) => cls)}
+      onClicked={() => workspace.focus()}
+    >
+      <box>
+        {workspace.id}
+        <icon gIcon={icon} />
+      </box>
+    </button>
+  );
+};
 
 export default function Hyprspaces() {
   const hypr = Hyprland.get_default();
