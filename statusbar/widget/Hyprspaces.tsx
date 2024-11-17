@@ -5,6 +5,15 @@ import GLib from "gi://GLib";
 
 const FALLBACK_ICON = Gio.Icon.new_for_string("dialog-information-symbolic");
 
+/**
+  * Directories where .desktop files are found
+*/
+const DESKTOP_DIRS = [
+  "/usr/share/applications/",
+  "/var/lib/flatpak/exports/share/applications/",
+  `${GLib.get_home_dir()}/.local/share/applications/`,
+];
+
 interface WorkspaceButtonProps {
   workspace: Hyprland.Workspace;
   focused: Binding<Hyprland.Workspace>;
@@ -26,56 +35,51 @@ const WorkspaceButton = ({ workspace, focused }: WorkspaceButtonProps) => {
   );
 };
 
-const DESKTOP_DIRS = [
-  "/usr/share/applications/",
-  "/var/lib/flatpak/exports/share/applications/",
-  `${GLib.get_home_dir()}/.local/share/applications/`,
-]; // paths where .desktop files can live
-function findDesktopFile(client: Hyprland.Client): GLib.KeyFile | undefined {
-  const identifiers = [
-    client.get_class(),
-    client.get_initial_class(),
-    client.get_title(),
-    client.get_initial_title(),
+function clientIdentifiers(c: Hyprland.Client) {
+  return [
+    c.get_class(),
+    c.get_initial_class(),
+    c.get_title(),
+    c.get_initial_title(),
   ];
+
+}
+
+function loadKeyFile(path: string) {
+  const result = new GLib.KeyFile();
+  result.load_from_file(path, GLib.KeyFileFlags.NONE);
+  return result;
+}
+
+function isIdentifierMatch(file: GLib.KeyFile, identifiers: string[]) {
+  var startup = null;
+  var name = null;
+  try { startup = file.get_string("Desktop Entry", "StartupWMClass"); }
+  catch {}
+  try { name = file.get_string("Desktop Entry", "Name"); }
+  catch {}
+  return (name && identifiers.includes(name)) || (startup && identifiers.includes(startup));
+}
+
+function clientDesktopFile(client: Hyprland.Client): GLib.KeyFile | undefined {
+  const identifiers = clientIdentifiers(client);
 
   for (const desktop_dir of DESKTOP_DIRS) {
     const dir = Gio.File.new_for_path(desktop_dir);
-    try {
-      const _enum = dir.enumerate_children(
-        "standard::name",
-        Gio.FileQueryInfoFlags.NONE,
-        null,
-      );
+    const _enum = dir.enumerate_children(
+      "standard::name",
+      Gio.FileQueryInfoFlags.NONE,
+      null,
+    );
 
-      let fileInfo: Gio.FileInfo | null;
-      while ((fileInfo = _enum.next_file(null)) !== null) {
-        const fname = fileInfo.get_name();
-        if (!fname.endsWith(".desktop")) {
-          continue;
-        } // skip non-.desktop files
-        const path = `${desktop_dir}${fname}`;
+    let fileInfo: Gio.FileInfo | null;
+    while ((fileInfo = _enum.next_file(null)) !== null) {
+      const fname = fileInfo.get_name();
+      if (!fname.endsWith(".desktop")) { continue; } // skip non-.desktop files
+      const path = `${desktop_dir}${fname}`;
+      const keyFile = loadKeyFile(path);
 
-        const keyFile = new GLib.KeyFile();
-        keyFile.load_from_file(path, GLib.KeyFileFlags.NONE);
-
-        var startup = null;
-        var name = null;
-        try {
-          startup = keyFile.get_string("Desktop Entry", "StartupWMClass");
-        } catch {}
-        try {
-          name = keyFile.get_string("Desktop Entry", "Name");
-        } catch {}
-        const identifierFound =
-          (name && identifiers.includes(name)) ||
-          (startup && identifiers.includes(startup));
-        if (identifierFound) {
-          return keyFile;
-        }
-      }
-    } catch (err) {
-      console.warn(err);
+      if (isIdentifierMatch(keyFile, identifiers)) { return keyFile; }
     }
   }
   console.warn(`No desktop file found for ${identifiers[0]}`);
