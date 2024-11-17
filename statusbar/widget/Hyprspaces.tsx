@@ -5,6 +5,8 @@ import GLib from "gi://GLib";
 
 const FALLBACK_ICON = Gio.Icon.new_for_string("dialog-information-symbolic");
 
+const ICON_CACHE: Record<string, Gio.Icon> = {};
+
 /**
   * Directories where .desktop files are found
 */
@@ -91,10 +93,17 @@ function clientDesktopFile(client: Hyprland.Client): GLib.KeyFile | undefined {
 */
 function extractIcon(client: Hyprland.Client): Gio.Icon {
   if (!client) { return FALLBACK_ICON; }
+
+  const cls = client.get_class();
+  if (ICON_CACHE[cls]) { return ICON_CACHE[cls] }
+
   const desktopFile = clientDesktopFile(client);
-  if (!desktopFile) { return FALLBACK_ICON; }
+  if (!desktopFile) { ICON_CACHE[cls] = FALLBACK_ICON; return FALLBACK_ICON; }
+
   const appInfo = Gio.DesktopAppInfo.new_from_keyfile(desktopFile);
-  return appInfo.get_icon() || FALLBACK_ICON;
+  const result = appInfo.get_icon() || FALLBACK_ICON;
+  ICON_CACHE[cls] = result;
+  return result;
 }
 
 /**
