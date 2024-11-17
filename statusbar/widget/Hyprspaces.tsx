@@ -83,10 +83,9 @@ function findDesktopFile(client: Hyprland.Client): GLib.KeyFile | undefined {
 }
 
 function extractIcon(client: Hyprland.Client): Gio.Icon {
-  const desktopFile = findDesktopFile(client);
-  if (!desktopFile) {
-    return FALLBACK_ICON;
-  }
+  if (!client) { return FALLBACK_ICON; }
+  const desktopFile = clientDesktopFile(client);
+  if (!desktopFile) { return FALLBACK_ICON; }
   const appInfo = Gio.DesktopAppInfo.new_from_keyfile(desktopFile);
   return appInfo.get_icon() || FALLBACK_ICON;
 }
