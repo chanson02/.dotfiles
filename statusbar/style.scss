@@ -17,4 +17,16 @@ window.Bar {
         border-radius: 8px;
         margin: 2px;
     }
+    button.focused {
+      color: blue;
+    }
+
+    label { color: white; }
+
+    .Media .Cover {
+      min-height: 1.2em;
+      min-width: 1.2em;
+      background-position: center;
+      background-size: contain;
+    }
 }

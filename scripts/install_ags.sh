@@ -16,9 +16,10 @@ declare -a dependencies=(
   'gobject-introspection'       # ubuntu
   'libgirepository1.0-dev' # ubuntu
   'golang'
-  'json-glib-devel' # hypr
+  'json-glib-devel' # hypr & mpris
   'wireplumber-devel'
   'libdbusmenu-gtk3-devel'
+  'gvfs' # mpris
 )
 bash "$scripts_dir/install_package" "${dependencies[@]}"
 
@@ -45,6 +46,10 @@ meson setup --prefix /usr build
 meson install -C build
 
 cd /tmp/astal/lib/tray
+meson setup --prefix /usr build
+meson install -C build
+
+cd /tmp/astal/lib/mpris
 meson setup --prefix /usr build
 meson install -C build
 

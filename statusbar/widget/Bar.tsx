@@ -1,6 +1,7 @@
 import { App, Astal, Gtk, Gdk } from "astal/gtk3"
 import { Variable } from "astal"
 import Hyprspaces from "./Hyprspaces"
+import Media from "./PlayingMedia"
 import Gio from "gi://Gio";
 import OpenTrayWindow from "./SystemTray"
 
@@ -24,10 +25,11 @@ export default function Bar(gdkmonitor: Gdk.Monitor) {
             </button>
             <box>
               <Hyprspaces />
+              <Media />
               <button
                   onClick={OpenTrayWindow}>
                   <icon gIcon={TRAY_ICON} />
-                </button>
+              </button>
             </box>
             <button
                 onClick={() => print("hello")}
