@@ -34,23 +34,17 @@ function onKeyPress(window: Astal.Window, event: Gdk.Event) {
   if (event.get_keyval()[1] === Gdk.KEY_Escape) { window.close(); }
 }
 
-export default function TrayWindow() {
-  const window = new Astal.Window({
-    keymode: Astal.Keymode.EXCLUSIVE,
-    exclusivity: Astal.Exclusivity.IGNORE
-  });
-
-  const WindowComponent = (
+export default function OpenTrayWindow() {
+  return (
     <window
       onKeyPressEvent={onKeyPress}
       keymode={Astal.Keymode.EXCLUSIVE}
       exclusivity={Astal.Exclusivity.IGNORE}
+      application={App}
     >
       <box halign={Gtk.Align.CENTER} valign={Gtk.Align.CENTER}>
         <SystemTray />
       </box>
     </window>
   );
-  window.add(WindowComponent);
-  return window;
 }
