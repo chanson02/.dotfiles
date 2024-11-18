@@ -13,8 +13,29 @@ function AlbumArt({ player }: { player: Mpris.Player }) {
   )
 }
 
+function debugPlayer(player: Mpris.Player) {
+  print(`
+        bus: ${player.busName}
+        loop: ${player.loopStatus}
+        playback: ${player.playbackStatus}
+        shuffle: ${player.shuffleStatus}
+        trackid: ${player.trackid}
+        position: ${player.position} / length: ${player.length}
+        covertArt: ${player.coverArt}
+        album: ${player.album}
+        albumArtist: ${player.albumArtist}
+        artists: ${player.artist}
+        lyrics: ${player.lyrics}
+        title: ${player.title}
+        composer: ${player.composer}
+        comments: ${player.comments}
+        `)
+}
+
 function SongInfo({ player }: { player: Mpris.Player }) {
+  debugPlayer(player);
   const onSongChange = bind(player, "title")
+  // print(player.position, player.length); in seconds
   return (
     <label
       label={
