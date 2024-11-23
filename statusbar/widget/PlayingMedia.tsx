@@ -36,12 +36,38 @@ function debugPlayer(player: Mpris.Player) {
         // shuffleStatus UNSUPPORTED, ON, OFF
 }
 
+function ProgressBar({ player }: { player: Mpris.Player }) {
+  const progress = bind(player, "position").as(() => {
+    const length = player.length || 1;
+    return Math.min(player.position / length, 1);
+  });
+
+  const MAX_WIDTH = 15;
+  const animation = progress.as(progress => {
+    const width = MAX_WIDTH * progress;
+    return (
+      <box
+        css={`border: 1px solid grey; min-width: ${MAX_WIDTH}em; min-height: 3em;`}
+      >
+        <box vexpand={true} css={`background-color: green; min-width: ${width}em;`} />
+      </box>
+    );
+  })
+
+  return (
+    <overlay>
+    {animation.as(a => a)}
+    <SongInfo player={player} />
+    </overlay>
+  )
+}
+
 function SongInfo({ player }: { player: Mpris.Player }) {
   const onSongChange = bind(player, "title")
   return (
     <label
       label={
-        onSongChange.as(() => `${player.position} ${player.title} - ${player.artist}`)
+        onSongChange.as(() => `${player.title} - ${player.artist}`)
       }
     />
   )
@@ -63,6 +89,7 @@ export default function Media() {
       player.connect("notify::playback-status", update_player);
     }
 
+
     mpris.connect("player-added", (_, player) => watch_player(player));
     mpris.connect("player-closed", (_, player) => {
       if (player === activePlayer.get()) { update_player(); }
@@ -77,7 +104,7 @@ export default function Media() {
           return (
             <box>
               <AlbumArt player={player} />
-              <SongInfo player={player} />
+              <ProgressBar player={player} />
             </box>
           )
         })
