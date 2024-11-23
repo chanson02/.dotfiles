@@ -1,5 +1,5 @@
 import { Gtk } from "astal/gtk3";
-import { bind } from "astal";
+import { bind, Variable } from "astal";
 import Mpris from "gi://AstalMpris";
 
 function AlbumArt({ player }: { player: Mpris.Player }) {
@@ -15,6 +15,7 @@ function AlbumArt({ player }: { player: Mpris.Player }) {
 
 function debugPlayer(player: Mpris.Player) {
   print(`
+        identity: ${player.identity}
         bus: ${player.busName}
         loop: ${player.loopStatus}
         playback: ${player.playbackStatus}
@@ -30,34 +31,53 @@ function debugPlayer(player: Mpris.Player) {
         composer: ${player.composer}
         comments: ${player.comments}
         `)
+        // playbackStatus PLAYING, PAUSED, STOPPED
+        // loopSttus UNSUPPORTED, NONE, TRACK, PLAYLIST
+        // shuffleStatus UNSUPPORTED, ON, OFF
 }
 
 function SongInfo({ player }: { player: Mpris.Player }) {
-  debugPlayer(player);
   const onSongChange = bind(player, "title")
-  // print(player.position, player.length); in seconds
   return (
     <label
       label={
-        onSongChange.as(() => `${player.title} - ${player.artist}`)
+        onSongChange.as(() => `${player.position} ${player.title} - ${player.artist}`)
       }
     />
   )
 }
 
-export default function Media() {
-    const mpris = Mpris.get_default()
-    const onPlayerChange = bind(mpris, "players");
 
+export default function Media() {
+    const mpris = Mpris.get_default();
+    const activePlayer = Variable<Mpris.Player | undefined>(undefined);
+
+    function update_player() {
+      const players = mpris.get_players();
+      const player = players.find(player => player.playbackStatus === Mpris.PlaybackStatus.PLAYING);
+      if (player === activePlayer.get()) { return; }
+      activePlayer.set(player || players[0] || undefined);
+    }
+
+    function watch_player(player: Mpris.Player) {
+      player.connect("notify::playback-status", update_player);
+    }
+
+    mpris.connect("player-added", (_, player) => watch_player(player));
+    mpris.connect("player-closed", (_, player) => {
+      if (player === activePlayer.get()) { update_player(); }
+    })
+
+    update_player(); // set the initial player
+    mpris.get_players().forEach(player => watch_player(player)); // watch any pre-existing players
     return (
       <box className="Media">{
-        onPlayerChange.as(players => {
-          if (players.length === 0) { return null; }
-
+        activePlayer(player => {
+          if (player === undefined) { return null; }
           return (
             <box>
-              <AlbumArt player={players[0]} />
-              <SongInfo player={players[0]} />
+              <AlbumArt player={player} />
+              <SongInfo player={player} />
             </box>
           )
         })
