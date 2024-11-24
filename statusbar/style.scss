@@ -39,6 +39,12 @@ window.Bar {
       min-height: 3em; // must be the same as Media.Cover
     }
     .Media .ProgressBar .Fill {
-      background-color: #{$spotify_color};
+      background: linear-gradient(
+        to right,
+        darken($spotify_color, 20%),
+        $spotify_color
+      );
+      /* transition: width 0.3s ease; */ // this isn't doing anything
+      box-shadow: 0 0 5px lighten($spotify_color, 30%);
     }
 }
