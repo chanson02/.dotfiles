@@ -47,9 +47,10 @@ function ProgressBar({ player }: { player: Mpris.Player }) {
     const width = MAX_WIDTH * progress;
     return (
       <box
-        css={`border: 1px solid grey; min-width: ${MAX_WIDTH}em; min-height: 3em;`}
+        className="ProgressBar"
+        css={`min-width: ${MAX_WIDTH}em;`}
       >
-        <box vexpand={true} css={`background-color: green; min-width: ${width}em;`} />
+        <box className="Fill" css={`min-width: ${width}em;`} />
       </box>
     );
   })

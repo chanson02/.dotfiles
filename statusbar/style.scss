@@ -1,6 +1,7 @@
 // https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
 $theme_fg_color: "@theme_fg_color";
 $theme_bg_color: "@theme_bg_color";
+$spotify_color: #1ED15F;
 
 window.Bar {
     background: transparent;
@@ -23,10 +24,21 @@ window.Bar {
 
     label { color: white; }
 
+    .Media {
+      border-right: 1px solid #{$spotify_color};
+    }
     .Media .Cover {
       min-height: 3em;
       min-width: 3em;
       background-position: center;
       background-size: contain;
+    }
+
+    .Media .ProgressBar {
+      background: #{$theme_bg_color};
+      min-height: 3em; // must be the same as Media.Cover
+    }
+    .Media .ProgressBar .Fill {
+      background-color: #{$spotify_color};
     }
 }
