@@ -1,6 +1,8 @@
 // https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
 $theme_fg_color: "@theme_fg_color";
 $theme_bg_color: "@theme_bg_color";
+
+$media_border_radius: 1em;
 $spotify_color: #1ED15F;
 
 window.Bar {
@@ -25,7 +27,7 @@ window.Bar {
     label { color: white; }
 
     .Media {
-      border-right: 1px solid #{$spotify_color};
+      border-right: 0.1em solid #{$spotify_color};
     }
     .Media .Cover {
       min-height: 3em;
@@ -46,5 +48,7 @@ window.Bar {
       );
       /* transition: width 0.3s ease; */ // this isn't doing anything
       box-shadow: 0 0 5px lighten($spotify_color, 30%);
+      border-bottom-right-radius: $media_border_radius;
+      border-top-right-radius: $media_border_radius;
     }
 }
