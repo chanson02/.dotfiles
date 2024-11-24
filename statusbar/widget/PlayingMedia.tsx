@@ -39,7 +39,7 @@ function debugPlayer(player: Mpris.Player) {
 function ProgressBar({ player }: { player: Mpris.Player }) {
   const progress = bind(player, "position").as(() => {
     const length = player.length || 1;
-    return Math.min(player.position / length, 1);
+    return Math.min(player.position / length + 0.01, 1);
   });
 
   const MAX_WIDTH = 15;
