@@ -1,6 +1,15 @@
+/**
+Main Widget (Media)
+  AlbumArt
+  ProgressBar
+    Fill
+    SongInfo
+*/
 import { Gtk } from "astal/gtk3";
 import { bind, Variable } from "astal";
 import Mpris from "gi://AstalMpris";
+
+const PROGRESS_BAR_WIDTH = 15;
 
 function AlbumArt({ player }: { player: Mpris.Player }) {
   const coverArt = bind(player, "coverArt");
@@ -42,13 +51,12 @@ function ProgressBar({ player }: { player: Mpris.Player }) {
     return Math.min(player.position / length + 0.01, 1);
   });
 
-  const MAX_WIDTH = 15;
   const animation = progress.as(progress => {
-    const width = MAX_WIDTH * progress;
+    const width = PROGRESS_BAR_WIDTH * progress;
     return (
       <box
         className="ProgressBar"
-        css={`min-width: ${MAX_WIDTH}em;`}
+        css={`min-width: ${PROGRESS_BAR_WIDTH}em;`}
       >
         <box className="Fill" css={`min-width: ${width}em;`} />
       </box>
@@ -64,14 +72,26 @@ function ProgressBar({ player }: { player: Mpris.Player }) {
 }
 
 function SongInfo({ player }: { player: Mpris.Player }) {
-  const onSongChange = bind(player, "artist")
-  return (
-    <label
-      label={
-        onSongChange.as(() => `${player.title} - ${player.artist}`)
-      }
-    />
-  )
+  const CHAR_WIDTH = 8; // estimate 8 pixels per character
+  const onSongChange = bind(player, "artist");
+  const labelText = onSongChange.as(() => `${player.title} - ${player.artist}`);
+  const scrollPos = new Variable(0);
+
+  const label = <label
+    label={labelText.as((text) => text)}
+    css={scrollPos((pos) => `margin-left: ${pos}px; transition: margin-left 0.1s linear;`)}
+  />;
+  const labelWidth = () => labelText.get().length * CHAR_WIDTH;
+  const barWidth = PROGRESS_BAR_WIDTH * 16;
+
+  setInterval(() => {
+    const max = labelWidth() + (barWidth / 2);
+    const min = -(labelWidth() + barWidth);
+    let new_pos = scrollPos.get() - 1;
+    if (new_pos < min) { new_pos = max; }
+    scrollPos.set(new_pos);
+  }, 20);
+  return label
 }
 
 
