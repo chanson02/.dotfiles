@@ -26,17 +26,14 @@ window.Bar {
 
     label { color: white; }
 
-    .Media {
-      border-right: 0.1em solid #{$spotify_color};
-    }
     .Media .Cover {
       min-height: 3em;
       min-width: 3em;
       background-position: center;
       background-size: contain;
     }
-
     .Media .ProgressBar {
+      border-right: 0.1em solid #{$spotify_color};
       background: #{$theme_bg_color};
       min-height: 3em; // must be the same as Media.Cover
     }
@@ -46,7 +43,6 @@ window.Bar {
         darken($spotify_color, 20%),
         $spotify_color
       );
-      /* transition: width 0.3s ease; */ // this isn't doing anything
       box-shadow: 0 0 5px lighten($spotify_color, 30%);
       border-bottom-right-radius: $media_border_radius;
       border-top-right-radius: $media_border_radius;

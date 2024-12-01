@@ -101,7 +101,7 @@ export default function Media() {
     return (
       <box className="Media">{
         activePlayer(player => {
-          if (player === undefined) { return null; }
+          if (player === undefined) { return <box />; }
           return (
             <box>
               <AlbumArt player={player} />
