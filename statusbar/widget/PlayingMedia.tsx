@@ -64,7 +64,7 @@ function ProgressBar({ player }: { player: Mpris.Player }) {
 }
 
 function SongInfo({ player }: { player: Mpris.Player }) {
-  const onSongChange = bind(player, "title")
+  const onSongChange = bind(player, "artist")
   return (
     <label
       label={
