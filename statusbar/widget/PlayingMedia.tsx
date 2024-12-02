@@ -42,6 +42,7 @@ function ProgressBar({ player }: { player: Mpris.Player }) {
 
   return (
     <overlay>
+    <box css={`min-width: ${PROGRESS_BAR_WIDTH}em;`}/>
     {animation.as(a => a)}
     <SongInfo player={player} />
     </overlay>
@@ -67,7 +68,7 @@ function SongInfo({ player }: { player: Mpris.Player }) {
     let new_pos = scrollPos.get() - 1;
     if (new_pos < min) { new_pos = max; }
     scrollPos.set(new_pos);
-  }, 20);
+  }, 100);
   return label
 }
 
