@@ -52,7 +52,6 @@ function ProgressBar({ player }: { player: Mpris.Player }) {
 }
 
 function SongInfo({ player }: { player: Mpris.Player }) {
-  const CHAR_WIDTH = 8; // estimate 8 pixels per character
   const onSongChange = bind(player, "artist");
   const labelText = onSongChange.as(() => `${player.title} - ${player.artist}`);
   const scrollPos = new Variable(0);
@@ -63,18 +62,16 @@ function SongInfo({ player }: { player: Mpris.Player }) {
     >
     <label label={labelText.as((text) => text)} />
   </box>;
-  const labelWidth = () => labelText.get().length * CHAR_WIDTH;
-  const barWidth = PROGRESS_BAR_WIDTH * 16;
+
 
   setInterval(() => {
-    const max = labelWidth() + (barWidth / 2);
+    const max = label.get_parent()?.get_allocated_width();
     let new_pos = scrollPos.get() - 1;
-    if (new_pos < -max) { new_pos = max; }
+    if (label.get_allocated_width() <= 1) { new_pos = max || 200; }
     scrollPos.set(new_pos);
   }, 100);
   return label
 }
-
 
 export default function Media() {
     const mpris = Mpris.get_default();
@@ -142,5 +139,16 @@ function debugPlayer(player: Mpris.Player) {
         // loopSttus UNSUPPORTED, NONE, TRACK, PLAYLIST
         // shuffleStatus UNSUPPORTED, ON, OFF
 }
+
+function debugWidget(widget: Gtk.Widget) {
+  print(`alloc width ${widget.get_allocated_width()}`);
+  // print(`pref size ${widget.get_preferred_size()}`);
+  print(`pref width ${widget.get_preferred_width()}`);
+  print(`pref height: ${widget.get_preferred_height()}`);
+  print(`clip width ${widget.get_clip().width}`);
+  print(`clip height ${widget.get_clip().height}`);
+}
+
+
 
 */
