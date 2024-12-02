@@ -40,6 +40,8 @@ function ProgressBar({ player }: { player: Mpris.Player }) {
     );
   })
 
+  // Root child update causes all other children to update
+  // was getting flickers with animation as first child
   return (
     <overlay>
     <box css={`min-width: ${PROGRESS_BAR_WIDTH}em;`}/>
@@ -55,18 +57,19 @@ function SongInfo({ player }: { player: Mpris.Player }) {
   const labelText = onSongChange.as(() => `${player.title} - ${player.artist}`);
   const scrollPos = new Variable(0);
 
-  const label = <label
-    label={labelText.as((text) => text)}
+  const label = <box
+    halign={Gtk.Align.START}
     css={scrollPos((pos) => `margin-left: ${pos}px; transition: margin-left 0.1s linear;`)}
-  />;
+    >
+    <label label={labelText.as((text) => text)} />
+  </box>;
   const labelWidth = () => labelText.get().length * CHAR_WIDTH;
   const barWidth = PROGRESS_BAR_WIDTH * 16;
 
   setInterval(() => {
     const max = labelWidth() + (barWidth / 2);
-    const min = -(labelWidth() + barWidth);
     let new_pos = scrollPos.get() - 1;
-    if (new_pos < min) { new_pos = max; }
+    if (new_pos < -max) { new_pos = max; }
     scrollPos.set(new_pos);
   }, 100);
   return label
