@@ -10,6 +10,7 @@ declare -a dependencies=(
   'libyaml-dev'
   'zlib1g-dev'
   'zlib-devel'
+  'postgis' # postgres geospacial
 )
 bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
 
