@@ -1,13 +1,17 @@
 #!/bin/bash
-url="https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz"
-out_path="/usr/local/bin/nvim-linux64"
-install="nvim.tar.gz"
+src_dir="$HOME/src"
 
-curl -L $url -o $install
-sudo mkdir -p $out_path
-sudo tar -xzvf $install -C $out_path --strip-components=1
-rm $install
-
-if [ ! -L "/usr/local/bin/nvim" ]; then
-  sudo ln -s "$out_path/bin/nvim" /usr/local/bin/nvim
+if [ ! -d "$src_dir" ]; then
+  mkdir -p "$src_dir"
 fi
+
+nvim_dir="$src_dir/neovim"
+if [ ! -d "$nvim_dir" ]; then
+  git clone https://github.com/neovim/neovim $nvim_dir
+fi
+
+cd $nvim_dir
+git pull origin master
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install
+cd -
