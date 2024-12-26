@@ -65,6 +65,7 @@ function SongInfo({ player }: { player: Mpris.Player }) {
 
 
   setInterval(() => {
+    // print(label.get_allocated_width());
     const max = label.get_parent()?.get_allocated_width();
     let new_pos = scrollPos.get() - 1;
     if (label.get_allocated_width() <= 1) { new_pos = max || 200; }
