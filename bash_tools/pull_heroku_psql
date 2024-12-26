@@ -13,3 +13,4 @@ user=$(grep -E "^\s*user:" $config | awk '{print $2}' | head -n 1) # use head in
 db=$(grep -E "^\s*database:" $config | awk '{print $2}' | head -n 1)
 pg_restore --verbose --clean --no-acl --no-owner -h localhost -U "$user" -d "$db" latest.dump
 rails db:migrate
+psql -U "$user" -d "$db" -c "ALTER DATABASE $db REFRESH COLLATION VERSION;"
