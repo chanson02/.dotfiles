@@ -5,6 +5,9 @@ end
 
 keymap('', '<Space>', '<Nop>', 'Set the leader key')
 
+keymap('n', '<leader>x', ':lua<CR>')
+keymap('v', '<leader>x', ':lua<CR>')
+
 -- Split Navigation
 keymap('n', '<C-h>', '<C-w>h', 'Navigate to left split')
 keymap('n', '<C-j>', '<C-w>j', 'Navigate to downward split')
