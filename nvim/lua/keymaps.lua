@@ -1,12 +1,9 @@
-function keymap(mode, lhs, rhs, desc)
+local function keymap(mode, lhs, rhs, desc)
   local opts = { noremap = true, silent = true, desc = desc }
-  vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
+  vim.keymap.set(mode, lhs, rhs, opts)
 end
 
-keymap('', '<Space>', '<Nop>', 'Set the leader key')
-
-keymap('n', '<leader>x', ':lua<CR>')
-keymap('v', '<leader>x', ':lua<CR>')
+keymap('n', '<leader>x', ':lua<CR>', 'Execute lua')
 
 -- Split Navigation
 keymap('n', '<C-h>', '<C-w>h', 'Navigate to left split')
@@ -41,4 +38,13 @@ keymap('n', '<C-u>', '<C-u>zz', 'Jump up half a page')
 keymap('n', 'n', 'nzzzv', 'Next search result') -- The purpose of this is to keep the search in the center of the screen
 keymap('n', 'N', 'Nzzzv', 'Previous search result')
 
+-- Terminal stuff
 keymap('t', '<Esc>', '<C-\\><C-n>', 'Enter normal mode')
+keymap('n', '<leader>st', function()
+  vim.cmd.vnew()
+  vim.cmd.term()
+  vim.cmd.wincmd('J')
+  vim.api.nvim_win_set_height(0, 15)
+  vim.api.nvim_command('startinsert')
+end, 'Open a terminal')
+
