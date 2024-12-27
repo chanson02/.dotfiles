@@ -19,7 +19,7 @@ end
 -- put lazy into the vim's runtime path
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup('plugins', { change_detection = { enabled = false, notify = false }})
+-- require('lazy').setup('plugins', { change_detection = { enabled = false, notify = false }})
 require('lazy').setup({
   { import = 'plugins' },
   { import = 'plugins.lsp' },
