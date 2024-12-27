@@ -35,6 +35,7 @@ local config = function()
 end
 
 return {
+  enabled = false,
   'hrsh7th/nvim-cmp',
   event = 'InsertEnter',
   dependencies = deps,
