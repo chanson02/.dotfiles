@@ -11,7 +11,8 @@ local deps = {
   {
     'williamboman/mason-lspconfig.nvim',
     dependencies = { 'williamboman/mason.nvim', config = true }
-  }
+  },
+  { 'saghen/blink.cmp' }
 }
 
 local diag_disable = { virtual_text = false, underline = false }
@@ -36,19 +37,18 @@ local function set_lsp_keymaps(args)
 
   keymap('n', '<leader>td', toggle_diagnostics, opts)
   keymap('n', 'gl', vim.diagnostic.open_float, opts)
-
-  if client.supports_method('textDocument/completion') then
-    keymap('i', '<C-Space>', function() vim.lsp.omnifunc(1, '') end, opts)
-  end
 end
 
 local function default_handler(server_name)
-  require('lspconfig')[server_name].setup({})
+  require('lspconfig')[server_name].setup({
+    capabilities = require('blink.cmp').get_lsp_capabilities()
+  })
 end
 
 local function lua_handler()
   local lspconfig = require('lspconfig')
   lspconfig.lua_ls.setup({
+    capabilities = require('blink.cmp').get_lsp_capabilities(),
     settings = {
       Lua = {
         diagnostics = {
@@ -72,7 +72,6 @@ return {
   config = function()
     require('mason').setup()
     require('mason-lspconfig').setup({ handlers = lsp_handlers })
-    -- require("lspconfig").lua_ls.setup {}
     vim.api.nvim_create_autocmd('LspAttach', {
       callback = function(args)
         set_lsp_keymaps(args)
