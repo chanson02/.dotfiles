@@ -3,7 +3,7 @@ local function keymap(mode, lhs, rhs, desc)
   vim.keymap.set(mode, lhs, rhs, opts)
 end
 
-keymap('n', '<leader>x', ':lua<CR>', 'Execute lua')
+keymap('v', '<leader>x', ':lua<CR>', 'Execute lua')
 
 -- Split Navigation
 keymap('n', '<C-h>', '<C-w>h', 'Navigate to left split')
