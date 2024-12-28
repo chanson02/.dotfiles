@@ -1,6 +1,6 @@
 local config = function()
   require('mini.files').setup({
-    windows = { preview = true }
+    -- windows = { preview = true }
   })
 end
 
