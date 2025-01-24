@@ -78,6 +78,28 @@ local lsp_handlers = {
    ['rust_analyzer'] = function() end, -- setup in rustaceanvim.lua
 }
 
+-- setup separately because not supported by mason
+local function setup_dart()
+  local lspconfig = require('lspconfig')
+  local dart_path = vim.fn.expand('$HOME/fvm/default/bin/dart')
+  if not file_exists(dart_path) then return end -- only setup dart if installed
+
+  -- use FVM version if available
+  local root = vim.fs.dirname(vim.fs.find({ '.git' }, { upward = true})[1])
+  local fvm_dart_path = root .. '/.fvm/flutter_sdk/bin/dart'
+  if file_exists(fvm_dart_path) then dart_path = fvm_dart_path end
+
+  lspconfig.dartls.setup({
+    capabilities = require('blink.cmp').get_lsp_capabilities(),
+    cmd = { dart_path, 'language-server', '--protocol=lsp' },
+    settings = {
+      dart = {
+        flutter = true
+      }
+    }
+  })
+end
+
 return {
   "neovim/nvim-lspconfig",
   event = { 'BufReadPre', 'BufNewFile' },
@@ -90,5 +112,6 @@ return {
         set_lsp_keymaps(args)
       end
     })
+    setup_dart()
   end,
 }
