@@ -7,12 +7,25 @@ mason-lspconfig automatically sets up the configuration for a server once it's b
 
 :h lsp-defaults
 --]]
+
+-- Dependency for developing neovim
+local lazydev = {
+  'folke/lazydev.nvim',
+  ft = 'lua',
+  opts = {
+    library = {
+      { path = "${3rd}/lub/library", words = { "vim%.uv" } },
+    },
+  },
+}
+
 local deps = {
   {
     'williamboman/mason-lspconfig.nvim',
     dependencies = { 'williamboman/mason.nvim', config = true }
   },
-  { 'saghen/blink.cmp' }
+  { 'saghen/blink.cmp' },
+  lazydev
 }
 
 local diag_disable = { virtual_text = false, underline = false }
