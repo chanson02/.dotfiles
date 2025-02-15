@@ -26,16 +26,15 @@ local cyberdream = {
   lazy = false,
   config = function()
     require('cyberdream').setup({
+      terminal_colors = true,
       transparent = true,
       italic_comments = true,
       hide_fillchars = true,
-      borderless_telescope = false, -- this breaks the transparentcy for some reason??
-      theme = {
-        highlights = {
-          CursorLine = { bg = 'NONE' }, --term_bkg
-          TabLineFill = { bg = 'NONE' },
-          TabLineSel = { bg = 'NONE', bold = true }, --term_bkg
-        },
+      borderless_pickers = false, -- this breaks the transparentcy for some reason??
+      highlights = {
+        CursorLine = { bg = 'NONE' }, --term_bkg
+        TabLineFill = { bg = 'NONE' },
+        TabLineSel = { bg = 'NONE', bold = true }, --term_bkg
       },
     })
     vim.cmd 'colorscheme cyberdream'
