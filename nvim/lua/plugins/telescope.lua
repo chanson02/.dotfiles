@@ -4,40 +4,45 @@ This is a searching extension, it requires ripgrep to be installed on the system
 
 local config = function()
   local telescope = require('telescope')
-  local actions = require('telescope.actions')
-
+  local funcs = require('telescope.builtin')
+  -- these builtin functions could be fun...
+  -- marks, quickfix, loclist, jumplist, registers, resume, lsp_references, lsp_diagnostics
   telescope.load_extension('fzf')
 
   telescope.setup({
-    defaults = {
-      mappings = { -- :h telescope.actions
-        i = {
-          ['<C-q>'] = actions.send_selected_to_qflist + actions.open_qflist, -- must be out of insert mode or use `tab` to select
-          ['<C-t>'] = actions.select_tab, -- open in new tab
-          ['<C-v>'] = actions.file_vsplit -- open in vsplit
-        }
-      }
-    }
+    pickers = {
+      find_files = { theme = 'ivy' },
+      live_grep = { theme = 'ivy' },
+      buffers = { theme = 'ivy' },
+    },
   })
 
-  local keymap = vim.api.nvim_set_keymap
+  local keymap = vim.keymap.set
   local opts = { noremap = true, silent = true }
-  
+
   opts.desc = 'Search project for file'
-  keymap('n', '<leader>f', '<cmd>Telescope find_files<cr>', opts)
+  keymap('n', '<leader>ff', funcs.find_files, opts)
 
   opts.desc = 'Search project for pattern'
-  keymap('n', '<leader>F', '<cmd>Telescope live_grep<cr>', opts)
+  keymap('n', '<leader>fF', funcs.live_grep, opts)
 
   opts.desc = 'Get currently open buffers'
-  keymap('n', '<leader>r', '<cmd>Telescope buffers<cr>', opts)
+  keymap('n', '<leader>fr', funcs.buffers, opts)
+
+  opts.desc = 'Search neovim dotfiles'
+  keymap('n', '<leader>fnf', function() funcs.find_files({ cwd = vim.fn.stdpath('config') }) end, opts)
+
+  opts.desc = 'Search Neovim help'
+  keymap('n', '<leader>fnh', funcs.help_tags, opts)
+
+  opts.desc = 'Search neovim plugins'
+  keymap('n', '<leader>fnp', function() funcs.find_files({ cwd = vim.fs.joinpath(vim.fn.stdpath('data'), 'lazy')}) end, opts)
 end
 
 local dependencies = {
   'nvim-lua/plenary.nvim',
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   'nvim-tree/nvim-web-devicons',
-  'nvim-lua/plenary.nvim'
 }
 
 return {
@@ -45,6 +50,5 @@ return {
   branch = '0.1.x',
   dependencies = dependencies,
   config = config,
-  -- keys = { '<leader>f', '<leader>F', '<leader>r' },
-  event = { 'BufReadPre', 'BufNewFile', 'VeryLazy' },
+  event = { 'VeryLazy' },
 }

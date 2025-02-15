@@ -22,6 +22,7 @@ local config = function()
 end
 
 return {
+  enabled = false,
   'nvimtools/none-ls.nvim',
   event = { 'BufReadPre', 'BufNewFile' },
   dependencies = { 'nvim-lua/plenary.nvim' },

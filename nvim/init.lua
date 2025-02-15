@@ -1,10 +1,6 @@
+require 'global'
 require 'core'
 require 'keymaps'
-
-function file_exists(path)
-  local stat = vim.loop.fs_stat(path)
-  return stat and stat.type == 'file' or false
-end
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 
@@ -20,13 +16,13 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 
+-- put lazy into the vim's runtime path
 vim.opt.rtp:prepend(lazypath)
 
-
+-- require('lazy').setup('plugins', { change_detection = { enabled = false, notify = false }})
 require('lazy').setup({
   { import = 'plugins' },
   { import = 'plugins.lsp' },
   { import = 'plugins.debuggers' },
-  checker = { enabled = true, notify = false },
-  change_detection = { enabled = false, notify = false } -- do not notify me when dotfiles change
+  { import = 'plugins.mini' }
 })

@@ -1,19 +1,38 @@
+--[[
+LSP Configuration:
+lspconfig is used to register individual servers to neovim
+mason is used to download servers
+mason-lspconfig automatically sets up the configuration for a server once it's been downloaded
+
+
+:h lsp-defaults
+--]]
+
+-- Dependency for developing neovim
+local lazydev = {
+  'folke/lazydev.nvim',
+  ft = 'lua',
+  opts = {
+    library = {
+      { path = "${3rd}/lub/library", words = { "vim%.uv" } },
+    },
+  },
+}
+
 local deps = {
-  'hrsh7th/cmp-nvim-lsp',
-  --'aznhe21/actions-preview.nvim',
-  { 'antosha417/nvim-lsp-file-operations', config = true },
   {
     'williamboman/mason-lspconfig.nvim',
     dependencies = { 'williamboman/mason.nvim', config = true }
-  }
+  },
+  { 'saghen/blink.cmp' },
+  lazydev
 }
 
-
--- A global function for disabling diagnostics
 local diag_disable = { virtual_text = false, underline = false }
 local diag_enable  = { virtual_text = { source = true },  underline = true, sign = true }
 vim.diagnostic.config(diag_disable) -- default on startup
 vim.g.diagnostics_active = false
+-- Toggle vims diagnostics module. Useful for keeping a clean screen
 function _G.toggle_diagnostics()
   if vim.g.diagnostics_active
     then vim.diagnostic.config(diag_disable)
@@ -22,94 +41,78 @@ function _G.toggle_diagnostics()
   vim.g.diagnostics_active = not vim.g.diagnostics_active
 end
 
--- function runs when LSP client attaches to buffer
-lsp_on_attach = function(_, bufnr)
-  local keymap = vim.api.nvim_buf_set_keymap
-  local opts = { noremap = true, silent = true, desc = "" }
+local function set_lsp_keymaps(args)
+  local client = vim.lsp.get_client_by_id(args.data.client_id)
+  if not client then return end
 
-  opts.desc = 'Search LSP references'
-  keymap(bufnr, 'n', 'gr', ':Telescope lsp_references<CR>', opts) -- references are where class methods are used
+  local keymap = vim.keymap.set
+  local opts = { buffer = args.buf, noremap = true, silent = true, desc = "" }
 
-  opts.desc = 'Search LSP implementations'
-  keymap(bufnr, 'n', 'gi', ':Telescope lsp_implementations<CR>', opts) -- implementations are where classes are used
-
-  opts.desc = 'Go to LSP definition'
-  keymap(bufnr, 'n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts)
-
-  -- Disabled because gt is to switch tabs
-  -- opts.desc = 'Go to LSP type definition'
-  -- keymap(bufnr, 'n', 'gt', ':lua vim.lsp.buf.type_definition()<CR>', opts)
-
-  opts.desc = 'Preview LSP function signature'
-  keymap(bufnr, 'n', 'gs', ':lua vim.lsp.buf.signature_help()<CR>', opts)
-  keymap(bufnr, 'i', '<C-s>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-
-  opts.desc = 'LSP Documentation'
-  keymap(bufnr, 'n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
-
-  opts.desc = 'See LSP code actions'
-  keymap(bufnr, 'n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
-  --keymap(bufnr, 'n', '<leader>ca', ':lua require("actions-preview").code_actions', opts)
-  keymap(bufnr, 'v', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', opts)
-
-  opts.desc = 'LSP Smart rename'
-  keymap(bufnr, 'n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>', opts)
-
-  --- Diagnostics
-  opts.desc = 'Toggle all LSP diagnostics'
-  keymap(bufnr, 'n', '<leader>td', ':call v:lua.toggle_diagnostics()<CR>', opts)
-
-  opts.desc = 'Preview LSP diagnostics'
-  keymap(bufnr, 'n', 'gl', ':lua vim.diagnostic.open_float()<CR>', opts)
-  --[[
-  If you'd like to see the LSP throwing errors add `float = { source = true }` to `diag_disable/enable above`
-  ]]
+  keymap('n', '<leader>td', toggle_diagnostics, opts)
+  keymap('n', 'gl', vim.diagnostic.open_float, opts)
+  keymap('n', 'gd', vim.lsp.buf.definition, opts)
 end
 
+local function default_handler(server_name)
+  require('lspconfig')[server_name].setup({
+    capabilities = require('blink.cmp').get_lsp_capabilities()
+  })
+end
 
--- Find the configuration options at https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-local config = function()
-  local lsp = require('lspconfig')
-  local cmp_lsp = require('cmp_nvim_lsp')
-  local mason = require('mason-lspconfig')
-  local caps = cmp_lsp.default_capabilities()
-
-  mason.setup({ automatic_installation = true })
-
-  local default_handler = function(server)
-    lsp[server].setup({
-      capabilities = caps,
-      on_attach = lsp_on_attach,
-    })
-  end
-
-  local handlers = {
-    default_handler,
-    ['rust_analyzer'] = function() end, -- setup in rustaceanvim.lua
-    ['lua_ls'] = function()
-      lsp.lua_ls.setup {
-        capabilities = caps,
-        on_attach = lsp_on_attach,
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = { 'vim' }
-            }
-          }
+local function lua_handler()
+  local lspconfig = require('lspconfig')
+  lspconfig.lua_ls.setup({
+    capabilities = require('blink.cmp').get_lsp_capabilities(),
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { "vim" }
         }
       }
-    end
-  }
-
-  -- :h mason-lspconfig-dynamic-server-setup
-  mason.setup_handlers(handlers)
+    }
+  })
 end
 
+local lsp_handlers = {
+   default_handler,
+   ["lua_ls"] = lua_handler,
+   ['rust_analyzer'] = function() end, -- setup in rustaceanvim.lua
+}
 
+-- setup separately because not supported by mason
+local function setup_dart()
+  local lspconfig = require('lspconfig')
+  local dart_path = vim.fn.expand('$HOME/fvm/default/bin/dart')
+  if not file_exists(dart_path) then return end -- only setup dart if installed
+
+  -- use FVM version if available
+  local root = vim.fs.dirname(vim.fs.find({ '.git' }, { upward = true})[1]) or '.'
+  local fvm_dart_path = root .. '/.fvm/flutter_sdk/bin/dart'
+  if file_exists(fvm_dart_path) then dart_path = fvm_dart_path end
+
+  lspconfig.dartls.setup({
+    capabilities = require('blink.cmp').get_lsp_capabilities(),
+    cmd = { dart_path, 'language-server', '--protocol=lsp' },
+    settings = {
+      dart = {
+        flutter = true
+      }
+    }
+  })
+end
 
 return {
-  'neovim/nvim-lspconfig',
+  "neovim/nvim-lspconfig",
   event = { 'BufReadPre', 'BufNewFile' },
   dependencies = deps,
-  config = config
+  config = function()
+    require('mason').setup()
+    require('mason-lspconfig').setup({ handlers = lsp_handlers })
+    vim.api.nvim_create_autocmd('LspAttach', {
+      callback = function(args)
+        set_lsp_keymaps(args)
+      end
+    })
+    setup_dart()
+  end,
 }

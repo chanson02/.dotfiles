@@ -4,9 +4,15 @@ scripts_dir="$( cd "$( dirname "$BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 dfiles_dir="$(dirname $scripts_dir)/nvim"
 
 declare -a dependencies=(
+  'git'
+  'ninja-build'
+  'gettext'
+  'cmake'
+  'unzip'
   'build-essential' # c compiler for ubuntu
-  'gcc' # c compiler for fedora?
+  'gcc' # c compiler for fedora
   'make' # required on fedora
+  'glibc-gconv-extra'
   'curl'
   'ripgrep' # BurntSushi/ripgrep - recursively search directories
   'fd-find' # sharkdp/fd - faster file finder
@@ -15,6 +21,8 @@ declare -a dependencies=(
   'nodejs' # required for some language servers
 )
 bash "$scripts_dir/install_package.sh" "${dependencies[@]}"
+
+
 
 # Install nvim
 "$scripts_dir/update_nvim.sh"
