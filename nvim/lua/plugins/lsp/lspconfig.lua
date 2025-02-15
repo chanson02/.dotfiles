@@ -50,6 +50,7 @@ local function set_lsp_keymaps(args)
 
   keymap('n', '<leader>td', toggle_diagnostics, opts)
   keymap('n', 'gl', vim.diagnostic.open_float, opts)
+  keymap('n', 'gd', vim.lsp.buf.definition, opts)
 end
 
 local function default_handler(server_name)
@@ -85,7 +86,7 @@ local function setup_dart()
   if not file_exists(dart_path) then return end -- only setup dart if installed
 
   -- use FVM version if available
-  local root = vim.fs.dirname(vim.fs.find({ '.git' }, { upward = true})[1])
+  local root = vim.fs.dirname(vim.fs.find({ '.git' }, { upward = true})[1]) or '.'
   local fvm_dart_path = root .. '/.fvm/flutter_sdk/bin/dart'
   if file_exists(fvm_dart_path) then dart_path = fvm_dart_path end
 
