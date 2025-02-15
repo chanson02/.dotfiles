@@ -1,3 +1,15 @@
+term = xterm-256color
 font-family = MesloLGL Nerd Font
+font-thicken = true
 theme = cyberdream
 background-opacity = 1
+background-opacity = 0.6
+background-blur-radius = 20
+
+mouse-hide-while-typing = true
+#link = true
+link-url = true
+
+clipboard-trim-trailing-spaces = true
+clipboard-paste-protection = true
+copy-on-select = true
