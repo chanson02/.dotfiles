@@ -13,3 +13,6 @@ link-url = true
 clipboard-trim-trailing-spaces = true
 clipboard-paste-protection = true
 copy-on-select = true
+
+keybind = ctrl+shift+left=unbind
+keybind = ctrl+shift+right=unbind
