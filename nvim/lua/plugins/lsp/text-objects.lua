@@ -62,7 +62,7 @@ end
 
 
 return {
-  enabled = false,
+  enabled = true,
   'nvim-treesitter/nvim-treesitter-textobjects',
   lazy = true, -- don't load until treesitter asks for it
   config = config
