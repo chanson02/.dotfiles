@@ -22,9 +22,9 @@ local config = function()
 end
 
 return {
-  enabled = false,
+  enabled = true,
   'nvimtools/none-ls.nvim',
-  event = { 'BufReadPre', 'BufNewFile' },
+  lazy = true, -- don't load until lsp asks for it
   dependencies = { 'nvim-lua/plenary.nvim' },
   config = config
 }

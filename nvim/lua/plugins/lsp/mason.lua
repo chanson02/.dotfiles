@@ -22,6 +22,7 @@ local lazydev = {
 local deps = {
   { 'williamboman/mason.nvim', config = true },
   { 'saghen/blink.cmp' },  -- configured in own file
+  { 'nvimtools/none-ls.nvim' }, -- configured in own file
   lazydev
 }
 
