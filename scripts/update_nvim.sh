@@ -11,6 +11,8 @@ if [ ! -d "$nvim_dir" ]; then
 fi
 
 cd $nvim_dir
+current_commit=$(git rev-parse HEAD)
+echo "Previous neovim commit: $current_commit"
 git pull origin master
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
