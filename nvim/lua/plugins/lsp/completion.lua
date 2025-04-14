@@ -13,7 +13,8 @@ local config_options = {
     menu = { auto_show = false }, -- use ctrl space
     documentation = { auto_show = true },
   },
-  keymap = keymaps
+  keymap = keymaps,
+  cmdline = { keymap = { ['<Enter>'] = { 'accept', 'fallback' } }, },
 }
 
 return {
