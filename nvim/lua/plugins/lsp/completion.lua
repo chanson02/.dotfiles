@@ -15,6 +15,15 @@ local config_options = {
   },
   keymap = keymaps,
   cmdline = { keymap = { ['<Enter>'] = { 'accept', 'fallback' } }, },
+
+  sources = {
+    per_filetype = {
+      sql = { 'snippets', 'dadbod', 'buffer' },
+    },
+    providers = {
+      dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+    }
+  }
 }
 
 return {
