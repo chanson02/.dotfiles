@@ -53,14 +53,19 @@ local function set_lsp_keymaps(args)
   keymap('n', 'gd', vim.lsp.buf.definition, opts)
 end
 
-local function default_handler(server_name)
-  vim.lsp.enable(server_name)
+local function setup_pyright()
+  local root = vim.fs.dirname(vim.fs.find({ 'pyproject.toml', '.git' }, { upward = true })[1]) or '.'
+  local venv = root .. '/.venv/bin/python'
+  if file_exists(venv) then
+    vim.lsp.config('pyright', {
+      settings = {
+        python = {
+          pythonPath = venv
+        }
+      }
+    })
+  end
 end
-
-local lsp_handlers = {
-   default_handler,
-   ['rust_analyzer'] = function() end, -- setup in rustaceanvim.lua
-}
 
 -- setup separately because not supported by mason
 local function setup_dart()
@@ -80,6 +85,7 @@ local function setup_dart()
       }
     }
   }
+  vim.lsp.enable('dartls')
 end
 
 return {
@@ -87,12 +93,18 @@ return {
   event = { 'BufReadPre', 'BufNewFile' },
   dependencies = deps,
   config = function()
-    require('mason-lspconfig').setup({ handlers = lsp_handlers })
+    -- require('mason-lspconfig').setup({ handlers = lsp_handlers })
+    require('mason-lspconfig').setup({
+      automatic_enable = {
+        exclude = { 'rust_analyzer' }
+      }
+    })
     vim.api.nvim_create_autocmd('LspAttach', {
       callback = function(args)
         set_lsp_keymaps(args)
       end
     })
     setup_dart()
+    setup_pyright()
   end,
 }
