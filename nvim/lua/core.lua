@@ -27,6 +27,10 @@ vim.opt.splitbelow = true -- put new hsplits on the bottom
 vim.o.signcolumn = 'yes' -- display an extra column on the left of the screen
 vim.opt.scrolloff = 8 -- can scroll below the page
 vim.opt.sidescrolloff = 8 -- can scroll horizontally off the page
+vim.opt.winborder = "rounded"
+
+vim.opt.exrc = true   -- allow project-local config
+vim.opt.secure = true -- restrict unsafe commands in project-local config
 
 -- :h fortmatoptions, fo-table
 -- Do not auto insert comment on next line
