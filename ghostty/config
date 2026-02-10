@@ -2,9 +2,9 @@ term = xterm-256color
 font-family = MesloLGL Nerd Font
 font-thicken = true
 theme = cyberdream
-background-opacity = 1
 background-opacity = 0.6
-background-blur-radius = 20
+background-opacity = 0.9
+background-blur = true
 
 mouse-hide-while-typing = true
 #link = true
