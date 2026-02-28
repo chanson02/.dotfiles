@@ -6,6 +6,7 @@ vim.g.rustaceanvim = {
 return {
   'mrcjkb/rustaceanvim',
   version = '^4',
-  lazy = false,
+  lazy = true,
+  ft = 'rust',
   dependencies = { 'mfussenegger/nvim-dap', 'neovim/nvim-lspconfig' }
 }
