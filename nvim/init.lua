@@ -1,6 +1,7 @@
 require 'global'
 require 'core'
 require 'keymaps'
+require 'lazydocker'
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 

@@ -48,3 +48,8 @@ keymap('n', '<leader>st', function()
   vim.api.nvim_command('startinsert')
 end, 'Open a terminal')
 
+keymap('n', '<leader>ld', function()
+  vim.cmd('tabnew')
+  vim.cmd('terminal lazydocker')
+  vim.cmd('startinsert')
+end, 'Open lazydocker')
