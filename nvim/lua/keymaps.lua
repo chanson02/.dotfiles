@@ -48,8 +48,11 @@ keymap('n', '<leader>st', function()
   vim.api.nvim_command('startinsert')
 end, 'Open a terminal')
 
-keymap('n', '<leader>ld', function()
-  vim.cmd('tabnew')
-  vim.cmd('terminal lazydocker')
-  vim.cmd('startinsert')
-end, 'Open lazydocker')
+-- Tab Navigation (Enhanced for workflow)
+keymap('n', 'H', ':tabprevious<CR>', 'Previous tab')
+keymap('n', 'L', ':tabnext<CR>', 'Next tab')
+-- keymap('n', '<leader>tl', ':tabs<CR>', 'List all tabs') TODO: telescope
+
+-- -- Quick access to common workflows
+-- keymap('n', '<leader>db', ':tabnew | DBUI<CR>', 'Open DBUI in new tab')
+-- TODO: Make DBUI behave like lazydocker?
