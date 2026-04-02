@@ -1,5 +1,6 @@
 #!/bin/bash
 src_dir="$HOME/src"
+runtime="/usr/local/share/nvim/runtime"
 
 if [ ! -d "$src_dir" ]; then
   mkdir -p "$src_dir"
@@ -10,6 +11,8 @@ if [ ! -d "$nvim_dir" ]; then
   git clone https://github.com/neovim/neovim $nvim_dir
 fi
 
+sudo rm -rf $runtime
+
 cd $nvim_dir
 current_commit=$(git rev-parse HEAD)
 echo "Previous neovim commit: $current_commit"
@@ -17,4 +20,5 @@ git pull origin master
 make distclean
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
-cd -
+echo "Neovim updated to $(git rev-parse HEAD)"
+cd - || exit
