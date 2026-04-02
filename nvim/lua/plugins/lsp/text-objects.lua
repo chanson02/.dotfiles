@@ -61,9 +61,11 @@ local config = function()
 end
 
 
-return {
-  enabled = true,
-  'nvim-treesitter/nvim-treesitter-textobjects',
-  lazy = true, -- don't load until treesitter asks for it
-  config = config
-}
+return {}
+-- api changed in nvim 0.12
+-- return {
+--   enabled = true,
+--   'nvim-treesitter/nvim-treesitter-textobjects',
+--   lazy = true, -- don't load until treesitter asks for it
+--   config = config
+-- }

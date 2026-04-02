@@ -6,7 +6,8 @@ TODO: nvim-treesitter/nvim-treesitter-context
 ]]
 
 local config = function()
-  local ts = require('nvim-treesitter.configs')
+  -- local ts = require('nvim-treesitter.configs')
+  local ts = require('nvim-treesitter')
 
   -- :TSenable highlight sometimes I run this manually?
   ts.setup({
@@ -19,8 +20,9 @@ end
 
 return {
   'nvim-treesitter/nvim-treesitter',
+  branch = 'main',       -- Master deprecated
   build = ':TSUpdate',
-  dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' }, -- configured in it's own file
+  -- dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' }, -- configured in it's own file
   config = config,
   event = { 'BufReadPre', 'BufNewfile' }
 }
