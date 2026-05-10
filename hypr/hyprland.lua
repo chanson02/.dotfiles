@@ -18,3 +18,4 @@ hl.monitor({
   position = '1920x0',
   scale = '1',
 })
+require('binds')
