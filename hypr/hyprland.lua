@@ -18,4 +18,20 @@ hl.monitor({
   position = '1920x0',
   scale = '1',
 })
+
+require('env')
+
+hl.on('hyprland.start', function()
+  hl.exec_cmd('qs -c noctalia-shell')
+end)
+
 require('binds')
+require('decorations')
+require('rules')
+
+hl.config({
+  input = {
+    kb_layout = "us",
+    sensitivity = -0.5,
+  }
+})
