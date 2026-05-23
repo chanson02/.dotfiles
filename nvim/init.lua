@@ -1,5 +1,6 @@
 require('global')
 require('opt')
 require('keymaps')
+require('colorscheme')
 require('lazydocker')
 require('plugins')
