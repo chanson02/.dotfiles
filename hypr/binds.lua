@@ -15,6 +15,7 @@ hl.bind(
   { description = "App Launcher", release = true }
 )
 hl.bind(secondMod .. "1",  hl.dsp.exec_cmd(terminal), { description = "Launch Terminal" })
+hl.bind(secondMod .. "3", hl.dsp.exec_cmd(fileManager), { description = "Launch file navigator" })
 
 -- Window Operations
 hl.bind(mainMod .. "C", hl.dsp.window.close(),                            { description = "Close Window" })

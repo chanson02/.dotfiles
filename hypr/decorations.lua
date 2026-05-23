@@ -36,8 +36,29 @@ hl.config({
   },
 
   misc = {
+    font_family = 'MesloLGL Nerd Font',
     disable_hyprland_logo = true,
     disable_splash_rendering = true,
     vrr = 2, -- variable refresh rate only fullscreen
   }
 })
+
+-- animations provided by Gemini
+-- Define a custom, aggressive snappy bezier curve
+hl.curve("snappy", { type = "bezier", points = { {0.25, 1}, {0.5, 1} } })
+
+-- Define a hyper-responsive spring for tiling window snaps
+hl.curve("responsiveSpring", { type = "spring", mass = 1, stiffness = 110, dampening = 19 })
+
+-- Master Window Settings (Fades and Moves)
+hl.animation({ leaf = "windows",    enabled = true, speed = 4.5, spring = "responsiveSpring" })
+hl.animation({ leaf = "windowsIn",  enabled = true, speed = 3.8, spring = "responsiveSpring", style = "popin 90%" })
+hl.animation({ leaf = "windowsOut", enabled = true, speed = 3.0, bezier = "snappy",           style = "popin 90%" })
+
+-- Fast Fades for Layers and Elements
+hl.animation({ leaf = "fade",       enabled = true, speed = 2.5, bezier = "snappy" })
+hl.animation({ leaf = "layers",     enabled = true, speed = 3.0, bezier = "snappy",           style = "fade" })
+
+-- Sleek Workspace Slide
+-- Removing 'style = "fade"' lets workspaces physically slide left/right on screen
+hl.animation({ leaf = "workspaces", enabled = true, speed = 3.5, bezier = "snappy" })
