@@ -27,6 +27,9 @@ require('mini.indentscope').setup({
   draw = {
     delay = 1000,
     predicate = function(scope)
+      local buftype = vim.api.nvim_get_option_value('buftype', { buf = 0 })
+      if 'terminal' == buftype then return false end
+
       local total_lines = (scope.border.bottom - scope.border.top) + 1
       return not scope.body.is_incomplete and total_lines >= 10
     end,
