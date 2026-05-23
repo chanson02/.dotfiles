@@ -1,7 +1,9 @@
-return {
-  { 'stevearc/dressing.nvim', event = 'VeryLazy' }, -- UI plugin to change how neovim gathers user input
+vim.pack.add({ 'https://github.com/tpope/vim-fugitive' })
 
-  { 'tpope/vim-fugitive', event = 'VeryLazy' }, -- Plugin to interact with git without leaving the buffer!
-  -- { 'akinsho/git-conflict.nvim', event = 'VeryLazy' }, -- I really want to try this in the future
-
-}
+require('plugins.quickscope')
+require('plugins.treesitter')
+require('plugins.mini')
+require('plugins.fzf-lua')
+require('plugins.opencode')
+require('plugins.dadbod')
+require('plugins.lsp')

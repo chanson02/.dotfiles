@@ -1,0 +1,64 @@
+{
+  "plugins": {
+    "blink.cmp": {
+      "rev": "35e3923a09ff3db150ceff80004befcbbfa071a0",
+      "src": "https://github.com/saghen/blink.cmp"
+    },
+    "blink.lib": {
+      "rev": "f29d8bac6549bc1e7d699c83f680823d7def98bd",
+      "src": "https://github.com/saghen/blink.lib"
+    },
+    "friendly-snippets": {
+      "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
+      "src": "https://github.com/rafamadriz/friendly-snippets"
+    },
+    "fzf-lua": {
+      "rev": "3ff77862f6c62f7b850668435ae43aa026de8758",
+      "src": "https://www.github.com/ibhagwan/fzf-lua"
+    },
+    "mason-lspconfig.nvim": {
+      "rev": "7b01e2974a47d489bb92f47a41e4c0088ea8f86e",
+      "src": "https://www.github.com/mason-org/mason-lspconfig.nvim"
+    },
+    "mason.nvim": {
+      "rev": "cbf8d285e1462dd24acf3507817be2bbcb035919",
+      "src": "https://www.github.com/mason-org/mason.nvim"
+    },
+    "mini.nvim": {
+      "rev": "264b5c8fc6e82212af0dc5c345145cfa916efeb6",
+      "src": "https://github.com/nvim-mini/mini.nvim"
+    },
+    "nvim-lspconfig": {
+      "rev": "246572944c2a1e2a646c2e7609ff619b0fe74c18",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-treesitter": {
+      "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+    },
+    "opencode.nvim": {
+      "rev": "3fdb28a5a837a872cf6f7c5350a99d9652d4d93e",
+      "src": "https://github.com/nickjvandyke/opencode.nvim"
+    },
+    "quick-scope": {
+      "rev": "6cee1d9e0b9ac0fbffeb538d4a5ba9f5628fabbc",
+      "src": "https://github.com/unblevable/quick-scope"
+    },
+    "vim-dadbod": {
+      "rev": "6d1d41da4873a445c5605f2005ad2c68c99d8770",
+      "src": "https://github.com/tpope/vim-dadbod"
+    },
+    "vim-dadbod-completion": {
+      "rev": "a8dac0b3cf6132c80dc9b18bef36d4cf7a9e1fe6",
+      "src": "https://github.com/kristijanhusak/vim-dadbod-completion"
+    },
+    "vim-dadbod-ui": {
+      "rev": "07e92e22114cc5b1ba4938d99897d85b58e20475",
+      "src": "https://github.com/kristijanhusak/vim-dadbod-ui"
+    },
+    "vim-fugitive": {
+      "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",
+      "src": "https://github.com/tpope/vim-fugitive"
+    }
+  }
+}

@@ -1,58 +1,83 @@
-local function keymap(mode, lhs, rhs, desc)
-  local opts = { noremap = true, silent = true, desc = desc }
-  vim.keymap.set(mode, lhs, rhs, opts)
-end
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
-keymap('v', '<leader>x', ':lua<CR>', 'Execute lua')
+local keymap = vim.keymap.set
+local opts = { noremap = true, silent = true }
+
+-- Wrapped text movement
+keymap("n", "j", function()
+	return vim.v.count == 0 and "gj" or "j"
+end, { expr = true, silent = true })
+keymap("n", "k", function()
+	return vim.v.count == 0 and "gk" or "k"
+end, { expr = true, silent = true })
 
 -- Split Navigation
-keymap('n', '<C-h>', '<C-w>h', 'Navigate to left split')
-keymap('n', '<C-j>', '<C-w>j', 'Navigate to downward split')
-keymap('n', '<C-k>', '<C-w>k', 'Navigate to upward split')
-keymap('n', '<C-l>', '<C-w>l', 'Navigate to right split')
+keymap('n', '<C-h>', '<C-w>h', opts)
+keymap('n', '<C-j>', '<C-w>j', opts)
+keymap('n', '<C-k>', '<C-w>k', opts)
+keymap('n', '<C-l>', '<C-w>l', opts)
 
 -- Resize splits
-keymap('n', '<C-Up>', ':resize +2<CR>', 'Increase split horizontal size')
-keymap('n', '<C-Down>', ':resize -2<CR>', 'Decrease split horizontal size')
-keymap('n', '<C-Left>', ':vertical resize +2<CR>', 'Increase split vertical size')
-keymap('n', '<C-Right>', ':vertical resize -2<CR>', 'Decrease split vertical size')
+keymap('n', '<C-Up>', ':resize +2<CR>', opts)
+keymap('n', '<C-Down>', ':resize -2<CR>', opts)
+keymap('n', '<C-Left>', ':vertical resize +2<CR>', opts)
+keymap('n', '<C-Right>', ':vertical resize -2<CR>', opts)
 
--- Register maps
-keymap('x', '<leader>p', '"_dP', 'Paste without overwriting register')
-keymap('n', '<leader>y', '"+y', 'Yank into system clipboard')
-keymap('v', '<leader>y', '"+y', 'Yank into system clipboard')
-keymap('n', '<leader>Y', '"+Y', 'yank into system clipboard')
-keymap('v', '<leader>Y', '"+Y', 'yank into system clipboard')
+-- Yank into system clipboard
+keymap({'n', 'x'}, '<leader>y', '"+y', opts)
+keymap({'n', 'x'}, '<leader>Y', '"+Y', opts)
 
--- Indent
-keymap('v', '<', '<gv', 'De-indent a visual block') -- the purpose of this is so that it reselects the text after moving
-keymap('v', '>', '>gv', 'Indent a visual block')
+-- Indent / de-indent visual block
+keymap('v', '<', '<gv', opts)
+keymap('v', '>', '>gv', opts)
 
--- Move selected text around
-keymap('x', 'J', ":move '>+1<CR>gv-gv", 'Move selection down')
-keymap('x', 'K', ":move '>-2<CR>gv-gv", 'Move selection up')
+-- Move selected lines
+keymap('v', 'J', ":move '>+1<CR>gv-gv", opts)
+keymap('v', 'K', ":move '>-2<CR>gv-gv", opts)
+keymap('x', 'J', ":move '>+1<CR>gv-gv", opts)
+keymap('x', 'K', ":move '<-2<CR>gv-gv", opts)
 
--- Stay in the middle of the screen while jumping around
-keymap('n', '<C-d>', '<C-d>zz', 'Jump down half a page')
-keymap('n', '<C-u>', '<C-u>zz', 'Jump up half a page')
-keymap('n', 'n', 'nzzzv', 'Next search result') -- The purpose of this is to keep the search in the center of the screen
-keymap('n', 'N', 'Nzzzv', 'Previous search result')
+-- Jump half page and center
+keymap('n', '<C-d>', '<C-d>zz', opts)
+keymap('n', '<C-u>', '<C-u>zz', opts)
 
--- Terminal stuff
-keymap('t', '<Esc>', '<C-\\><C-n>', 'Enter normal mode')
-keymap('n', '<leader>st', function()
-  vim.cmd.vnew()
-  vim.cmd.term()
-  vim.cmd.wincmd('J')
-  vim.api.nvim_win_set_height(0, 15)
-  vim.api.nvim_command('startinsert')
-end, 'Open a terminal')
+-- Keep search results centered
+keymap('n', 'n', 'nzzzv', opts)
+keymap('n', 'N', 'Nzzzv', opts)
 
--- Tab Navigation (Enhanced for workflow)
-keymap('n', 'H', ':tabprevious<CR>', 'Previous tab')
-keymap('n', 'L', ':tabnext<CR>', 'Next tab')
--- keymap('n', '<leader>tl', ':tabs<CR>', 'List all tabs') TODO: telescope
+-- Paste without overwriting register
+keymap('x', '<leader>p', '"_dP', opts)
 
--- -- Quick access to common workflows
--- keymap('n', '<leader>db', ':tabnew | DBUI<CR>', 'Open DBUI in new tab')
--- TODO: Make DBUI behave like lazydocker?
+-- Terminal mode
+keymap('t', '<Esc>', '<C-\\><C-n>', opts)
+keymap('t', '<C-Esc>', '<Esc>', opts)
+
+-- Tabs
+keymap('n', 'H', ':tabprevious<CR>', opts)
+keymap('n', 'L', ':tabnext<CR>', opts)
+
+-- Toggle diagnostics
+local function toggle_diagnostics()
+  local diag_disable = { virtual_text = false, underline = false, signs = true }
+  local diag_enable = { virtual_text = { source = true }, underline = true, signs = true }
+  if vim.g.diag_decos then
+    vim.diagnostic.config(diag_disable)
+    vim.g.diag_decos = false
+  else
+    vim.diagnostic.config(diag_enable)
+    vim.g.diag_decos = true
+  end
+end
+keymap('n', '<leader>td', toggle_diagnostics, { desc = 'Toggle diagnostics' })
+
+-- Show diagnostics for line
+keymap('n', 'gl', vim.diagnostic.open_float, opts)
+
+keymap("n", "<leader>pa", function()
+	local path = vim.fn.expand("%:p")
+	vim.fn.setreg("+", path)
+	print("file:", path)
+end, { desc = "Copy file path" })
+
+keymap('n', '<Esc>', ':nohlsearch<CR><Esc>', opts) -- clear searches on escape
