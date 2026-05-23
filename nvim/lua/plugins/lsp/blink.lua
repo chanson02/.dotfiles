@@ -19,7 +19,7 @@ cmp.setup({
     ['<C-s>'] = { 'show_signature', 'hide_signature', 'fallback' },
   },
 
-  cmdline = { completion = { menu = { auto_show = false } }, },
+  cmdline = { keymap = { preset = 'inherit' }, completion = { menu = { auto_show = false } }, },
   term = { enabled = true },
 
   sources = {
