@@ -1,10 +1,15 @@
-term = xterm-256color
 font-family = MesloLGL Nerd Font
+font-size = 14
 font-thicken = true
-theme = cyberdream
-background-opacity = 0.6
-background-opacity = 0.9
-background-blur = true
+theme = noctalia
+
+background-opacity = 0.7
+background-blur = false
+# ^ handled by hyprland
+
+# Pure rice
+window-padding-x = 20
+window-padding-y = 20
 
 mouse-hide-while-typing = true
 #link = true
