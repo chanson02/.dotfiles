@@ -82,3 +82,6 @@ hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"),       { description 
 -- Backlight
 hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl s 10%+"), { repeating = true, description = "Raise brightness", locked = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 10%-"), { repeating = true, description = "Lower brightness", locked = true })
+
+-- Screenshot
+hl.bind("Print", hl.dsp.exec_cmd("/home/chanson/.config/hypr/screenshot.sh"), { description = "Screenshot" })
