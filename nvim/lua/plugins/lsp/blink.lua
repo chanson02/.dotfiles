@@ -28,7 +28,7 @@ cmp.setup({
       sql = { 'dadbod', 'snippets', 'buffer' },
     },
     providers = {
-      dadbod = { name = "Dadbod", module = "vim.dadbod_completion.blink" },
+      dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
     },
   },
 })
