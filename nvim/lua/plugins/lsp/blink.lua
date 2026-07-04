@@ -26,6 +26,7 @@ cmp.setup({
     default = { 'lsp', 'path', 'snippets', 'buffer' },
     per_filetype = {
       sql = { 'dadbod', 'snippets', 'buffer' },
+      opencode_ask = { 'lsp', 'buffer' },
     },
     providers = {
       dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
