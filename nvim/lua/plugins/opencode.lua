@@ -1,6 +1,11 @@
 vim.pack.add({ 'https://github.com/nickjvandyke/opencode.nvim' })
 
 vim.g.opencode_opts = {
+  events = {
+    permissions = {
+      enabled = false,    -- use TUI for permissions
+    }
+  }
 }
 
 vim.o.autoread = true
