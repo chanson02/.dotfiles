@@ -3,6 +3,8 @@ vim.pack.add({ 'https://www.github.com/ibhagwan/fzf-lua' })
 local keymap = vim.keymap.set
 local f = require('fzf-lua')
 
+f.register_ui_select()
+
 keymap('n', '<leader>F', f.builtin, { desc = 'Find anything' })
 keymap('n', '<leader>ff', f.files, { desc = 'Find files' })
 keymap('n', '<leader>fF', f.live_grep, { desc = 'Find regex' })
