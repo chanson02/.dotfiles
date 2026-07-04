@@ -41,6 +41,7 @@ hl.config({
 })
 hl.bind(mainMod .. "comma", hl.dsp.layout("colresize -conf"), { description = "Shrink column size" })
 hl.bind(mainMod .. "period", hl.dsp.layout("colresize +conf"), { description = "Grow column size" })
+hl.bind(mainMod .. "Return", hl.dsp.layout("promote"), { description = "move window to it's own column" })
 
 -- Workspace Operations
 for i, key in ipairs(numberBinds) do
