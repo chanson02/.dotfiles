@@ -3,9 +3,11 @@
 ## Installation
 
 1. `git clone https://github.com/chanson02/.dotfiles.git ~/.dotfiles`
-2. `~/.dotfiles/install_all.sh`
+2. `~/.dotfiles/scripts/install_all.sh`
 
 Each config directory is symlinked into place (rather than copied) so changes applied here are reflected live in `~/.config`, and vice versa.
+
+The `config/` directory holds symlinks to the app dirs to deploy (`nvim`, `ghostty`, `hypr`, `gitconfig`). `scripts/install_link.sh` walks it and links each entry into `~/.config` (and `gitconfig` into `~/.gitconfig`). To add an app, drop a symlink in `config/`.
 
 *NOTE*: If you're someone other than me, change the `gitconfig` file.
 
