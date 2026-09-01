@@ -28,3 +28,7 @@ Discover the full list with `ls ~/.dotfiles/bash_tools`.
 
 - `nvim/` uses native `vim.pack`, locked via `nvim-pack-lock.json`
 - Install language servers via `:Mason`
+
+## Runtimes & tooling
+
+`install_mise.sh` sets global defaults (Python 3.12, Ruby 3.3) via mise and installs `uv` for Python venv/package management. `install_psql.sh` installs Postgres and the heroku CLI (needed by the `bash_tools` psql/heroku helpers).
