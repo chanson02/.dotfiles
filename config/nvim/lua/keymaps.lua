@@ -50,6 +50,7 @@ keymap('n', 'N', 'Nzzzv', opts)
 keymap('x', '<leader>p', '"_dP', opts)
 
 -- Terminal mode
+-- OSC133 [[ ]]
 keymap('t', '<Esc>', '<C-\\><C-n>', opts)
 keymap('t', '<C-Esc>', '<Esc>', opts)
 
