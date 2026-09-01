@@ -1,1 +1,3 @@
+#!/bin/bash
+
 arecord -f cd - | tee /tmp/output.wav | aplay -
