@@ -22,6 +22,6 @@ for item in "$dotfiles"/config/*; do
   echo "linked ~/.config/$name -> $target"
 done
 
-# Symlink gitconfig
-ln -sfn "$dotfiles/.gitconfig" "$HOME/.gitconfig"
-echo "linked ~/.gitconfig -> $dotfiles/gitconfig"
+# Symlink gitconfig (dotfile, so not caught by the config/* glob above)
+ln -sfn "$dotfiles/config/.gitconfig" "$HOME/.gitconfig"
+echo "linked ~/.gitconfig -> $dotfiles/config/.gitconfig"

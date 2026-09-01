@@ -7,13 +7,30 @@
 
 Each config directory is symlinked into place (rather than copied) so changes applied here are reflected live in `~/.config`, and vice versa.
 
-The `config/` directory holds symlinks to the app dirs to deploy (`nvim`, `ghostty`, `hypr`, `gitconfig`). `scripts/install_link.sh` walks it and links each entry into `~/.config` (and `gitconfig` into `~/.gitconfig`). To add an app, drop a symlink in `config/`.
+## SSH (personal + work)
 
-*NOTE*: If you're someone other than me, change the `gitconfig` file.
+Git credentials are split between personal and work:
+
+- **Personal** identity lives in `config/.gitconfig`.
+- **Work** identity lives in `config/gitconfig.calamp`.
+
+Running git commands in a subdirectory of `~/Documents/CalAmp` will automatically use `bitbucket.org-calamp` as the host. Example `~/.ssh/config`:
+
+```sshconfig
+Host bitbucket.org
+  HostName bitbucket.org
+  User git
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_ed25519
+
+Host bitbucket.org-calamp
+  HostName bitbucket.org
+  User git
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/calamp-bb
+```
 
 ## Shell utilities (`bash_tools/`)
-
-Omarchy already provides starship, zoxide, fzf, eza, bat, btop, and mise out of the box. The `bash_tools/` scripts are personal utilities for project-specific workflows.
 
 - `init_psql` — create a Postgres database + user from `config/database.yml`
 - `kill_rails` — stop a Rails server running from current directory
@@ -28,7 +45,3 @@ Discover the full list with `ls ~/.dotfiles/bash_tools`.
 
 - `nvim/` uses native `vim.pack`, locked via `nvim-pack-lock.json`
 - Install language servers via `:Mason`
-
-## Runtimes & tooling
-
-`install_mise.sh` sets global defaults (Python 3.12, Ruby 3.3) via mise and installs `uv` for Python venv/package management. `install_psql.sh` installs Postgres and the heroku CLI (needed by the `bash_tools` psql/heroku helpers).

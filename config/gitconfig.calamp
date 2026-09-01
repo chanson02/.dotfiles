@@ -1,0 +1,9 @@
+[user]
+    email = chanson@calamp.com
+    name = Cooper Hanson
+
+[url "ssh://git@bitbucket.org-calamp/calamp_solutions_group/"]
+    insteadOf = ssh://git@bitbucket.org/calamp_solutions_group/
+
+[url "git@bitbucket.org-calamp:calamp_solutions_group/"]
+    insteadOf = git@bitbucket.org:calamp_solutions_group/
