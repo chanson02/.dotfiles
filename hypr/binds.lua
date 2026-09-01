@@ -86,3 +86,11 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 10%-"), { repe
 
 -- Screenshot
 hl.bind("Print", hl.dsp.exec_cmd("/home/chanson/.config/hypr/screenshot.sh"), { description = "Screenshot" })
+
+-- This is triggering a screenshot
+-- hl.bind("Print", function()
+--   hl.notification.create({
+--     text = "Unimplemented",
+--     timeout = 3000
+--   })
+-- end, { long_press = true, description = "Screen record" })
