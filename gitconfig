@@ -7,4 +7,14 @@
 	email = cooperhanson2020@gmail.com
 	name = Cooper Hanson
 [pull]
-	rebase = true
+	rebase = false
+[includeIf "gitdir:~/Documents/CalAmp/"]
+	path = ~/Documents/CalAmp/.gitconfig
+[difftool "nvim_difftool"]
+	cmd = nvim -c \"packadd nvim.difftool\" -d \"$LOCAL\" \"$REMOTE\"
+[diff]
+	tool = nvim_difftool
+[url "ssh://git@bitbucket.org-calamp/calamp_solutions_group/"]
+	insteadOf = ssh://git@bitbucket.org/calamp_solutions_group/
+[credential "https://git.heroku.com"]
+	helper = !heroku git:credentials

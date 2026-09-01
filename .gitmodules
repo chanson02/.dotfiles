@@ -1,6 +1,0 @@
-[submodule "waybar/waybar-mediaplayer"]
-	path = waybar/waybar-mediaplayer
-	url = git@github.com:raffaem/waybar-mediaplayer.git
-[submodule "waybar/waybar-dnf-updates"]
-	path = waybar/waybar-dnf-updates
-	url = git@github.com:furuycom/waybar-dnf-updates.git
