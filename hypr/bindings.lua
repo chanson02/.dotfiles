@@ -3,25 +3,18 @@ local secondMod = "SUPER + SHIFT + "
 
 local terminal    = "ghostty"
 local fileManager = "dolphin"
-local noctalia    = "qs -c noctalia-shell ipc call "
-local menu        = noctalia .. "launcher toggle"
 
 local numberBinds = { "q", "w", "e", "r", "t", "y", "u", "i", "o", "p" }
 
 -- Launchers
-hl.bind(
-  mainMod .. "SUPER_L",
-  hl.dsp.exec_cmd(menu),
-  { description = "App Launcher", release = true }
-)
 hl.bind(secondMod .. "1",  hl.dsp.exec_cmd(terminal), { description = "Launch Terminal" })
-hl.bind(secondMod .. "3", hl.dsp.exec_cmd(fileManager), { description = "Launch file navigator" })
+hl.bind(secondMod .. "F", hl.dsp.exec_cmd(fileManager), { description = "Launch file navigator" })
 
 -- Window Operations
 hl.bind(mainMod .. "C", hl.dsp.window.close(),                            { description = "Close Window" })
 hl.bind(mainMod .. "V", hl.dsp.window.float({ action = "toggle" }),       { description = "Window: toggle floating" })
 hl.bind(mainMod .. "F", hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }), { description = "Window: toggle maximized" })
-hl.bind(secondMod .. "F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }), { description = "WIndow: toggle fullscreen" })
+hl.bind(secondMod .. "Space", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }), { description = "Window: toggle fullscreen" })
 
 hl.bind(mainMod .. "H", hl.dsp.focus({ direction = "left" }),  { description = "Focus: move left" })
 hl.bind(mainMod .. "J", hl.dsp.focus({ direction = "down" }),  { description = "Focus: move down" })
@@ -41,7 +34,7 @@ hl.config({
 })
 hl.bind(mainMod .. "comma", hl.dsp.layout("colresize -conf"), { description = "Shrink column size" })
 hl.bind(mainMod .. "period", hl.dsp.layout("colresize +conf"), { description = "Grow column size" })
-hl.bind(mainMod .. "Return", hl.dsp.layout("promote"), { description = "move window to it's own column" })
+hl.bind(secondMod .. "Return", hl.dsp.layout("promote"), { description = "Move window to its own column" })
 
 -- Workspace Operations
 for i, key in ipairs(numberBinds) do
@@ -68,8 +61,7 @@ for i, key in ipairs(numberBinds) do
   )
 end
 
-
--- Audio Volume
+-- Audio Volume (also provided by Omarchy defaults; kept as explicit override)
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"), { repeating = true, description = "Raise volume", locked = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { repeating = true, description = "Lower volume", locked = true })
 hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { description = "Mute audio", locked = true })
@@ -83,14 +75,3 @@ hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"),       { description 
 -- Backlight
 hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl s 10%+"), { repeating = true, description = "Raise brightness", locked = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 10%-"), { repeating = true, description = "Lower brightness", locked = true })
-
--- Screenshot
-hl.bind("Print", hl.dsp.exec_cmd("/home/chanson/.config/hypr/screenshot.sh"), { description = "Screenshot" })
-
--- This is triggering a screenshot
--- hl.bind("Print", function()
---   hl.notification.create({
---     text = "Unimplemented",
---     timeout = 3000
---   })
--- end, { long_press = true, description = "Screen record" })
