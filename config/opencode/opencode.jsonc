@@ -32,6 +32,10 @@
       "docker ps *": "allow",
       "docker-compose logs *": "allow",
     },
+    "external_directory": {
+      "/tmp/**": "allow",
+      "*": "ask"
+    },
   },
   "plugin": [
     "opencode-kiro"
