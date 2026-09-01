@@ -5,6 +5,8 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
+[ -f ~/.bashrc ] || : > ~/.bashrc
+
 line="$1"
 if ! grep -Fxq "$line" ~/.bashrc; then
   echo "$line" >> ~/.bashrc
