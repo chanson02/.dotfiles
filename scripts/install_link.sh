@@ -23,5 +23,5 @@ for item in "$dotfiles"/config/*; do
 done
 
 # Symlink gitconfig
-ln -sfn "$dotfiles/gitconfig" "$HOME/.gitconfig"
+ln -sfn "$dotfiles/.gitconfig" "$HOME/.gitconfig"
 echo "linked ~/.gitconfig -> $dotfiles/gitconfig"
