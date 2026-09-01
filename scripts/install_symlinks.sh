@@ -25,3 +25,11 @@ done
 # Symlink gitconfig (dotfile, so not caught by the config/* glob above)
 ln -sfn "$dotfiles/config/.gitconfig" "$HOME/.gitconfig"
 echo "linked ~/.gitconfig -> $dotfiles/config/.gitconfig"
+
+# Symlink each utility into ~/.local/bin
+mkdir -p "$HOME/.local/bin"
+for tool in "$dotfiles"/bash_tools/*; do
+  name="$(basename "$tool")"
+  ln -sf "$tool" "$HOME/.local/bin/$name"
+  chmod +x "$tool"
+done

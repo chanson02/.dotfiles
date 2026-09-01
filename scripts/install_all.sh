@@ -4,8 +4,6 @@ set -e
 
 scripts_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 
-bash "$scripts_dir/install_link.sh"
-bash "$scripts_dir/install_utils.sh"
-bash "$scripts_dir/install_mise.sh"
+bash "$scripts_dir/install_symlinks.sh"
 bash "$scripts_dir/install_psql.sh"
 bash "$scripts_dir/install_calamp.sh"
