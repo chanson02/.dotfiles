@@ -1,92 +1,28 @@
 # Dotfiles
-Hi Cooper, these are your personal dotfiles, along with some installation scripts to get you up and running on a new computer!
-This repository makes symbolic links, so you can update all your application configurations from this spot!
-
-**Important**: Make sure to upgrade your package manager before installing `sudo apt update`
-
-
-## License
-Give this to as many friends as you can so that they can use, modify, and redistribute however they like.
-
 
 ## Installation
-1. Clone this repository to your local machine
-2. cd into `scripts` and run whichever onces you want!
-  - Before running a script you may need to give it permission with `chmod +x`
-  - Do not run scripts with sudo
 
-*NOTE* If you're someone other than me, you should change the gitconfig file
+1. `git clone https://github.com/chanson02/.dotfiles.git ~/.dotfiles`
+2. `~/.dotfiles/install_all.sh`
 
-*NOTE* There is a `scripts/install_all.sh` for quickstart
+Each config directory is symlinked into place (rather than copied) so changes applied here are reflected live in `~/.config`, and vice versa.
 
+*NOTE*: If you're someone other than me, change the `gitconfig` file.
 
-## Usage
+## Shell utilities (`bash_tools/`)
 
-### Environment
-I've tried putting a bashrc in my dotfiles, but I always ran into issues where on one computer I needed different environment variables set. So instead I opted to go for a custom library that was imported to a bashrc. In `bash_tools/` you can find scripts for the tools I need to use across environments.
+Omarchy already provides starship, zoxide, fzf, eza, bat, btop, and mise out of the box. The `bash_tools/` scripts are personal utilities for project-specific workflows.
 
+- `init_psql` — create a Postgres database + user from `config/database.yml`
+- `kill_rails` — stop a Rails server running from current directory
+- `pull_heroku_psql` — pull a Heroku Postgres backup into `config/database.yml`
+- `push_heroku_psql` — push database from `config/database.yml` into Heroku
+- `mic_monitor` — pipe mic input to output (monitor headset)
+- `add_to_bashrc` — append a line to `~/.bashrc` if not already present
 
-### Vim
+Discover the full list with `ls ~/.dotfiles/bash_tools`.
 
-`install_nvim.sh` will install my full blown NeoVim environment, including a NerdFont, plugins, and theme
-- You can disable any plugins by going into their `.lua` file and returning {} early
+## Neovim
 
-`install_nvim_lite.sh` will install a barebones version consisting of mostly remaps. This can be useful for getting a server setup quick
-
-
-#### Verify Installation
-Launch vim and run :checkhealth to make sure everything is A-ok
-    - For some reason the xcodecolor scheme errors on the first boot, but second time it should be fine.
-
-
-#### Colorscheme
-You can set a colorscheme by going to `nvim/lua/plugins/colorschemes.lua`
-The cyberdream colorscheme is setup across Neovim, Wezterm, and Zellij. These three options should be similar when transparency is enabled:
-- *colors[-1]* in `wezterm/wezterm.lua`
-- *black* in `zellij/themes/cyberdream.kdl`
-- *term_bkg* in `nvim/lua/plugins/colorschemes.lua`
-
-
-#### Language Servers
-Once in a nvim buffer, use `:Mason` to install any language servers you want
-  - If you need to edit the configuration for a language server, check `nvim/lua/plugins/lsp/lspconfig.lua`
-  - A custom handler for each server can be configured in the `config` function.
-
-Formatters and diagnostics can be injected into the language server protocol through `nvim/lua/plugins/lsp/none-ls.lua`
-I do not like to auto-format, so I use `:lua vim.lsp.buf.format`
-
-
-#### Debugging
-Debugging configuration can be found in `nvim/lua/plugins/debugger.lua`.
-1. Install debugger through `:Mason`
-x. `<leader>dbg` can be used to see debugging commands
-
-
-##### Java
-Java in particular is a tricky one. You will need to install `jdtls` for the language server, and `java-debug` from Mason for the debug adapter.
-To start a java project use `mkdir java-project && cd java-project && gradle init`
-
-
-#### Learning the Keymaps
-There is no easy way to learn all the keymaps in this configuration.
-The best way is to go through each of the `.lua` files (starting with `keymaps.lua`) and memorize chunks of keymaps at a time
-
-
-### Zellij
-
-`install_zellij.sh`
-- I unbound the `move` mode so you need to switch with `alt` + arrow keys
-- Also there is a layout for my rails apps
-
-
-### pyenv
-pyenv is a python version manager, after running the install script you will need to restart your terminal.
-- `pyenv install -l`
-- `pyenv install {version}`
-- `pyenv global {version}` -- use this version by default
-
-### rbenv
-rbenv is a ruby version manager
-- `rbenv install -l`
-- `rbenv install {version}`
-- `rbenv global {version}`
+- `nvim/` uses native `vim.pack`, locked via `nvim-pack-lock.json`
+- Install language servers via `:Mason`

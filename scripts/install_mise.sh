@@ -14,3 +14,5 @@ fi
 echo
 echo "mise runtimes:"
 mise ls
+
+curl -LsSf https://astral.sh/uv/install.sh | sh
