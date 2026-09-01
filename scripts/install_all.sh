@@ -2,8 +2,14 @@
 
 set -e
 
-scripts_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+dotfiles="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." &>/dev/null && pwd)"
+scripts_dir="$dotfiles/scripts"
 
 bash "$scripts_dir/install_symlinks.sh"
-bash "$scripts_dir/install_psql.sh"
 bash "$scripts_dir/install_calamp.sh"
+
+"$dotfiles/bash_tools/add_to_bashrc" "PROMPT_COMMAND='printf \"\\033]133;A\\007\"'"
+"$dotfiles/bash_tools/add_to_bashrc" 'source "$HOME/.config/opencode/opencode.sh"'
+
+curl https://mise.run | sh
+curl -LsSf https://astral.sh/uv/install.sh | sh

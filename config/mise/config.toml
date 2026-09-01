@@ -2,3 +2,5 @@
 python = "latest"
 ruby = "latest"
 node = "latest"
+postgres = "latest"
+heroku = "latest"
