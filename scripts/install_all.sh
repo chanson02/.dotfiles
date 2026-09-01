@@ -8,6 +8,8 @@ scripts_dir="$dotfiles/scripts"
 bash "$scripts_dir/install_symlinks.sh"
 bash "$scripts_dir/install_calamp.sh"
 
+omarchy pkg add postgresql
+
 "$dotfiles/bash_tools/add_to_bashrc" "PROMPT_COMMAND='printf \"\\033]133;A\\007\"'"
 "$dotfiles/bash_tools/add_to_bashrc" 'source "$HOME/.config/opencode/opencode.sh"'
 
