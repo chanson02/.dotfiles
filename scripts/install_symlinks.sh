@@ -12,10 +12,10 @@ for item in "$dotfiles"/config/*; do
   name="$(basename "$item")"
   target="$(readlink -f "$item")"
 
-  # Don't overwrite existing non-symlink directories
+  # Back up existing non-symlink directories before overwriting
   if [ -e "$HOME/.config/$name" ] && [ ! -L "$HOME/.config/$name" ]; then
-    echo "WARNING: ~/.config/$name exists and is not a symlink, skipping"
-    continue
+    echo "WARNING: ~/.config/$name exists, moving to ~/.config/$name.bak"
+    mv -f "$HOME/.config/$name" "$HOME/.config/$name.bak"
   fi
 
   ln -sfn "$target" "$HOME/.config/$name"
