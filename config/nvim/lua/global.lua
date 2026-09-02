@@ -2,7 +2,8 @@ local augroup = vim.api.nvim_create_augroup('UserConfig', { clear = true })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = augroup,
-  callback = function() vim.hl.hl_op({higroup='Visual', timeout=100}) end
+  callback = function() vim.hl.on_yank({higroup='Visual', timeout=250}) end
+  -- callback = function() vim.hl.hl_op({higroup='Visual', timeout=250}) end
 })
 
 vim.api.nvim_create_autocmd("FileType", {
