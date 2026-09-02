@@ -14,6 +14,6 @@ omarchy pkg add postgresql
 "$dotfiles/bash_tools/add_to_bashrc" 'source "$HOME/.config/opencode/opencode.sh"'
 
 curl https://mise.run | sh
-"$HOME/.local/bin/mise" use -g python@latest ruby@latest node@latest heroku@latest
+"$HOME/.local/bin/mise" use -g python@latest ruby@latest node@latest heroku@latest rust@latest
 
 curl -LsSf https://astral.sh/uv/install.sh | sh
