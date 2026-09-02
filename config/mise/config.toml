@@ -1,5 +1,0 @@
-[tools]
-python = "latest"
-ruby = "latest"
-node = "latest"
-heroku = "latest"
