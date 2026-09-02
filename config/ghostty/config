@@ -1,7 +1,8 @@
+config-file = ?"~/.local/state/omarchy/current/theme/ghostty.conf"
+
 # font-family = MesloLGL Nerd Font
 # font-size = 14
 # font-thicken = true
-# # theme = noctalia
 #
 # background-opacity = 0.7
 # background-blur = false
@@ -11,13 +12,17 @@
 # window-padding-x = 20
 # window-padding-y = 20
 #
-# mouse-hide-while-typing = true
-# #link = true
-# link-url = true
-#
-# clipboard-trim-trailing-spaces = true
-# clipboard-paste-protection = true
-# copy-on-select = true
+mouse-hide-while-typing = true
+link-url = true
+
+clipboard-trim-trailing-spaces = true
+clipboard-paste-protection = true
+copy-on-select = true
 
 keybind = ctrl+shift+left=unbind
 keybind = ctrl+shift+right=unbind
+
+shell-integration-features = no-cursor,ssh-env
+
+# Hyprland workaroudn (https://github.com/ghostty-org/ghostty/discussions/3224)
+async-backend = epoll
