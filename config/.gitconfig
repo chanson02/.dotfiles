@@ -7,12 +7,26 @@
 	email = cooperhanson2020@gmail.com
 	name = Cooper Hanson
 [pull]
-	rebase = false
+  rebase = true
+[rerere]
+  enabled = true
+  autoupdate = true
+[push]
+  autoSetupRemote = true
 [includeIf "gitdir:~/Documents/CalAmp/"]
 	path = ~/.config/gitconfig.calamp
 [difftool "nvim_difftool"]
 	cmd = nvim -c \"packadd nvim.difftool\" -d \"$LOCAL\" \"$REMOTE\"
 [diff]
 	tool = nvim_difftool
+  algorithm = histogram   # better for refactoring
+  colorMoved = plain      # highlight moved blocks
+  mnemonicPrefix = true   # intuitive names for patches
+[branch]
+  sort = -committerdate
+[tag]
+  sort = -version:refname
+[commit]
+  verbose = true          # include diff in commit UI to see what's being committed
 [credential "https://git.heroku.com"]
 	helper = !heroku git:credentials
