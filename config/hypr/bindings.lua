@@ -2,6 +2,7 @@ local mainMod  = "SUPER + "
 local shftMod  = "SUPER + SHIFT + "
 -- local altMod   = "SUPER + ALT + "
 local ctrlMod  = "SUPER + CTRL + "
+local cmboMod = "SUPER + CTRL + SHIFT + "
 
 local numberBinds = { "q", "w", "e", "r", "t", "y", "u", "i", "o", "p" }
 local directionBinds = {
@@ -20,8 +21,8 @@ end
 -- Launchers
 rebind(mainMod .. "SUPER_L", "App Launcher", "omarchy-menu toggle", { release = true })
 rebind(mainMod .. "RETURN", "Terminal", { omarchy = "terminal" })
-rebind(shftMod .. "RETURN", "Browser", { omarchy = "browser" })
-rebind(ctrlMod .. "RETURN", "File Explorer", { omarchy = "nautilus" })
+rebind(shftMod .. "RETURN", "Browser", { omarchy = "nautilus" })
+rebind(ctrlMod .. "RETURN", "File Explorer", { omarchy = "browser" })
 
 -- Window Operations
 rebind(mainMod .. "C", "Close Window", hl.dsp.window.close())
@@ -36,7 +37,7 @@ end
 
 rebind(mainMod .. "comma", "Shrink column size", hl.dsp.layout("colresize -conf"))
 rebind(mainMod .. "period", "Grow column size", hl.dsp.layout("colresize +conf"))
---rebind(mainMod .. "Return", "Move window to its own column", hl.dsp.layout("promote"))
+rebind(cmboMod .. "Return", "Move window to its own column", hl.dsp.layout("promote"))
 
 -- Workspace Operations
 for i, key in ipairs(numberBinds) do
