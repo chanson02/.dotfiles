@@ -30,7 +30,7 @@ rebind(ctrlMod .. "F", "Fullscreen", hl.dsp.window.fullscreen({ mode = "fullscre
 rebind(shftMod .. "F", "Toggle floating", hl.dsp.window.float({ action = "toggle" }))
 
 for direction, bind in pairs(directionBinds) do
-  rebind(mainMod .. bind, "Focus window " .. direction, hl.dsp.focus({ direction = direction }))
+  rebind(mainMod .. bind, "Focus window " .. direction, hl.dsp.layout("focus " .. direction))
   rebind(ctrlMod .. bind, "Move window " .. direction, hl.dsp.window.move({ direction = direction }))
 end
 
