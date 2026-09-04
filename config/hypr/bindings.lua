@@ -21,8 +21,8 @@ end
 -- Launchers
 rebind(mainMod .. "SUPER_L", "App Launcher", "omarchy-menu toggle", { release = true })
 rebind(mainMod .. "RETURN", "Terminal", { omarchy = "terminal" })
-rebind(shftMod .. "RETURN", "Browser", { omarchy = "browser" })
-rebind(ctrlMod .. "RETURN", "File Explorer", { omarchy = "nautilus" })
+rebind(ctrlMod .. "RETURN", "Browser", { omarchy = "browser" })
+rebind(shftMod .. "RETURN", "File Explorer", { omarchy = "nautilus" })
 rebind(altMod .. "K", "Keybindings", "omarchy-menu-keybindings")
 rebind(altMod .. "L", "Keybindings", "omarchy-menu-tmux-keybindings")
 
