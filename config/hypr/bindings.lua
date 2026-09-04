@@ -34,6 +34,7 @@ rebind(shftMod .. "F", "Toggle floating", hl.dsp.window.float({ action = "toggle
 for direction, bind in pairs(directionBinds) do
   rebind(mainMod .. bind, "Focus window " .. direction, hl.dsp.layout("focus " .. direction))
   rebind(ctrlMod .. bind, "Move window " .. direction, hl.dsp.window.move({ direction = direction }))
+  rebind(shftMod .. bind, "Move window to " .. direction .. " monitor", hl.dsp.window.move({ monitor = direction }))
 end
 
 rebind(mainMod .. "comma", "Shrink column size", hl.dsp.layout("colresize -conf"))
@@ -41,10 +42,9 @@ rebind(mainMod .. "period", "Grow column size", hl.dsp.layout("colresize +conf")
 rebind(cmboMod .. "Return", "Move window to its own column", hl.dsp.layout("promote"))
 
 -- Workspace Operations
+local smw = require("plugins.smw")
 for i, key in ipairs(numberBinds) do
-  rebind(mainMod .. key, "Focus workspace " .. i, hl.dsp.focus({ workspace = i }))
-  rebind(ctrlMod .. key, "Move window to workspace " .. i, hl.dsp.window.move({ workspace = i }))
-end
-for direction, bind in pairs(directionBinds) do
-  rebind(shftMod .. bind, "Move workspace to " .. direction .. " monitor", hl.dsp.workspace.move({ monitor = direction }))
+  local ws = tostring(i == 10 and 0 or i)
+  rebind(mainMod .. key, "Focus workspace " .. ws, smw.workspace(ws))
+  rebind(ctrlMod .. key, "Move window to workspace " .. ws, smw.move_to_workspace(ws))
 end

@@ -1,0 +1,3 @@
+[submodule "config/hypr/plugins/smw"]
+	path = config/hypr/plugins/smw
+	url = https://github.com/zjeffer/split-monitor-workspaces
