@@ -21,8 +21,9 @@ end
 -- Launchers
 rebind(mainMod .. "SUPER_L", "App Launcher", "omarchy-menu toggle", { release = true })
 rebind(mainMod .. "RETURN", "Terminal", { omarchy = "terminal" })
-rebind(shftMod .. "RETURN", "Browser", { omarchy = "nautilus" })
-rebind(ctrlMod .. "RETURN", "File Explorer", { omarchy = "browser" })
+rebind(shftMod .. "RETURN", "Browser", { omarchy = "browser" })
+rebind(ctrlMod .. "RETURN", "File Explorer", { omarchy = "nautilus" })
+-- rebind(mainMod .. "", "Keybindings", "omarchy-menu-keybindings")
 
 -- Window Operations
 rebind(mainMod .. "C", "Close Window", hl.dsp.window.close())
