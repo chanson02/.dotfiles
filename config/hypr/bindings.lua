@@ -1,6 +1,6 @@
 local mainMod  = "SUPER + "
 local shftMod  = "SUPER + SHIFT + "
--- local altMod   = "SUPER + ALT + "
+local altMod   = "SUPER + ALT + "
 local ctrlMod  = "SUPER + CTRL + "
 local cmboMod = "SUPER + CTRL + SHIFT + "
 
@@ -23,7 +23,8 @@ rebind(mainMod .. "SUPER_L", "App Launcher", "omarchy-menu toggle", { release = 
 rebind(mainMod .. "RETURN", "Terminal", { omarchy = "terminal" })
 rebind(shftMod .. "RETURN", "Browser", { omarchy = "browser" })
 rebind(ctrlMod .. "RETURN", "File Explorer", { omarchy = "nautilus" })
--- rebind(mainMod .. "", "Keybindings", "omarchy-menu-keybindings")
+rebind(altMod .. "K", "Keybindings", "omarchy-menu-keybindings")
+rebind(altMod .. "L", "Keybindings", "omarchy-menu-tmux-keybindings")
 
 -- Window Operations
 rebind(mainMod .. "C", "Close Window", hl.dsp.window.close())
@@ -33,8 +34,9 @@ rebind(shftMod .. "F", "Toggle floating", hl.dsp.window.float({ action = "toggle
 
 for direction, bind in pairs(directionBinds) do
   rebind(mainMod .. bind, "Focus window " .. direction, hl.dsp.layout("focus " .. direction))
-  rebind(ctrlMod .. bind, "Move window " .. direction, hl.dsp.window.move({ direction = direction }))
-  rebind(shftMod .. bind, "Move window to " .. direction .. " monitor", hl.dsp.window.move({ monitor = direction }))
+  rebind(ctrlMod .. bind, "Focus monitor " .. direction, hl.dsp.focus({ monitor = direction }))
+  rebind(shftMod .. bind, "Move window " .. direction, hl.dsp.window.move({ direction = direction }))
+  rebind(cmboMod .. bind, "Move window to " .. direction .. " monitor", hl.dsp.window.move({ monitor = direction }))
 end
 
 rebind(mainMod .. "comma", "Shrink column size", hl.dsp.layout("colresize -conf"))
@@ -46,5 +48,5 @@ local smw = require("plugins.smw")
 for i, key in ipairs(numberBinds) do
   local ws = tostring(i == 10 and 0 or i)
   rebind(mainMod .. key, "Focus workspace " .. ws, smw.workspace(ws))
-  rebind(ctrlMod .. key, "Move window to workspace " .. ws, smw.move_to_workspace(ws))
+  rebind(shftMod .. key, "Move window to workspace " .. ws, smw.move_to_workspace(ws))
 end
